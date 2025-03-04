@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "423243917502",
+    "project_id": "resikin-e8b3c",
+    "storage_bucket": "resikin-e8b3c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423243917502:android:53b492e76a9fc5093016ef",
+        "android_client_info": {
+          "package_name": "com.example.resikin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYMFGd-7-oo8TqLsX2akl38wB_X1A9PZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

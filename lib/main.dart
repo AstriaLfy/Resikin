@@ -26,27 +26,30 @@ class Halaman1 extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start, // Mengatur kolom ke kiri
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Mengatur kolom ke kiri
                 children: [
                   Row(
                     children: [
                       Text(
                         "Halo, Raffi",
-                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.left, 
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
 
-                      SizedBox(width: 140,),
+                      SizedBox(width: 140),
                       Icon(Icons.person), //ganti menjadi iconButton
-                      SizedBox(width: 20,),
-                      Icon(Icons.notifications)
-                      
+                      SizedBox(width: 20),
+                      Icon(Icons.notifications),
                     ],
                   ),
 
                   SizedBox(height: 15),
                   Center(
-                    child:   Container(
+                    child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white,
@@ -60,8 +63,7 @@ class Halaman1 extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
-
+                  ),
                 ],
               ),
             ),
