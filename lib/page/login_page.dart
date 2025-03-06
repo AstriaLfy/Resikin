@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resikin/page/register_page.dart';
+import 'forgot_pw.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +19,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Latar belakang putih
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
             children: [
@@ -43,20 +45,141 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 137,),
-
                   Center(
                     child: Text("MASUK", style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w600,
                     ),),
+                  )
+                ],
+              )
 
+
+            ),
+
+              SizedBox(height: 20,),
+
+
+              Row(
+                children: [
+                  SizedBox(width: 20,),
+                  Text("Email"),
+                ],
+              ),
+              Container(
+                height: 56,
+                width: 320,
+                decoration: BoxDecoration(
+                  color: Color(0xFFA9A9A9),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+
+              SizedBox(height: 30,),
+
+              Row(
+                children: [
+                  SizedBox(width: 20,),
+                  Text("Kata Sandi"),
+                ],
+              ),
+              Container(
+                height: 56,
+                width: 320,
+                decoration: BoxDecoration(
+                  color: Color(0xFFA9A9A9),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+
+              SizedBox(height: 50,),
+              Container(
+                height: 56,
+                width: 320,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text("Masuk",style: TextStyle(color: Colors.white,
+                      fontSize: 18),),
+                )
+              ),
+
+                SizedBox(height: 10,),
+                Row(children: [
+                  SizedBox(width: 230,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
+                    },child: Text("Lupa Password?"),
+                  )
+
+
+
+                ],),
+
+                SizedBox(height: 40,),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      height: 56,
+                      width: 56,
+
+                      child:Icon(Icons.facebook, size: 56,)
+                    ),
+
+                    SizedBox(width: 23,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      height: 56,
+                      width: 56,
+                        child:Icon(Icons.facebook, size: 56,)
+                    ),
+
+                    SizedBox(width: 23,),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      height: 56,
+                      width: 56,
+                        child:Icon(Icons.facebook, size: 56,)
+
+                    ),
+
+                  ],
+                ),
+              SizedBox(height: 130,),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Belum punya akun?"),
+
+
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterPage()));
+
+                      //insert
+                    },child:
+                  Container(child: Text(" Daftar")),
                   )
 
                 ],
               )
-              
-              
-            ),
 
           ],
         ),
