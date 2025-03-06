@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthServices {
-  static final FirebaseAuthServices _instance = FirebaseAuthServices._internal();
+  static final FirebaseAuthServices _instance =
+      FirebaseAuthServices._internal();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   factory FirebaseAuthServices() {
@@ -11,36 +12,53 @@ class FirebaseAuthServices {
   FirebaseAuthServices._internal();
 
   //Validasi Email Address
-  bool validateEmailAddress(String email){
-    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  bool validateEmailAddress(String email) {
+    return RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(email);
   }
 
   //Validasi Password Minimal 8
-  bool validatePassword(String password){
+  bool validatePassword(String password) {
     return password.length >= 8;
   }
 
-  
-
+  //Sign Up Email
   Future<User?> signUpWithEmailAndPassword(
     String email,
     String password,
   ) async {
+    if (!validateEmailAddress(email)) {
+      print('Invalid email format');
+      return null;
+    }
+    if (!validatePassword(password)) {
+      print('Password must be at least 8 characters');
+      return null;
+    }
+
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      print('User signed up: ${credential.user?.uid}');
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak. Please try again');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      } else {
+        print('FirebaseAuthException: ${e.message}');
       }
     } catch (e) {
       print("some error occured");
     }
     return null;
   }
+
+
 
   Future<User?> signInWithEmailAndPassword(
     String email,
