@@ -15,6 +15,11 @@ class FirebaseAuthServices {
     return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
   }
 
+  //Validasi Password Minimal 8
+  bool validatePassword(String password){
+    return password.length >= 8;
+  }
+
   
 
   Future<User?> signUpWithEmailAndPassword(
