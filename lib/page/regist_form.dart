@@ -6,7 +6,8 @@ class RegisterForm extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
             children: [
               Container(
                   width: double.infinity,
@@ -44,15 +45,15 @@ class RegisterForm extends StatelessWidget {
                     color: Color(0xffd9d9d9),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20,),
-                      Icon(Icons.person),
-                      SizedBox(width: 10,),
-                      Text("Nama Lengkap"),
-
-                    ],
-                  )
+                  child: TextField(
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.person),
+                  hintText: "Nama Pengguna",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+              ),
               ),
               SizedBox(height: 30,),
 
@@ -63,15 +64,15 @@ class RegisterForm extends StatelessWidget {
                     color: Color(0xffd9d9d9),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20,),
-                      Icon(Icons.email),
-                      SizedBox(width: 10,),
-                      Text("Email"),
-
-                    ],
-                  )
+                  child: TextField(
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.email),
+                  hintText: "Email",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+              ),
               ),
               SizedBox(height: 30,),
 
@@ -82,15 +83,15 @@ class RegisterForm extends StatelessWidget {
                     color: Color(0xffd9d9d9),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20,),
-                      Icon(Icons.lock),
-                      SizedBox(width: 10,),
-                      Text("Kata Sandi"),
-
-                    ],
-                  )
+                  child: TextField(
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.lock_outline),
+                  hintText: "Kata Sandi",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+              ),
               ),
               SizedBox(height: 30,),
 
@@ -101,15 +102,15 @@ class RegisterForm extends StatelessWidget {
                     color: Color(0xffd9d9d9),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20,),
-                      Icon(Icons.person),
-                      SizedBox(width: 10,),
-                      Text("Konfirmasi Kata Sandi"),
-
-                    ],
-                  )
+                  child: TextField(
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.lock_outline),
+                  hintText: "Konfirmasi Kata Sandi",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+              ),
               ),
               SizedBox(height: 30,),
 
@@ -134,6 +135,7 @@ class RegisterForm extends StatelessWidget {
 
             ],
           ),
+      )
     );
   }
 }
