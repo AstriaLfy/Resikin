@@ -108,5 +108,21 @@ class FirebaseAuthServices {
     return _auth.currentUser;
   }
 
-  
+  //Mengirim email untuk reset password
+  Future<void> sendPasswordResetEmail(String email) async {
+    if (!validateEmailAddress(email)) {
+      print('Invalid email address');
+      return;
+    }
+
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      print('Password reset email sent to $email');
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException: ${e.message}');
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
 }
+
