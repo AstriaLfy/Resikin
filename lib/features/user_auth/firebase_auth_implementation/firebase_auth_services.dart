@@ -59,17 +59,35 @@ class FirebaseAuthServices {
   }
 
 
-
+  //Sign In Email
   Future<User?> signInWithEmailAndPassword(
     String email,
     String password,
   ) async {
+    if (!validateEmailAddress(email)) {
+      print('Invalid email format');
+      return null;
+    }
+    if (!validatePassword(password)) {
+      print('Password must be at least 8 characters');
+      return null;
+    }
+
     try {
       UserCredential credential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      print('User signed in: ${credential.user?.uid}');
       return credential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print('FirebaseAuthException: ${e.message}');
+      }
     } catch (e) {
       print("some error occured");
     }
