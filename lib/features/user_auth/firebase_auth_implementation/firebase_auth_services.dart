@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 
 class FirebaseAuthServices {
   static final FirebaseAuthServices _instance =
@@ -118,6 +119,23 @@ class FirebaseAuthServices {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       print('Password reset email sent to $email');
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException: ${e.message}');
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
+
+  // Update email
+  Future<void> updateEmail(String newEmail) async {
+    if (!validateEmailAddress(newEmail)) {
+      print('Invalid email format');
+      return;
+    }
+
+    try {
+      await _auth.currentUser?.updateEmail(newEmail);
+      print('Email updated to $newEmail');
     } on FirebaseAuthException catch (e) {
       print('FirebaseAuthException: ${e.message}');
     } catch (e) {
