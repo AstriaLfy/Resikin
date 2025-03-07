@@ -58,7 +58,6 @@ class FirebaseAuthServices {
     return null;
   }
 
-
   //Sign In Email
   Future<User?> signInWithEmailAndPassword(
     String email,
@@ -93,4 +92,16 @@ class FirebaseAuthServices {
     }
     return null;
   }
+
+  //Sign Out Email
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      print('User signed out');
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
+
+  
 }
