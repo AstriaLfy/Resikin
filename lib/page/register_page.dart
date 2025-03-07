@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
                 height: 56,
                 width: 320,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Color(0xffd9d9d9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -93,7 +93,6 @@ class RegisterPage extends StatelessWidget {
                 width: 130, // Adjust the width as needed
                 child: Divider(thickness: 1, color: Colors.black),
               ),
-
             ],
           ),
 
@@ -109,7 +108,7 @@ class RegisterPage extends StatelessWidget {
                 height: 56,
                 width: 320,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Color(0xffd9d9d9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(

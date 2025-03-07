@@ -9,9 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LoginPage(),
-    );
+    return MaterialApp(home: LoginPage());
   }
 }
 
@@ -20,79 +18,82 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
             children: [
-            Container(
-              width: double.infinity,
-              height: 200,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.6),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
+              Container(
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.6),
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                  color: Colors.green,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(125.0),
+                    bottomRight: Radius.circular(125.0),
                   ),
-                ],
-                color: Colors.green,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(125.0),
-                  bottomRight: Radius.circular(125.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 137),
+                    Center(
+                      child: Text(
+                        "MASUK",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-              child: Column(
-                children: [
-                  SizedBox(height: 137,),
-                  Center(
-                    child: Text("MASUK", style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                    ),),
-                  )
-                ],
-              )
-
-
-            ),
-
-              SizedBox(height: 20,),
-
-
-              Row(
-                children: [
-                  SizedBox(width: 20,),
-                  Text("Email"),
-                ],
-              ),
+              SizedBox(height: 20),
+              Row(children: [SizedBox(width: 20), Text("Email")]),
               Container(
                 height: 56,
                 width: 320,
                 decoration: BoxDecoration(
-                  color: Color(0xFFA9A9A9),
+                  color: Color(0xffd9d9d9),
                   borderRadius: BorderRadius.circular(20),
                 ),
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.mail),
+                    hintText: "Email",
+                    hintStyle: TextStyle(color: Colors.grey),
+                  ),
+                ),
               ),
-
-              SizedBox(height: 30,),
-
-              Row(
-                children: [
-                  SizedBox(width: 20,),
-                  Text("Kata Sandi"),
-                ],
-              ),
+              SizedBox(height: 30),
+              Row(children: [SizedBox(width: 20), Text("Kata Sandi")]),
               Container(
                 height: 56,
                 width: 320,
                 decoration: BoxDecoration(
-                  color: Color(0xFFA9A9A9),
+                  color: Color(0xffd9d9d9),
                   borderRadius: BorderRadius.circular(20),
                 ),
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.lock_outline),
+                    hintText: "Kata Sandi",
+                    hintStyle: TextStyle(color: Colors.grey),
+                  ),
+                ),
               ),
-
-              SizedBox(height: 50,),
+              SizedBox(height: 50),
               Container(
                 height: 56,
                 width: 320,
@@ -101,87 +102,85 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
-                  child: Text("Masuk",style: TextStyle(color: Colors.white,
-                      fontSize: 18),),
-                )
-              ),
-
-                SizedBox(height: 10,),
-                Row(children: [
-                  SizedBox(width: 230,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
-                    },child: Text("Lupa Password?"),
-                  )
-
-
-
-                ],),
-
-                SizedBox(height: 40,),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      height: 56,
-                      width: 56,
-
-                      child:Icon(Icons.facebook, size: 56,)
-                    ),
-
-                    SizedBox(width: 23,),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      height: 56,
-                      width: 56,
-                        child:Icon(Icons.facebook, size: 56,)
-                    ),
-
-                    SizedBox(width: 23,),
-
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      height: 56,
-                      width: 56,
-                        child:Icon(Icons.facebook, size: 56,)
-
-                    ),
-
-                  ],
+                  child: Text(
+                    "Masuk",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
                 ),
-              SizedBox(height: 130,),
-
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  SizedBox(width: 230),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ForgotPasswordPage(),
+                        ),
+                      );
+                    },
+                    child: Text("Lupa Password?"),
+                  ),
+                ],
+              ),
+              SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    height: 56,
+                    width: 56,
+                    child: Icon(Icons.facebook, size: 56),
+                  ),
+                  SizedBox(width: 23),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    height: 56,
+                    width: 56,
+                    child: Icon(Icons.facebook, size: 56),
+                  ),
+                  SizedBox(width: 23),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    height: 56,
+                    width: 56,
+                    child: Icon(Icons.facebook, size: 56),
+                  ),
+                ],
+              ),
+              SizedBox(height: 130),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Belum punya akun?"),
-
-
                   GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterPage()));
-
-                      //insert
-                    },child:
-                  Container(child: Text(" Daftar")),
-                  )
-
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
+                    },
+                    child: Container(
+                      child: Text(
+                        " Daftar",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ),
                 ],
-              )
-
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
