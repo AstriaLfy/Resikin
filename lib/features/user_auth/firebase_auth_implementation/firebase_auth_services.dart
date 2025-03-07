@@ -103,5 +103,10 @@ class FirebaseAuthServices {
     }
   }
 
+  //Mendapatkan user yang login
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+
   
 }
