@@ -142,5 +142,22 @@ class FirebaseAuthServices {
       print('Error occurred: $e');
     }
   }
+
+  // Update password
+  Future<void> updatePassword(String newPassword) async {
+    if (!validatePassword(newPassword)) {
+      print('Password must be at least 6 characters');
+      return;
+    }
+
+    try {
+      await _auth.currentUser?.updatePassword(newPassword);
+      print('Password updated');
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException: ${e.message}');
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
 }
 
