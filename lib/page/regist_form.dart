@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterForm extends StatelessWidget {
   @override
@@ -31,7 +32,7 @@ class RegisterForm extends StatelessWidget {
 
 
               SizedBox(height: 30,),
-              Text("DAFTAR", style: TextStyle(
+              Text("DAFTAR", style: GoogleFonts.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
               ),),
@@ -51,7 +52,7 @@ class RegisterForm extends StatelessWidget {
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.person),
                   hintText: "Nama Pengguna",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: GoogleFonts.poppins(color: Colors.grey),
                 ),
               ),
               ),
@@ -70,7 +71,7 @@ class RegisterForm extends StatelessWidget {
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.email),
                   hintText: "Email",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: GoogleFonts.poppins(color: Colors.grey),
                 ),
               ),
               ),
@@ -89,7 +90,7 @@ class RegisterForm extends StatelessWidget {
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.lock_outline),
                   hintText: "Kata Sandi",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: GoogleFonts.poppins(color: Colors.grey),
                 ),
               ),
               ),
@@ -108,7 +109,7 @@ class RegisterForm extends StatelessWidget {
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.lock_outline),
                   hintText: "Konfirmasi Kata Sandi",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: GoogleFonts.poppins(color: Colors.grey),
                 ),
               ),
               ),
@@ -123,7 +124,7 @@ class RegisterForm extends StatelessWidget {
           ),
           child: Center(
             child:
-            Text("Daftar", style: TextStyle(
+            Text("Daftar", style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.w500,

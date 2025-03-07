@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:resikin/page/login_page.dart';
 import 'package:resikin/page/regist_form.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -33,7 +35,7 @@ class RegisterPage extends StatelessWidget {
                   children: [
                     SizedBox(height: 137,),
                     Center(
-                      child: Text("DAFTAR", style: TextStyle(
+                      child: Text("DAFTAR", style: GoogleFonts.poppins(
                         fontSize: 28,
                         fontWeight: FontWeight.w600,
                       ),),
@@ -63,7 +65,7 @@ class RegisterPage extends StatelessWidget {
                     SizedBox(width: 20,),
                     Icon(Icons.email),
                     SizedBox(width: 10,),
-                    Text("Daftar dengan Email"),
+                    Text("Daftar dengan Email",style: GoogleFonts.poppins()),
 
                   ],
                 )
@@ -86,7 +88,7 @@ class RegisterPage extends StatelessWidget {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text('atau'), ),
+                child: Text('atau', style: GoogleFonts.poppins(),), ),
 
 
               Container(
@@ -121,9 +123,28 @@ class RegisterPage extends StatelessWidget {
                 )
             ),
 
-            )
+            ),
 
-
+            SizedBox(height: 270),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Sudah punya akun?"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                  child: Container(
+                    child: Text(
+                      " Masuk",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ),
+              ],
+            ),
 
 
           ],

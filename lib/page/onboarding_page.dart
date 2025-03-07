@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_page.dart';
 
@@ -45,7 +46,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
                       SizedBox(height: 130,),
 
-                      Text('Memudahkan Dalam\n Memilah Sampah!', style: TextStyle(
+                      Text('Memudahkan Dalam\n Memilah Sampah!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
@@ -69,7 +70,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           child:
                           Center(
                             child:
-                            Text("Lanjut", style: TextStyle(
+                            Text("Lanjut", style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -103,7 +104,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
                       SizedBox(height: 100,),
 
-                      Text('Tukarkan\n Sampah!', style: TextStyle(
+                      Text('Tukarkan\n Sampah!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
@@ -126,7 +127,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         child: Center(
                           child:
-                          Text("Lanjut", style: TextStyle(
+                          Text("Lanjut", style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -156,7 +157,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
                       SizedBox(height: 100,),
 
-                      Text('Kumpulkan Poin &\n Tukarkan Reward!', style: TextStyle(
+                      Text('Kumpulkan Poin &\n Tukarkan Reward!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
@@ -178,7 +179,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           child:
                           Center(
                             child:
-                            Text("Mulai", style: TextStyle(
+                            Text("Mulai", style: GoogleFonts.poppins(
                               fontSize: 18,
                               color: Colors.white,
                               fontWeight: FontWeight.w500,

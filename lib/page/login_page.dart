@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/register_page.dart';
 import 'forgot_pw.dart';
 
@@ -46,7 +47,7 @@ class LoginPage extends StatelessWidget {
                     Center(
                       child: Text(
                         "MASUK",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 28,
                           fontWeight: FontWeight.w600,
                         ),
@@ -56,7 +57,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Row(children: [SizedBox(width: 20), Text("Email")]),
+              Row(children: [SizedBox(width: 20), Text("Email",style: GoogleFonts.poppins())]),
               Container(
                 height: 56,
                 width: 320,
@@ -70,12 +71,12 @@ class LoginPage extends StatelessWidget {
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.mail),
                     hintText: "Email",
-                    hintStyle: TextStyle(color: Colors.grey),
+                    hintStyle: GoogleFonts.poppins(color: Colors.grey),
                   ),
                 ),
               ),
               SizedBox(height: 30),
-              Row(children: [SizedBox(width: 20), Text("Kata Sandi")]),
+              Row(children: [SizedBox(width: 20), Text("Kata Sandi",style: GoogleFonts.poppins())]),
               Container(
                 height: 56,
                 width: 320,
@@ -89,7 +90,7 @@ class LoginPage extends StatelessWidget {
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.lock_outline),
                     hintText: "Kata Sandi",
-                    hintStyle: TextStyle(color: Colors.grey),
+                    hintStyle: GoogleFonts.poppins(color: Colors.grey),
                   ),
                 ),
               ),
@@ -104,7 +105,7 @@ class LoginPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "Masuk",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 18),
                   ),
                 ),
               ),
@@ -120,7 +121,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text("Lupa Password?"),
+                    child: Text("Lupa Password?", style: GoogleFonts.poppins(),),
                   ),
                 ],
               ),
@@ -159,11 +160,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 130),
+              SizedBox(height: 110),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Belum punya akun?"),
+                  Text("Belum punya akun?", style: GoogleFonts.poppins(
+
+                  ),),
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
@@ -173,7 +176,7 @@ class LoginPage extends StatelessWidget {
                     child: Container(
                       child: Text(
                         " Daftar",
-                        style: TextStyle(color: Colors.blue),
+                        style: GoogleFonts.poppins(color: Colors.blue),
                       ),
                     ),
                   ),
