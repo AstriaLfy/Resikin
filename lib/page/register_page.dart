@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/login_page.dart';
 import 'package:resikin/page/regist_form.dart';
+import 'reusable.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -12,38 +13,18 @@ class RegisterPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.6),
-                      spreadRadius: 2,
-                      blurRadius: 8,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                  color: Colors.green,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(125.0),
-                    bottomRight: Radius.circular(125.0),
-                  ),
-                ),
-
-                child: Column(
+            ReusableContainer(child: Center(
+                child:
+                Column(
                   children: [
                     SizedBox(height: 137,),
-                    Center(
-                      child: Text("DAFTAR", style: GoogleFonts.poppins(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                      ),),
-                    )
+                    Text("MASUK", style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600,
+                    ),),
                   ],
                 )
-            ),
 
+            )
+            ),
             SizedBox(height: 40,),
 
 

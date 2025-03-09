@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'reusable.dart';
 
 class RegisterForm extends StatelessWidget {
   @override
@@ -10,26 +11,7 @@ class RegisterForm extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
             children: [
-              Container(
-                  width: double.infinity,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.6),
-                        spreadRadius: 2,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(125.0),
-                      bottomRight: Radius.circular(125.0),
-                    ),
-                  ),
-              ),
-
+              ReusableContainer(),
 
               SizedBox(height: 30,),
               Text("DAFTAR", style: GoogleFonts.poppins(

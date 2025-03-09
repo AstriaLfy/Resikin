@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Resikin',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(
           Theme.of(context).textTheme,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'reusable.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   @override
@@ -7,26 +9,18 @@ class ForgotPasswordPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(
           children: [
-            Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.6),
-                      spreadRadius: 2,
-                      blurRadius: 8,
-                      offset: Offset(0, 4),
-                    ),
+            ReusableContainer(child: Center(
+                child:
+                Column(
+                  children: [
+                    SizedBox(height: 137,),
+                    Text("MASUK", style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600,
+                    ),),
                   ],
-                  color: Colors.green,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(125.0),
-                    bottomRight: Radius.circular(125.0),
-                  ),
-                ),
-            ),
-            Row(
+                )
+
+            )
+            ),            Row(
               children: [
                 Text("Lupa Kata Sandi", style: TextStyle(
                     fontSize: 28,
@@ -34,8 +28,6 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),)
               ],
             )
-
-            
           ],
         )
 

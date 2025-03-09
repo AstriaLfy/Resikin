@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resikin/page/beranda.dart';
 import 'package:resikin/page/register_page.dart';
 import 'forgot_pw.dart';
+import 'reusable.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,39 +25,19 @@ class LoginPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.6),
-                      spreadRadius: 2,
-                      blurRadius: 8,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                  color: Colors.green,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(125.0),
-                    bottomRight: Radius.circular(125.0),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(height: 137),
-                    Center(
-                      child: Text(
-                        "MASUK",
-                        style: GoogleFonts.poppins(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              ReusableContainer(child: Center(
+                child:
+                Column(
+              children: [
+                SizedBox(height: 137,),
+                Text("MASUK", style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600,
+                ),),
+            ],
+          )
+
+              )
               ),
+
               SizedBox(height: 20),
               Row(children: [SizedBox(width: 20), Text("Email",style: GoogleFonts.poppins())]),
               Container(
@@ -95,7 +77,12 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50),
-              Container(
+
+              GestureDetector(onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Beranda()));
+
+
+              },child: Container(
                 height: 56,
                 width: 320,
                 decoration: BoxDecoration(
@@ -103,12 +90,16 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
-                  child: Text(
+                  child:
+                  Text(
                     "Masuk",
                     style: GoogleFonts.poppins(color: Colors.white, fontSize: 18),
                   ),
                 ),
               ),
+                ),
+
+
               SizedBox(height: 10),
               Row(
                 children: [
