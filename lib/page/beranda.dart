@@ -12,27 +12,34 @@ class Beranda extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          ReusableContainer(),
+          Column(
+            children: [
+              ReusableContainer(),
+              Positioned(
+                top: 100,
+                left: 10,
 
-          // Menggunakan Align untuk menempatkan Container di tengah
-          Align(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFF3D8D7A),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: Offset(0, -4),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xFF3D8D7A),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 8,
+                        offset: Offset(0, -4),
+                      ),
+                    ],
                   ),
-                ],
+                  height: 96,
+                  width: 340,
+                ),
               ),
-              height: 96,
-              width: 340,
-            ),
-          ),
+            ],
+          )
+
+
         ],
       ),
     );

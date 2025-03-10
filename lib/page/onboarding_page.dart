@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -34,24 +35,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   color: Colors.white,
                   child: Column(
                     children: [
-                      SizedBox(height: 234 ,),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(125),
-                        ),
-                      ),
+                      SizedBox(height: 200 ,),
+                      SvgPicture.asset("assets/images/ob2.svg",),
 
-                      SizedBox(height: 130,),
+                      SizedBox(height: 64,),
 
                       Text('Memudahkan Dalam\n Memilah Sampah!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
 
-                      SizedBox(height: 30,),
+                      SizedBox(height: 100,),
 
                       GestureDetector(
                         onTap: (){
@@ -65,7 +59,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           width: 300,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Colors.grey,
+                            color: Color(0xFF3D8D7A),
                           ),
                           child:
                           Center(
@@ -92,24 +86,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   color: Colors.white,
                   child: Column(
                     children: [
-                      SizedBox(height: 250 ,),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(125),
-                        ),
-                      ),
+                      SizedBox(height: 200 ,),
+                      SvgPicture.asset("assets/images/ob1.svg",),
 
-                      SizedBox(height: 100,),
+                      SizedBox(height: 64,),
 
                       Text('Tukarkan\n Sampah!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
 
-                      SizedBox(height: 30,),
+                      SizedBox(height: 100,),
 
 
                   GestureDetector(
@@ -123,7 +110,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         width: 300,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey,
+                          color: Color(0xFF3D8D7A),
                         ),
                         child: Center(
                           child:
@@ -145,24 +132,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   color: Colors.white,
                   child: Column(
                     children: [
-                      SizedBox(height: 250 ,),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(125),
-                        ),
-                      ),
+                      SizedBox(height: 200 ,),
+                      SvgPicture.asset("assets/images/ob3.svg",),
 
-                      SizedBox(height: 100,),
+
+                      SizedBox(height: 64,),
 
                       Text('Kumpulkan Poin &\n Tukarkan Reward!', style: GoogleFonts.poppins(
                         fontSize: 25, fontWeight: FontWeight.w700,
                       ),),
 
 
-                      SizedBox(height: 30,),
+                      SizedBox(height: 100,),
 
                       GestureDetector(
                         onTap: (){
@@ -173,7 +154,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           width: 300,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Colors.grey,
+                            color: Color(0xFF3D8D7A),
 
                           ),
                           child:
