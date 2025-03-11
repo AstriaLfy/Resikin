@@ -1,35 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:resikin/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:resikin/page/login_page.dart';
 
-void main(){
-  runApp(MaterialApp(home: new beranda()));
-}
+class Beranda extends StatelessWidget {
+  final FirebaseAuthServices _authServices = FirebaseAuthServices();
 
-class beranda extends StatelessWidget{
+  void _logout(BuildContext context) async {
+    await _authServices.signOut();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
-
-      body: Center(
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: 20),
-            new Container(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Text(
-                  "ppp",
-                  style: TextStyle(color: Colors.white, fontSize: 50),
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          Text("Selamat datang di Beranda!"),
+          ElevatedButton(onPressed: () => _logout(context), child: Text("Logout"))
+        ],
       ),
     );
   }

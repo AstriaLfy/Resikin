@@ -1,75 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'page/beranda.dart';
+import 'page/onboarding_page.dart';
 
-void main() {
-  runApp(MaterialApp(home: Halaman1()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, 
+  );
+  runApp(MyApp());
 }
 
-class Halaman1 extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Container(
-            width: 420,
-            height: 200,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(125.0),
-                bottomRight: Radius.circular(125.0),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Mengatur kolom ke kiri
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Halo, Raffi",
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-
-                      SizedBox(width: 140),
-                      Icon(Icons.person), //ganti menjadi iconButton
-                      SizedBox(width: 20),
-                      Icon(Icons.notifications),
-                    ],
-                  ),
-
-                  SizedBox(height: 15),
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white,
-                      ),
-                      width: 320,
-                      height: 30,
-                      child: Center(
-                        child: Text(
-                          "   Wiih, kamu udah hasilin 35.000 Koin!",
-                          style: TextStyle(color: Colors.black, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Resikin',
+      theme: ThemeData(
+        textTheme: GoogleFonts.manropeTextTheme(
+          Theme.of(context).textTheme,
+        ),
+        primarySwatch: Colors.blue,
       ),
+      home: OnboardingPage(),
     );
   }
 }
