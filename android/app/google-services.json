@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "423243917502-0b0a4748e6up8m8a04ggr3jqfrc2ur10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.resikin",
+            "certificate_hash": "f0ff59014e24a9052c2acfe57bcba679b299fef9"
+          }
+        },
+        {
           "client_id": "423243917502-kthdqveq2sh3abrpae880ld73bd4530e.apps.googleusercontent.com",
           "client_type": 3
         }
