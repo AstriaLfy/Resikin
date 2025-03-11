@@ -184,7 +184,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
             child: SmoothPageIndicator(
               controller: controller,
               count: 3,
-              effect: WormEffect(),
+              effect: WormEffect(
+              ),
             ),
           ),
         ],

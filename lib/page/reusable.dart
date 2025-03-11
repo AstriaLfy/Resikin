@@ -35,3 +35,31 @@ class ReusableContainer extends StatelessWidget {
     );
   }
 }
+
+class ReuseField extends StatelessWidget {
+  final Widget? child; // Menggunakan Widget? untuk memungkinkan child null
+  final double height;
+  final double width;
+  final Color color;
+
+  const ReuseField({
+    Key? key,
+    this.child,
+    this.height = 56, // Default height
+    this.width = 320, // Default width
+    this.color = const Color(0xffd9d9d9), // Default color
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(20), // Sudut melengkung
+      ),
+      child: child, // Menampilkan child yang diberikan
+    );
+  }
+}
