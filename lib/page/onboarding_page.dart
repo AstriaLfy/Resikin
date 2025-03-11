@@ -32,80 +32,33 @@ class _OnboardingPageState extends State<OnboardingPage> {
             controller: controller,
             children: [
               Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 200 ,),
-                      SvgPicture.asset("assets/images/ob2.svg",),
+                color: Color(0xFFFAFCF9),
+                child: Column(
+                  children: [
+                    SizedBox(height: 200),
+                    SvgPicture.asset("assets/images/ob2.svg"),
 
-                      SizedBox(height: 64,),
+                    SizedBox(height: 64),
 
-                      Text('Memudahkan Dalam\n Memilah Sampah!', style: GoogleFonts.poppins(
-                        fontSize: 25, fontWeight: FontWeight.w700,
-                      ),),
+                    Text(
+                      'Memudahkan Dalam\n Memilah Sampah!',
+                      style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
 
+                    SizedBox(height: 100),
 
-                      SizedBox(height: 100,),
+                    GestureDetector(
+                      onTap: () {
+                        controller.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
+                      },
 
-                      GestureDetector(
-                        onTap: (){
-                          controller.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-
-                        },
-
-                        child:
-                        Container(
-                          height: 40,
-                          width: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Color(0xFF3D8D7A),
-                          ),
-                          child:
-                          Center(
-                            child:
-                            Text("Lanjut", style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-
-                            ),),
-
-                          ),
-                        )
-                        ,
-                      )
-
-
-
-                    ],
-                  )
-              ),
-
-              Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 200 ,),
-                      SvgPicture.asset("assets/images/ob1.svg",),
-
-                      SizedBox(height: 64,),
-
-                      Text('Tukarkan\n Sampah!', style: GoogleFonts.poppins(
-                        fontSize: 25, fontWeight: FontWeight.w700,
-                      ),),
-
-
-                      SizedBox(height: 100,),
-
-
-                  GestureDetector(
-                    onTap: (){
-                      controller.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-
-                    },child:
-
-                      Container(
+                      child: Container(
                         height: 40,
                         width: 300,
                         decoration: BoxDecoration(
@@ -113,72 +66,116 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           color: Color(0xFF3D8D7A),
                         ),
                         child: Center(
-                          child:
-                          Text("Lanjut", style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-
-                          ),),
-
+                          child: Text(
+                            "Lanjut",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
-                      ))
-
-                    ],
-                  )
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
               Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 200 ,),
-                      SvgPicture.asset("assets/images/ob3.svg",),
+                color: Color(0xFFFAFCF9),
+                child: Column(
+                  children: [
+                    SizedBox(height: 200),
+                    SvgPicture.asset("assets/images/ob1.svg"),
 
+                    SizedBox(height: 64),
 
-                      SizedBox(height: 64,),
+                    Text(
+                      'Tukarkan\n Sampah!',
+                      style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
 
-                      Text('Kumpulkan Poin &\n Tukarkan Reward!', style: GoogleFonts.poppins(
-                        fontSize: 25, fontWeight: FontWeight.w700,
-                      ),),
+                    SizedBox(height: 100),
 
-
-                      SizedBox(height: 100,),
-
-                      GestureDetector(
-                        onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
-                        },child:
-                      Container(
-                          height: 40,
-                          width: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Color(0xFF3D8D7A),
-
+                    GestureDetector(
+                      onTap: () {
+                        controller.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Color(0xFF3D8D7A),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Lanjut",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                          child:
-                          Center(
-                            child:
-                            Text("Mulai", style: GoogleFonts.poppins(
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Container(
+                color: Color(0xFFFAFCF9),
+                child: Column(
+                  children: [
+                    SizedBox(height: 200),
+                    SvgPicture.asset("assets/images/ob3.svg"),
+
+                    SizedBox(height: 64),
+
+                    Text(
+                      'Kumpulkan Poin &\n Tukarkan Reward!',
+                      style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+
+                    SizedBox(height: 100),
+
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Color(0xFF3D8D7A),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Mulai",
+                            style: GoogleFonts.poppins(
                               fontSize: 18,
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
-
                             ),
-                            ),
-
-                          )
-
-
-                      )
-
-                        ,
-                      )
-
-
-                    ],
-                  )
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -187,8 +184,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             child: SmoothPageIndicator(
               controller: controller,
               count: 3,
-              effect:
-              WormEffect(),
+              effect: WormEffect(),
             ),
           ),
         ],

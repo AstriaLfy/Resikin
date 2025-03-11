@@ -8,7 +8,7 @@ class ReusableContainer extends StatelessWidget {
   const ReusableContainer({
     Key? key,
     this.child,
-    this.height = 200, // Default height
+    this.height = 175, // Default height
     this.color = const Color(0xFF3D8D7A), // Default color
   }) : super(key: key);
 
