@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:resikin/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'reusable.dart';
 import 'beranda.dart';
 
@@ -172,6 +172,7 @@ class _RegisterFormState extends State<RegisterForm> {
               child: TextField(
                 textAlignVertical: TextAlignVertical.center,
                 controller: _confirmPasswordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.lock_outline),
