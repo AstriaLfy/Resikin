@@ -52,18 +52,6 @@ class Beranda extends StatelessWidget {
                         ),
                         SizedBox(width: 70),
                         Icon(Icons.notifications, color: Colors.white),
-                        IconButton(
-                          icon: Icon(Icons.logout, color: Colors.white),
-                          onPressed: () async {
-                            await _authServices.signOut();
-                            Navigator.pushAndRemoveUntil(context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginPage(),
-                              ),
-                              (route) => false,
-                            );
-                          },
-                        ),
                       ],
                     ),
                   ],
