@@ -36,7 +36,7 @@ class _CleanupState extends State<Cleanup> {
     };
 
     _dbService
-        .create(data)
+        .createClean(data)
         .then((_) {
           Navigator.push(
             context,

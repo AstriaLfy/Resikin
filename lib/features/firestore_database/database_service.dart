@@ -3,47 +3,52 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
   final _fire = FirebaseFirestore.instance;
-  final String collectionName = "cleaning_requests";
+  final String collectionNameCleaning = "cleaning_requests";
+  final String collectionNamePayment = "payment_requests";
 
-  Future<void> create(Map<String, dynamic> data) async {
+  Future<void> createClean(Map<String, dynamic> data) async {
     try {
-      await _fire.collection(collectionName).add(data);  
+      await _fire.collection(collectionNameCleaning).add(data);
       log("Data berhasil ditambahkan");
     } catch (e) {
       log("Error saat menambahkan data: ${e.toString()}");
     }
   }
 
-  Stream<QuerySnapshot> read() {
-    return _fire.collection(collectionName).orderBy("timestamp", descending: true).snapshots();
+  Stream<QuerySnapshot> readClean() {
+    return _fire
+        .collection(collectionNameCleaning)
+        .orderBy("timestamp", descending: true)
+        .snapshots();
   }
 
-  Future<void> update(String docId, Map<String, dynamic> data) async {
+  Future<void> updateClean(String docId, Map<String, dynamic> data) async {
     try {
-      await _fire.collection(collectionName).doc(docId).update(data);
+      await _fire.collection(collectionNameCleaning).doc(docId).update(data);
       log("Data berhasil diperbarui");
     } catch (e) {
       log("Error saat update data: ${e.toString()}");
     }
   }
 
-  Future<void> delete(String docId) async {
+  Future<void> deleteClean(String docId) async {
     try {
-      await _fire.collection(collectionName).doc(docId).delete();
+      await _fire.collection(collectionNameCleaning).doc(docId).delete();
       log("Data berhasil dihapus dengan ID: $docId");
     } catch (e) {
       log("Error saat menghapus data: ${e.toString()}");
     }
   }
 
-    Future<void> create1(Map<String, dynamic> data) async {
+  Future<void> createPayment(Map<String, dynamic> paymentData) async {
     try {
-      await _fire.collection(collectionName).add(data);  
-      log("Data berhasil ditambahkan");
+      await _fire.collection(collectionNamePayment).add(paymentData);
+      log("Pembayaran berhasil ditambahkan");
     } catch (e) {
-      log("Error saat menambahkan data: ${e.toString()}");
+      log("Error saat menyimpan pembayaran: ${e.toString()}");
     }
   }
+}
     // createPilihHari() {
     //   try {
     //     _fire.collection("users").add({"hari": "Hari Ini"});
@@ -247,4 +252,4 @@ class DatabaseService {
     //     log(e.toString());
     //   }
     // }
-  }
+

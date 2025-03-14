@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/reusable.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:resikin/features/firestore_database/database_service.dart';
 
 class PaymentMethod extends StatefulWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -10,8 +12,33 @@ class PaymentMethod extends StatefulWidget {
 }
 
 class _PaymentMethodState extends State<PaymentMethod> {
-  String? _selectedPaymentMethod; // Variable to hold the selected payment method
+  final _dbService = DatabaseService();
+  String?
+  _selectedPaymentMethod; // Variable to hold the selected payment method
   bool _agreeToUseCoins = false; // Variable to hold agreement status
+
+  void _processPayment() {
+    // Create a payment data map to send to Firestore
+    Map<String, dynamic> paymentData = {
+      'payment_method': _selectedPaymentMethod,
+      'use_coins': _agreeToUseCoins,
+      'total_price': "Rp. Xxx xxx xxx", // Replace with actual total price
+      'timestamp': FieldValue.serverTimestamp(), // Add a timestamp
+    };
+
+    // Call the createPayment method from DatabaseService
+    _dbService
+        .createPayment(paymentData)
+        .then((_) {
+          // Handle successful payment processing (e.g., show a success message)
+          print("Payment processed successfully");
+          // Optionally navigate to another screen or show a confirmation dialog
+        })
+        .catchError((error) {
+          // Handle any errors that occur during the payment processing
+          print("Error processing payment: $error");
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +89,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             SizedBox(height: 20),
             Container(
               width: 350,
-              decoration: BoxDecoration(
-              ),
+              decoration: BoxDecoration(),
               child: Column(
                 children: [
                   RadioListTile<String>(
@@ -155,20 +181,21 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 20),
             Text("Total Harga"),
-            Text("Rp. Xxx xxx xxx"),
+            Text("Rp. Xxx xxx xxx"), // Replace with actual total price
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.07,
               ),
-              child: Container(
-                height: 50,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey,
-                ),
-                child: Center(
-                  child: Text("BAYAR"),
+              child: GestureDetector(
+                onTap: _processPayment, // Call the payment processing method
+                child: Container(
+                  height: 50,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey,
+                  ),
+                  child: Center(child: Text("BAYAR")),
                 ),
               ),
             ),
