@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,45 +29,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final FirebaseAuth _authServices = FirebaseAuth.instance;
+  final FirebaseAuthServices _authServices = FirebaseAuthServices();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
-  Future<void> _login() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
+Future<void> _login() async {
+  setState(() {
+    _isLoading = true;
+  });
 
-    if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Harap isi email dan password')));
-      return;
-    }
+  String email = _emailController.text.trim();
+  String password = _passwordController.text.trim();
 
-    setState(() => _isLoading = true);
+  String? errorMessage = await _authServices.signInWithEmailAndPassword(email, password);
 
-    try {
-      await _authServices.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+  setState(() {
+    _isLoading = false;
+  });
 
-      if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Beranda()),
-          (route) => false, 
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Login gagal: ${e.toString()}')));
-    } finally {
-      setState(() => _isLoading = false);
-    }
+  if (errorMessage == null) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        backgroundColor: Colors.red, 
+      ),
+    );
   }
+}
 
   Future<void> signInWithGoogle() async {
     try {
@@ -87,19 +79,18 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
-          final User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      debugPrint("Firebase Sign-In berhasil.");
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        debugPrint("Firebase Sign-In berhasil.");
 
-      
-      if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Beranda()),
-          (route) => false, 
-        );
+        if (mounted) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Beranda()),
+            (route) => false,
+          );
+        }
       }
-    }
       debugPrint("Firebase Sign-In berhasil.");
     } catch (e) {
       debugPrint("Google Sign-In gagal: ${e.toString()}");
@@ -138,6 +129,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+
+              SizedBox(height: 10),
+              SvgPicture.asset("assets/images/Login.svg"),
               Row(
                 children: [
                   SizedBox(width: 20),

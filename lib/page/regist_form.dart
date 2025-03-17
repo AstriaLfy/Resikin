@@ -20,58 +20,27 @@ class _RegisterFormState extends State<RegisterForm> {
   bool _isLoading = false;
 
   Future<void> _register() async {
-    String name = _nameController.text.trim();
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
-    String confirmPassword = _confirmPasswordController.text.trim();
-
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Harap isi semua kolom')));
-      return;
-    }
-
-    if (password.length < 8) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Password harus minimal 8 karakter')),
-      );
-      return;
-    }
-
-    if (password != confirmPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Konfirmasi kata sandi tidak cocok.')),
-      );
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    User? user = await _authServices.signUpWithEmailAndPassword(
-      email,
-      password,
-    );
-
     setState(() {
       _isLoading = false;
     });
 
-    if (user != null) {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
-    } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Registrasi gagal')));
-    }
+    String? errorMessage = await _authServices.signUpWithEmailAndPassword(
+      _nameController.text.trim(),
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+      _confirmPasswordController.text.trim(),
+    );
+
+    setState(() {
+    _isLoading = false;
+    });
+
+    if (errorMessage == null) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
   }
+}
 
   @override
   void dispose() {

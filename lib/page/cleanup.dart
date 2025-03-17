@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'payment_method.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
+import 'package:intl/intl.dart';
 
 class Cleanup extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class Cleanup extends StatefulWidget {
 class _CleanupState extends State<Cleanup> {
   final _dbService = DatabaseService();
   String selectedDay = "Hari ini";
+  DateTime? selectedDate;
   String? selectedDocId;
 
   final TextEditingController luasController = TextEditingController();
@@ -32,7 +34,8 @@ class _CleanupState extends State<Cleanup> {
       'alamat': alamat,
       'jumlah_pegawai': jumlahPegawai,
       'catatan': catatan,
-      'timestamp': FieldValue.serverTimestamp(), 
+      'tanggal': selectedDay,
+      'timestamp': FieldValue.serverTimestamp(),
     };
 
     _dbService
@@ -46,6 +49,33 @@ class _CleanupState extends State<Cleanup> {
         .catchError((error) {
           print("Error adding data: $error");
         });
+  }
+
+  void _selectDate(String day) {
+    setState(() {
+      selectedDay = day;
+    });
+
+    if (day == "Pilih Tanggal") {
+      _pickDate();
+    }
+  }
+
+  Future<void> _pickDate() async {
+    DateTime now = DateTime.now();
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: now,
+      lastDate: now.add(Duration(days: 365)),
+    );
+
+    if (picked != null) {
+      setState(() {
+        selectedDate = picked;
+        selectedDay = DateFormat('yyyy-MM-dd').format(picked);
+      });
+    }
   }
 
   @override
@@ -89,11 +119,13 @@ class _CleanupState extends State<Cleanup> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildDateButton("Hari Ini"),
+                _buildDateButton("Hari Ini", () => _selectDate("Hari Ini")),
                 SizedBox(width: 5),
-                _buildDateButton("Besok"),
+                _buildDateButton("Besok", () => _selectDate("Besok")),
                 SizedBox(width: 5),
-                _buildDateButton("Pilih Tanggal"),
+                _buildDateButton("Pilih Tanggal", () {
+                  // Implement date picker if needed
+                }),
               ],
             ),
             SizedBox(height: 10),
@@ -205,16 +237,21 @@ class _CleanupState extends State<Cleanup> {
     );
   }
 
-  Widget _buildDateButton(String title) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.teal,
-        border: Border.all(color: Colors.black, width: 1),
+  Widget _buildDateButton(String title, VoidCallback onPressed) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.teal,
+          border: Border.all(color: Colors.black, width: 1),
+        ),
+        width: 100,
+        height: 56,
+        child: Center(
+          child: Text(title, style: TextStyle(color: Colors.white)),
+        ),
       ),
-      width: 100,
-      height: 56,
-      child: Center(child: Text(title, style: TextStyle(color: Colors.white))),
     );
   }
 

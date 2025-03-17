@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 
 class FirebaseAuthServices {
-  static final FirebaseAuthServices _instance = FirebaseAuthServices._internal();
+  static final FirebaseAuthServices _instance =
+      FirebaseAuthServices._internal();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   factory FirebaseAuthServices() {
@@ -13,9 +13,7 @@ class FirebaseAuthServices {
 
   //Validasi Email Address
   bool validateEmailAddress(String email) {
-    return RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-    ).hasMatch(email);
+    return RegExp(r"^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$").hasMatch(email);
   }
 
   //Validasi Password Minimal 8
@@ -24,17 +22,28 @@ class FirebaseAuthServices {
   }
 
   //Sign Up Email
-  Future<User?> signUpWithEmailAndPassword(
+  Future<String?> signUpWithEmailAndPassword(
+    String name,
     String email,
     String password,
+    String confirmPassword,
   ) async {
+    email = email.toLowerCase();
+
+    if (name.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+      return 'Harap isi semua kolom';
+    }
     if (!validateEmailAddress(email)) {
-      print('Invalid email format');
-      return null;
+      return 'Format email tidak valid';
     }
     if (!validatePassword(password)) {
-      print('Password must be at least 8 characters');
-      return null;
+      return 'Password harus minimal 8 karakter';
+    }
+    if (password != confirmPassword) {
+      return 'Konfirmasi kata sandi tidak cocok';
     }
 
     try {
@@ -43,54 +52,76 @@ class FirebaseAuthServices {
         password: password,
       );
       print('User signed up: ${credential.user?.uid}');
-      return credential.user;
+      return null;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak. Please try again');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      } else {
-        print('FirebaseAuthException: ${e.message}');
-      }
+      return getFirebaseAuthErrorMessage(e.code);
     } catch (e) {
-      print("some error occured");
+      return 'Terjadi kesalahan, coba lagi nanti.';
     }
+  }
+
+  Future<String?> validateRegistrationInputs(
+    String name,
+    String email,
+    String password,
+    String confirmPassword,
+  ) async {
+    if (name.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+      return 'Harap isi semua kolom';
+    }
+
+    if (!validateEmailAddress(email)) {
+      return 'Format email tidak valid';
+    }
+
+    if (!validatePassword(password)) {
+      return 'Password harus minimal 8 karakter';
+    }
+
+    if (password != confirmPassword) {
+      return 'Konfirmasi kata sandi tidak cocok';
+    }
+
     return null;
   }
 
   //Sign In Email
-  Future<User?> signInWithEmailAndPassword(
+  Future<String?> signInWithEmailAndPassword(
     String email,
     String password,
   ) async {
-    if (!validateEmailAddress(email)) {
-      print('Invalid email format');
-      return null;
-    }
-    if (!validatePassword(password)) {
-      print('Password must be at least 8 characters');
-      return null;
-    }
-
     try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      print('User signed in: ${credential.user?.uid}');
-      return credential.user;
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return null;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      } else {
-        print('FirebaseAuthException: ${e.message}');
-      }
+      return getFirebaseAuthErrorMessage(e.code);
     } catch (e) {
-      print("some error occured");
+      return 'Terjadi kesalahan, coba lagi nanti.';
     }
-    return null;
+  }
+
+  String getFirebaseAuthErrorMessage(String errorCode) {
+    switch (errorCode) {
+      case 'invalid-email':
+        return 'Format email tidak valid.';
+      case 'missing-password':
+        return 'Masukkan password.';
+      case 'invalid-credential':
+        return 'Email atau password anda tidak sesuai.';
+      case 'user-not-found':
+        return 'Akun tidak ditemukan. Silakan daftar terlebih dahulu.';
+      case 'wrong-password':
+        return 'Kata sandi salah. Silakan coba lagi.';
+      case 'email-already-in-use':
+        return 'Email sudah digunakan. Gunakan email lain.';
+      case 'weak-password':
+        return 'Kata sandi terlalu lemah. Gunakan minimal 8 karakter.';
+      default:
+        return 'Terjadi kesalahan. Coba lagi nanti.';
+    }
   }
 
   //Sign Out Email
@@ -158,5 +189,6 @@ class FirebaseAuthServices {
       print('Error occurred: $e');
     }
   }
-}
 
+  //Login dengan nomor telepon
+}
