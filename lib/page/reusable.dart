@@ -27,9 +27,7 @@ class ReusableContainer extends StatelessWidget {
           ),
         ],
         color: color,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.elliptical(175, 45),
-        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(175, 45)),
       ),
       child: child, // Menampilkan child yang diberikan
     );

@@ -29,20 +29,25 @@ class FirebaseAuthServices {
     String confirmPassword,
   ) async {
     email = email.toLowerCase();
+    print("Mencoba mendaftarkan pengguna dengan email: $email");
 
     if (name.isEmpty ||
         email.isEmpty ||
         password.isEmpty ||
         confirmPassword.isEmpty) {
+      print("Kesalahan: Kolom tidak boleh kosong.");
       return 'Harap isi semua kolom';
     }
     if (!validateEmailAddress(email)) {
+      print("Kesalahan: Format email tidak valid.");
       return 'Format email tidak valid';
     }
     if (!validatePassword(password)) {
+      print("Kesalahan: Password kurang dari 8 karakter.");
       return 'Password harus minimal 8 karakter';
     }
     if (password != confirmPassword) {
+      print("Kesalahan: Konfirmasi password tidak cocok.");
       return 'Konfirmasi kata sandi tidak cocok';
     }
 
@@ -54,8 +59,10 @@ class FirebaseAuthServices {
       print('User signed up: ${credential.user?.uid}');
       return null;
     } on FirebaseAuthException catch (e) {
+      print("FirebaseAuthException: ${e.code} - ${e.message}");
       return getFirebaseAuthErrorMessage(e.code);
     } catch (e) {
+      print("Kesalahan umum: $e");
       return 'Terjadi kesalahan, coba lagi nanti.';
     }
   }

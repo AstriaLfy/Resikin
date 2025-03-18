@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'reusable.dart';
 import 'package:resikin/features/user_auth/firebase_auth_services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'reusable.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   @override

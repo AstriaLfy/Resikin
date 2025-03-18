@@ -1,3 +1,5 @@
+import 'package:resikin/features/firestore_database/database_service.dart';
+import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/beranda.dart';
@@ -8,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:resikin/features/user_auth/firebase_auth_services.dart';
+import 'package:resikin/bottomnavbar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,31 +36,33 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
-Future<void> _login() async {
-  setState(() {
-    _isLoading = true;
-  });
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
 
-  String email = _emailController.text.trim();
-  String password = _passwordController.text.trim();
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
 
-  String? errorMessage = await _authServices.signInWithEmailAndPassword(email, password);
-
-  setState(() {
-    _isLoading = false;
-  });
-
-  if (errorMessage == null) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(errorMessage),
-        backgroundColor: Colors.red, 
-      ),
+    String? errorMessage = await _authServices.signInWithEmailAndPassword(
+      email,
+      password,
     );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (errorMessage == null) {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+      );
+    }
   }
-}
 
   Future<void> signInWithGoogle() async {
     try {
@@ -204,7 +208,14 @@ Future<void> _login() async {
               ),
 
               ElevatedButton(
-                onPressed: _login,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavigationPage(),
+                    ),
+                  );
+                },
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF3D8D7A),
                   shape: RoundedRectangleBorder(

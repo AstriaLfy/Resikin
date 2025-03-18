@@ -1,17 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'reusable.dart';
-import 'cleanup.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
+import 'reusable.dart';
+import 'cleanup.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:resikin/page/history_page.dart';
+import 'package:resikin/page/profile_page.dart';
+import 'package:resikin/page/station_page.dart';
+
 import 'package:resikin/page/login_page.dart';
 
 void main() {
   runApp(MaterialApp(home: Beranda()));
 }
 
-class Beranda extends StatelessWidget {
+class Beranda extends StatefulWidget {
+  @override
+  _BerandaState createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
 
   @override

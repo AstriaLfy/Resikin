@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:resikin/page/reusable.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'payment_method.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:resikin/page/reusable.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'payment_method.dart';
 
 class Cleanup extends StatefulWidget {
   @override
@@ -143,10 +143,7 @@ class _CleanupState extends State<Cleanup> {
                 height: 100,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: SvgPicture.asset(
-                    "assets/images/cleanhed.svg",
-                    fit: BoxFit.cover,
-                  ),
+                  child: SvgPicture.asset("assets/images/timeBg.svg"),
                 ),
               ),
             ),

@@ -38,9 +38,9 @@ class AuthWrapper extends StatelessWidget {
           return Scaffold(body: Center(child: CircularProgressIndicator()));
         }
         if (snapshot.hasData) {
-          return Beranda(); 
+          return Beranda();
         } else {
-          return OnboardingPage(); 
+          return OnboardingPage();
         }
       },
     );

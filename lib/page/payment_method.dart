@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/reusable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
+import 'payment_page.dart';
 
 class PaymentMethod extends StatefulWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -182,12 +183,18 @@ class _PaymentMethodState extends State<PaymentMethod> {
             SizedBox(height: 20),
             Text("Total Harga"),
             Text("Rp. Xxx xxx xxx"), // Replace with actual total price
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.07,
-              ),
-              child: GestureDetector(
-                onTap: _processPayment, // Call the payment processing method
+            GestureDetector(
+              onTap: () {
+                // Navigasi ke halaman pembayaran
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.07,
+                ),
                 child: Container(
                   height: 50,
                   width: 350,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:resikin/features/user_auth/firebase_auth_services.dart';
+import 'package:resikin/features/firestore_database/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'reusable.dart';
 import 'beranda.dart';
 
@@ -11,6 +13,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final _dbService = DatabaseService();
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -21,7 +24,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Future<void> _register() async {
     setState(() {
-      _isLoading = false;
+      _isLoading = true;
     });
 
     String? errorMessage = await _authServices.signUpWithEmailAndPassword(
@@ -31,16 +34,31 @@ class _RegisterFormState extends State<RegisterForm> {
       _confirmPasswordController.text.trim(),
     );
 
-    setState(() {
-    _isLoading = false;
-    });
-
     if (errorMessage == null) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await _dbService.createUserLogin({
+          "uid": user.uid,
+          "name": _nameController.text.trim(),
+          "email": _emailController.text.trim(),
+          "password": _passwordController.text.trim(),
+          "confirmPassword": _confirmPasswordController.text.trim(),
+          "created_at": FieldValue.serverTimestamp(),
+        });
+      }
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
-}
 
   @override
   void dispose() {
