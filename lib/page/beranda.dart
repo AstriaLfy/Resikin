@@ -462,25 +462,31 @@ class _BerandaState extends State<Beranda> {
                       width: 161,
                       margin: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                        color: Colors.teal,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 1),
                       ),
-
-                      child: Center(
-                        child: Text(
-                          'Item $index',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            bottom: 0, // Menempatkan Container di bawah
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+                                color: Colors.teal,
+                              ),
+                              height: 80,
+                              width: 160,
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     );
                   },
                 ),
               ),
             ),
-            SizedBox(height: 100),
+            SizedBox(height: 50),
           ],
         ),
       ),

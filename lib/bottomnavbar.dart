@@ -62,15 +62,15 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             selectedIndex: selectedIndex,
             onDestinationSelected: onDestinationSelected,
             destinations: [
-              NavigationDestination(icon: Icon(Iconsax.home), label: 'label'),
+              NavigationDestination(icon: Icon(Iconsax.home), label: 'Utama'),
               NavigationDestination(
                 icon: Icon(Iconsax.location),
-                label: 'label',
+                label: 'Station',
               ),
-              NavigationDestination(icon: Icon(Iconsax.timer), label: 'label'),
+              NavigationDestination(icon: Icon(Iconsax.timer), label: 'Riwayat'),
               NavigationDestination(
                 icon: Icon(Iconsax.personalcard),
-                label: 'label',
+                label: 'Profil',
               ),
             ],
           ),
