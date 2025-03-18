@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/reusable.dart';
+import 'payment_page.dart'; // Import halaman pembayaran
 
 class PaymentMethod extends StatefulWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -62,8 +63,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             SizedBox(height: 20),
             Container(
               width: 350,
-              decoration: BoxDecoration(
-              ),
+              decoration: BoxDecoration(),
               child: Column(
                 children: [
                   RadioListTile<String>(
@@ -156,19 +156,28 @@ class _PaymentMethodState extends State<PaymentMethod> {
             SizedBox(height: 20),
             Text("Total Harga"),
             Text("Rp. Xxx xxx xxx"),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.07,
-              ),
-              child: Container(
-                height: 50,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey,
+            GestureDetector(
+              onTap: () {
+                // Navigasi ke halaman pembayaran
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.07,
                 ),
-                child: Center(
-                  child: Text("BAYAR"),
+                child: Container(
+                  height: 50,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey,
+                  ),
+                  child: Center(
+                    child: Text("BAYAR"),
+                  ),
                 ),
               ),
             ),

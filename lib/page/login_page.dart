@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:resikin/bottomnavbar.dart';
 import 'package:resikin/page/beranda.dart';
 import 'package:resikin/page/register_page.dart';
 import 'forgot_pw.dart';
@@ -120,7 +121,7 @@ class LoginPage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(
                     context,
-                  ).push(MaterialPageRoute(builder: (context) => Beranda()));
+                  ).push(MaterialPageRoute(builder: (context) => BottomNavigationPage()));
                 },
                 child: Container(
                   height: 56,

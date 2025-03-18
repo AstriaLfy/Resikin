@@ -99,8 +99,7 @@ class _CleanupState extends State<Cleanup> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20), // Ensure the SVG respects the border radius
                   child: SvgPicture.asset(
-                    "assets/images/cleanhed.svg",
-                    fit: BoxFit.cover, // This will make the SVG fill the container
+                    "assets/images/timeBg.svg",
                   ),
                 ),
               ),

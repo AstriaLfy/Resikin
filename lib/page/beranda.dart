@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:resikin/page/history_page.dart';
 import 'package:resikin/page/login_page.dart';
+import 'package:resikin/page/profile_page.dart';
+import 'package:resikin/page/station_page.dart';
 import 'reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'cleanup.dart';
@@ -9,7 +13,17 @@ void main() {
   runApp(MaterialApp(home: Beranda()));
 }
 
-class Beranda extends StatelessWidget {
+class Beranda extends StatefulWidget {
+  @override
+  _BerandaState createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +84,7 @@ class Beranda extends StatelessWidget {
                           "assets/images/RIc.svg",
                           fit:
                               BoxFit
-                                  .cover, // Mengatur agar SVG memenuhi container
+                                  .cover,
                         ),
                       ),
                       // Text di atas background
@@ -482,3 +496,5 @@ class Beranda extends StatelessWidget {
     );
   }
 }
+
+
