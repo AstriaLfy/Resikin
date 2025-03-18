@@ -6,30 +6,59 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            ReusableContainer(child: Center(
-                child:
-                Column(
-                  children: [
-                    SizedBox(height: 125,),
-                    Text("HISTORY", style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600,
-                    ),),
-                  ],
-                )
+      backgroundColor: Colors.white,
 
-            )
-            ),            Row(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        child: ReusableContainer(
+          child: Center(
+            child: Column(
               children: [
-                Text("Lupa Kata Sandi", style: TextStyle(
+                SizedBox(height: 112),
+                Text(
+                  "History",
+                  style: GoogleFonts.poppins(
                     fontSize: 28,
-                    fontWeight: FontWeight.w600
-                ),)
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
               ],
+            ),
+          ),
+        ),
+      ),
+
+      body: Center(
+        child:
+        Column(
+          children: [
+            SizedBox(height: 10,),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              height: 190,
+              width: 320,
+            ),
+
+            SizedBox(height: 10,),
+
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              height: 300,
+              width: 320,
             )
           ],
         )
+        ,
+      )
+
+
 
     );
   }

@@ -19,11 +19,6 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +51,6 @@ class _BerandaState extends State<Beranda> {
                   ],
                 ),
               ),
-
               Positioned(
                 top: 120, // Adjusted position for top
                 left: 25, // Adjusted position for left
@@ -78,13 +72,10 @@ class _BerandaState extends State<Beranda> {
                   ),
                   child: Stack(
                     children: [
-                      // Background SVG
                       Positioned.fill(
                         child: SvgPicture.asset(
                           "assets/images/RIc.svg",
-                          fit:
-                              BoxFit
-                                  .cover,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       // Text di atas background
@@ -130,50 +121,51 @@ class _BerandaState extends State<Beranda> {
           children: [
             SizedBox(height: 30),
 
-
-        Padding(padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.07),
-          child:
-
-          Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-                border: Border.all(color: Colors.black, width: 1),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.07,
               ),
-              height: 96,
-              width: 350,
-              child: Column(
-                children: [
-                  Text(
-                    "Jadwal Pengangkutan Sampah",
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 1),
+                ),
+                height: 96,
+                width: 350,
+                child: Column(
+                  children: [
+                    Text(
+                      "Jadwal Pengangkutan Sampah",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: 270, // Adjust the width as needed
-                    child: Divider(thickness: 1, color: Colors.black),
-                  ),
+                    Container(
+                      width: 270, // Adjust the width as needed
+                      child: Divider(thickness: 1, color: Colors.black),
+                    ),
 
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Icon(Icons.access_time_rounded),
-                      Text("Jam: 00:00"),
-                    ],
-                  ),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Icon(Icons.access_time_rounded),
+                        Text("Jam: 00:00"),
+                      ],
+                    ),
 
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Icon(Icons.location_on_sharp),
-                      Text("Alamat: Fakultas Ilmu Komputer"),
-                    ],
-                  ),
-                ],
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Icon(Icons.location_on_sharp),
+                        Text("Alamat: Fakultas Ilmu Komputer"),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),),
+            ),
 
             SizedBox(height: 20),
             Text(
@@ -464,7 +456,7 @@ class _BerandaState extends State<Beranda> {
                 ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 4,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     return Container(
                       width: 161,
@@ -488,7 +480,6 @@ class _BerandaState extends State<Beranda> {
                 ),
               ),
             ),
-
             SizedBox(height: 100),
           ],
         ),
@@ -496,5 +487,3 @@ class _BerandaState extends State<Beranda> {
     );
   }
 }
-
-

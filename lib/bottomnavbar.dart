@@ -6,8 +6,6 @@ import 'page/station_page.dart';
 import 'page/beranda.dart';
 import 'page/profile_page.dart';
 
-
-
 void main() {
   runApp(MaterialApp(home: BottomNavigationPage()));
 }
@@ -30,7 +28,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     ProfilePage(),
   ];
 
-  void onDestinationSelected(int index){
+  void onDestinationSelected(int index) {
     setState(() {
       selectedIndex = index;
     });
@@ -39,43 +37,45 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: _pages [selectedIndex],
+      body: _pages[selectedIndex],
 
       bottomNavigationBar: Container(
-    decoration: BoxDecoration(
-    color: Colors.white,
-      borderRadius: BorderRadius.circular(30),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.4),
-          spreadRadius: 0,
-          blurRadius: 8,
-          offset: Offset(0, 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.4),
+              spreadRadius: 0,
+              blurRadius: 8,
+              offset: Offset(0, 10),
+            ),
+          ],
         ),
-      ],
-    ),
-    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-    child: ClipRRect(
-    borderRadius: BorderRadius.circular(40),
-    child: NavigationBar(
-    height: 80,
-    elevation: 20,
-    backgroundColor: Colors.transparent,
-    selectedIndex: selectedIndex,
-    onDestinationSelected: onDestinationSelected,
-    destinations: [
-    NavigationDestination(icon: Icon(Iconsax.home), label: 'label'),
-    NavigationDestination(icon: Icon(Iconsax.location), label: 'label'),
-    NavigationDestination(icon: Icon(Iconsax.timer), label: 'label'),
-    NavigationDestination(icon: Icon(Iconsax.personalcard), label: 'label'),
-    ],
-    ),
-    ),
-    ),
-
-
-
+        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(40),
+          child: NavigationBar(
+            height: 75,
+            elevation: 10,
+            backgroundColor: Colors.transparent,
+            selectedIndex: selectedIndex,
+            onDestinationSelected: onDestinationSelected,
+            destinations: [
+              NavigationDestination(icon: Icon(Iconsax.home), label: 'label'),
+              NavigationDestination(
+                icon: Icon(Iconsax.location),
+                label: 'label',
+              ),
+              NavigationDestination(icon: Icon(Iconsax.timer), label: 'label'),
+              NavigationDestination(
+                icon: Icon(Iconsax.personalcard),
+                label: 'label',
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
