@@ -40,6 +40,36 @@ class HistoryPage extends StatelessWidget {
               ),
               height: 190,
               width: 320,
+
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
             ),
 
             SizedBox(height: 10),
@@ -51,6 +81,77 @@ class HistoryPage extends StatelessWidget {
               ),
               height: 300,
               width: 320,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 135,
+                      width: 270,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

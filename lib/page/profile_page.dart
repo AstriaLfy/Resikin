@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
               width: 320,
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 10,),
 
             Container(
               decoration: BoxDecoration(
@@ -53,18 +53,7 @@ class ProfilePage extends StatelessWidget {
               height: 50,
               width: 320,
             ),
-            SizedBox(height: 10),
-
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              height: 50,
-              width: 320,
-            ),
-
-            SizedBox(height: 10),
+            SizedBox(height: 10,),
 
             Container(
               decoration: BoxDecoration(
@@ -75,7 +64,7 @@ class ProfilePage extends StatelessWidget {
               width: 320,
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 10,),
 
             Container(
               decoration: BoxDecoration(
@@ -86,13 +75,24 @@ class ProfilePage extends StatelessWidget {
               width: 320,
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 10,),
 
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 1),
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.red,
+              ),
+              height: 50,
+              width: 320,
+            ),
+
+            SizedBox(height: 10,),
+
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.red
               ),
               height: 50,
               width: 320,

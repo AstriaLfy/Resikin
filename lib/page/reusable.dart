@@ -18,14 +18,6 @@ class ReusableContainer extends StatelessWidget {
       width: double.infinity,
       height: height,
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.6),
-            spreadRadius: 2,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
         color: color,
         borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(175, 45)),
       ),

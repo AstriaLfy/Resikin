@@ -31,20 +31,21 @@ class StationPage extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
+          child:
+          Column(
             children: [
               SizedBox(height: 40),
 
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 1),
-                  borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.black, width: 1),
+                    borderRadius: BorderRadius.circular(20)
                 ),
                 width: 320,
                 height: 50,
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 20,),
 
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -92,7 +93,7 @@ class StationPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 20,),
 
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -140,7 +141,7 @@ class StationPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 20,),
 
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -188,7 +189,7 @@ class StationPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 20,),
 
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -236,7 +237,7 @@ class StationPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 20,),
 
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -283,10 +284,19 @@ class StationPage extends StatelessWidget {
                   ),
                 ),
               ),
+
+
+
             ],
-          ),
-        ),
-      ),
+          )
+
+          ,
+        )
+
+        ,
+      )
+
+
     );
   }
 }
