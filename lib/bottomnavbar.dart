@@ -20,7 +20,6 @@ class BottomNavigationPage extends StatefulWidget {
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int selectedIndex = 0;
 
-  // List of pages to navigate to
   final List<Widget> _pages = [
     Beranda(),
     StationPage(),
@@ -37,8 +36,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _pages[selectedIndex],
-
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -62,12 +61,18 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             selectedIndex: selectedIndex,
             onDestinationSelected: onDestinationSelected,
             destinations: [
-              NavigationDestination(icon: Icon(Iconsax.home), label: 'Utama'),
+              NavigationDestination(
+                  icon: Icon(Iconsax.home),
+                  label: 'Utama'
+              ),
               NavigationDestination(
                 icon: Icon(Iconsax.location),
                 label: 'Station',
               ),
-              NavigationDestination(icon: Icon(Iconsax.timer), label: 'Riwayat'),
+              NavigationDestination(
+                icon: Icon(Iconsax.timer),
+                label: 'Riwayat',
+              ),
               NavigationDestination(
                 icon: Icon(Iconsax.personalcard),
                 label: 'Profil',

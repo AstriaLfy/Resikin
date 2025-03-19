@@ -426,16 +426,17 @@ class _BerandaState extends State<Beranda> {
               ],
             ),
 
-            SizedBox(height: 10),
-
-            Container(
-              height: 300,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child:
+          Container(
+              height: 280,
               width: 305,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-              ),
-              child: Text("Diagram"),
-            ),
+              child: SvgPicture.asset("assets/images/diagramThn.svg")
+          ),
+        ),
+
+
             SizedBox(height: 20),
             Text(
               "Artikel",

@@ -12,14 +12,13 @@ class Cleanup extends StatefulWidget {
 class _CleanupState extends State<Cleanup> {
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
-  final TextEditingController jumlahPegawaiController = TextEditingController();
+  int jumlahPegawai = 1; // Initialize the number of employees
   final TextEditingController catatanController = TextEditingController();
 
   void _setJadwal() {
     // Handle the scheduling logic here
     String luas = luasController.text;
     String alamat = alamatController.text;
-    String jumlahPegawai = jumlahPegawaiController.text;
     String catatan = catatanController.text;
 
     // You can add your logic to save or process the data
@@ -33,6 +32,22 @@ class _CleanupState extends State<Cleanup> {
       context,
       MaterialPageRoute(builder: (context) => PaymentMethod()),
     );
+  }
+
+  void _incrementPegawai() {
+    if (jumlahPegawai < 3) {
+      setState(() {
+        jumlahPegawai++;
+      });
+    }
+  }
+
+  void _decrementPegawai() {
+    if (jumlahPegawai > 1) {
+      setState(() {
+        jumlahPegawai--;
+      });
+    }
   }
 
   @override
@@ -97,43 +112,35 @@ class _CleanupState extends State<Cleanup> {
                 width: 310,
                 height: 100,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20), // Ensure the SVG respects the border radius
+                  borderRadius: BorderRadius.circular(20),
                   child: SvgPicture.asset(
                     "assets/images/timeBg.svg",
                   ),
                 ),
               ),
             ),
-            _buildInputField("Luas", luasController, 40),
+
+            SizedBox(height: 10),
+
+            _buildInputField("Luas", luasController, 50),
+            SizedBox(height: 10),
             _buildInputField("Alamat", alamatController, 60),
             SizedBox(height: 10),
+            _buildEmployeeCount(), // Employee count widget
+            SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Jumlah Pegawai"),
-                SizedBox(width: 80),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  height: 44,
-                  width: 120,
-                  child: TextField(
-                    controller: jumlahPegawaiController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Jumlah",
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    ),
+                SizedBox(width: 25),
+                Text(
+                  "Catatan",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text("Catatan"),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.07,
@@ -151,7 +158,7 @@ class _CleanupState extends State<Cleanup> {
                   maxLines: 4,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Catatan",
+                    hintText: "Catatan...",
                     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   ),
                 ),
@@ -198,12 +205,18 @@ class _CleanupState extends State<Cleanup> {
   Widget _buildInputField(String label, TextEditingController controller, double height) {
     return Column(
       children: [
-        Text(
-          label,
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(width: 25),
+            Text(
+              label,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
         ),
         Padding(
           padding: EdgeInsets.symmetric(
@@ -212,7 +225,7 @@ class _CleanupState extends State<Cleanup> {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.black, width: 1),
             ),
             height: height,
@@ -225,6 +238,36 @@ class _CleanupState extends State<Cleanup> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmployeeCount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Jumlah Pegawai", style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16)),
+        SizedBox(width: 70),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.teal,
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.black, width: 1),
+          ),
+          child: Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.remove, color: Colors.white),
+                onPressed: _decrementPegawai,
+              ),
+              Text("$jumlahPegawai", style: GoogleFonts.poppins(color: Colors.white)),
+              IconButton(
+                icon: Icon(Icons.add, color: Colors.white),
+                onPressed: _incrementPegawai,
+              ),
+            ],
           ),
         ),
       ],
