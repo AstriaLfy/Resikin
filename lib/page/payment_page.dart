@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'reusable.dart';
+import 'status_pembayaran.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -102,7 +103,6 @@ class PaymentPage extends StatelessWidget {
         ),
         SizedBox(height: 10,),
 
-
         Container(
           height: 50,
           width: 310,
@@ -114,7 +114,6 @@ class PaymentPage extends StatelessWidget {
           child: Center(child: Text("Guide")),
         ),
         SizedBox(height: 20,),
-
 
         Container(
           height: 50,
@@ -148,6 +147,11 @@ class PaymentPage extends StatelessWidget {
         ),
         SizedBox(height: 25,),
 
+        GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => StatusPembayaran()),);
+          },child:
+
         Container(
           height: 50,
           width: 310,
@@ -158,6 +162,7 @@ class PaymentPage extends StatelessWidget {
           ),
           child: Center(child: Text("Saya Sudah Transfer")),
         ),
+        )
       ],
     )
 
