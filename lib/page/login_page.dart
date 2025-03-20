@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resikin/bottomnavbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,9 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     if (errorMessage == null) {
       print("✅ Login sukses! Menunggu Firebase memperbarui user...");
 
-      await Future.delayed(
-        Duration(seconds: 1),
-      ); 
+      await Future.delayed(Duration(seconds: 1));
       User? user = await FirebaseAuth.instance.authStateChanges().first;
 
       if (user != null) {
@@ -121,8 +120,18 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithCredential(credential);
       await Future.delayed(Duration(seconds: 1));
       final User? user = FirebaseAuth.instance.currentUser;
+
       if (user != null) {
+        String email = user.email ?? "";
+        String namaUser = email.split('@')[0];
         debugPrint("Firebase Sign-In berhasil.");
+        await _dbService.createUserLogin({
+          "userId": user.uid,
+          "email": email,
+          "nama": namaUser,
+          "created_At": FieldValue.serverTimestamp(),
+        });
+        debugPrint("User Google berhasil didaftarkan ke Firestore.");
 
         if (mounted) {
           Navigator.pushAndRemoveUntil(
