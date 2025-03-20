@@ -43,7 +43,7 @@ class DatabaseService {
     }
   }
 
-    Future<void> createPickUp(Map<String, dynamic> pickupData) async {
+  Future<void> createPickUp(Map<String, dynamic> pickupData) async {
     try {
       await _fire.collection(collectionNameCleaning).add(pickupData);
       log("Data berhasil ditambahkan");
@@ -62,23 +62,35 @@ class DatabaseService {
   }
 
   Future<void> createUserLogin(Map<String, dynamic> userData) async {
+    String userEmail = userData["email"].toLowerCase();
     try {
-      await _fire.collection(collectionUserLogin).add(userData);
-      log("User berhasil ditambahkan");
+      QuerySnapshot result =
+          await _fire
+              .collection(collectionUserLogin)
+              .where("email", isEqualTo: userEmail)
+              .get();
+
+      if (result.docs.isEmpty) {
+        await _fire.collection(collectionUserLogin).add(userData);
+        log("User berhasil ditambahkan ke Firestore.");
+      } else {
+        log("User dengan email $userEmail sudah ada di Firestore.");
+      }
     } catch (e) {
-      log("Error saat menambahkan data: ${e.toString()}");
+      log("Error saat menyimpan user: ${e.toString()}");
     }
   }
 
   Future<bool> checkUserExists(String userId) async {
-  try {
-    DocumentSnapshot userDoc = await _fire.collection("user_login").doc(userId).get();
-    return userDoc.exists; 
-  } catch (e) {
-    print("Error saat mengecek user: ${e.toString()}");
-    return false;
+    try {
+      DocumentSnapshot userDoc =
+          await _fire.collection("user_login").doc(userId).get();
+      return userDoc.exists;
+    } catch (e) {
+      print("Error saat mengecek user: ${e.toString()}");
+      return false;
+    }
   }
-}
 
   Future<void> createPegawaiLogin(Map<String, dynamic> pegawaiData) async {
     try {
