@@ -4,9 +4,12 @@ import 'package:resikin/page/reusable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
 import 'payment_page.dart';
+import 'profile_page.dart';
 
 class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({Key? key}) : super(key: key);
+  final String cleaningId;
+
+  const PaymentMethod({Key? key, required this.cleaningId}) : super(key: key);
 
   @override
   _PaymentMethodState createState() => _PaymentMethodState();
@@ -14,25 +17,23 @@ class PaymentMethod extends StatefulWidget {
 
 class _PaymentMethodState extends State<PaymentMethod> {
   final _dbService = DatabaseService();
+  double amount = 100000;
   String? _selectedPaymentMethod;
   bool _agreeToUseCoins = false;
 
-  void _processPayment() {
+  void _processPayment() async {
+    await _dbService.createPayment(widget.cleaningId, amount);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProfilePage()),
+    );
+
     Map<String, dynamic> paymentData = {
       'payment_method': _selectedPaymentMethod,
       'use_coins': _agreeToUseCoins,
       'total_price': "Rp. Xxx xxx xxx",
       'timestamp': FieldValue.serverTimestamp(),
     };
-
-    _dbService
-        .createPayment(paymentData)
-        .then((_) {
-          print("Payment processed successfully");
-        })
-        .catchError((error) {
-          print("Error processing payment: $error");
-        });
   }
 
   @override

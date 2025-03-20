@@ -43,32 +43,29 @@ class _CleanupState extends State<Cleanup> {
     }
   }
 
-  void _setJadwal() {
-    String luas = luasController.text;
-    String alamat = alamatController.text;
-    String catatan = catatanController.text;
+void _setJadwal() async {
+  String luas = luasController.text;
+  String alamat = alamatController.text;
+  String catatan = catatanController.text;
 
-    Map<String, dynamic> data = {
-      'luas': luas,
-      'alamat': alamat,
-      'jumlah_pegawai': jumlahPegawai,
-      'catatan': catatan,
-      'tanggal': selectedDay,
-      'timestamp': FieldValue.serverTimestamp(),
-    };
+  Map<String, dynamic> data = {
+    'luas': luas,
+    'alamat': alamat,
+    'jumlah_pegawai': jumlahPegawai,
+    'catatan': catatan,
+    'tanggal': selectedDay,
+  };
 
-    _dbService
-        .createClean(data)
-        .then((_) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PaymentMethod()),
-          );
-        })
-        .catchError((error) {
-          print("Error adding data: $error");
-        });
+  String? cleaningId = await _dbService.createClean(data);
+  if (cleaningId != null) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PaymentMethod(cleaningId: cleaningId)),
+    );
+  } else {
+    print("Gagal menyimpan cleaning request.");
   }
+}
 
   void _selectDate(String day) {
     setState(() {

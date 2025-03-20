@@ -109,44 +109,56 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      if (googleAuth.accessToken == null || googleAuth.idToken == null) {
+        debugPrint("Google Sign-In gagal: Token tidak ditemukan.");
+        return;
+      }
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      await Future.delayed(Duration(seconds: 1));
-      final User? user = FirebaseAuth.instance.currentUser;
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(credential);
+
+      await Future.delayed(Duration(seconds: 2));
+      User? user = FirebaseAuth.instance.currentUser;
+      user ??= FirebaseAuth.instance.currentUser;
+
+      print("🔹 FirebaseAuth.currentUser setelah delay: ${user?.email}");
 
       if (user != null) {
         String email = user.email ?? "";
         String namaUser = email.split('@')[0];
 
-        bool isUserExists = await _dbService.checkUserExists(user.uid);
+        try {
+          bool isUserExists = await _dbService.checkUserExists(user.uid);
 
-        debugPrint("Firebase Sign-In berhasil.");
-        
-        if (!isUserExists) {
-        await _dbService.createUserLogin({
-          "userId": user.uid,
-          "email": email,
-          "nama": namaUser,
-          "created_At": FieldValue.serverTimestamp(),
-        });
-        debugPrint("User baru berhasil ditambahkan ke Firestore.");
-      } else {
-        debugPrint("User sudah terdaftar, tidak perlu menyimpan lagi.");
-      }
-
-        if (mounted) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => BottomNavigationPage()),
-            (route) => false,
-          );
+          if (!isUserExists) {
+            await _dbService.createUserLogin({
+              "userId": user.uid,
+              "email": email,
+              "nama": namaUser,
+              "created_At": FieldValue.serverTimestamp(),
+            });
+            debugPrint("User baru berhasil ditambahkan ke Firestore.");
+          } else {
+            debugPrint("User sudah terdaftar.");
+          }
+        } catch (e) {
+          debugPrint("Firestore error: ${e.toString()}");
         }
+
+        if (!mounted) return;
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => BottomNavigationPage()),
+          (route) => false,
+        );
       }
     } catch (e) {
       debugPrint("Google Sign-In gagal: ${e.toString()}");

@@ -1,4 +1,17 @@
 {
+  "hosting": {
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cross-Origin-Opener-Policy",
+            "value": "same-origin"
+          }
+        ]
+      }
+    ]
+  },
   "flutter": {
     "platforms": {
       "android": {

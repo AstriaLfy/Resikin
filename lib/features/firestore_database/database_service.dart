@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
   final _fire = FirebaseFirestore.instance;
@@ -9,12 +10,29 @@ class DatabaseService {
   final String collectionNamePickUp = "pickup_requests";
   final String collectionNamePayment = "payment_requests";
 
-  Future<void> createClean(Map<String, dynamic> cleaningData) async {
+  Future<String?> createClean(Map<String, dynamic> cleaningData) async {
     try {
-      await _fire.collection(collectionNameCleaning).add(cleaningData);
-      log("Data berhasil ditambahkan");
+      String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+      if (userId.isEmpty) {
+        log("User belum login.");
+        return null;
+      }
+
+      String cleaningId = _fire.collection(collectionNameCleaning).doc().id;
+      cleaningData["id"] = cleaningId;
+      cleaningData["user_id"] = userId;
+      cleaningData["status"] = "pending";
+      cleaningData["timestamp"] = FieldValue.serverTimestamp();
+
+      await _fire
+          .collection(collectionNameCleaning)
+          .doc(cleaningId)
+          .set(cleaningData);
+      log("Cleaning request berhasil ditambahkan.");
+      return cleaningId;
     } catch (e) {
-      log("Error saat menambahkan data: ${e.toString()}");
+      log("Error saat menambahkan cleaning request: ${e.toString()}");
+      return null;
     }
   }
 
@@ -52,10 +70,29 @@ class DatabaseService {
     }
   }
 
-  Future<void> createPayment(Map<String, dynamic> paymentData) async {
+  Future<void> createPayment(String cleaningId, double amount) async {
     try {
-      await _fire.collection(collectionNamePayment).add(paymentData);
-      log("Pembayaran berhasil ditambahkan");
+      String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+      if (userId.isEmpty) {
+        log("User belum login.");
+        return;
+      }
+
+      String paymentId = _fire.collection(collectionNamePayment).doc().id;
+      Map<String, dynamic> paymentData = {
+        "id": paymentId,
+        "user_id": userId,
+        "cleaning_id": cleaningId,
+        "amount": amount,
+        "status": "paid",
+        "timestamp": FieldValue.serverTimestamp(),
+      };
+
+      await _fire
+          .collection(collectionNamePayment)
+          .doc(paymentId)
+          .set(paymentData);
+      log("Pembayaran berhasil ditambahkan.");
     } catch (e) {
       log("Error saat menyimpan pembayaran: ${e.toString()}");
     }
@@ -63,7 +100,12 @@ class DatabaseService {
 
   Future<void> createUserLogin(Map<String, dynamic> userData) async {
     String userEmail = userData["email"].toLowerCase();
+    String userId = userData["userId"];
+
     try {
+      DocumentSnapshot userDoc =
+          await _fire.collection(collectionUserLogin).doc(userId).get();
+
       QuerySnapshot result =
           await _fire
               .collection(collectionUserLogin)
@@ -71,10 +113,10 @@ class DatabaseService {
               .get();
 
       if (result.docs.isEmpty) {
-        await _fire.collection(collectionUserLogin).add(userData);
+        await _fire.collection(collectionUserLogin).doc(userId).set(userData);
         log("User berhasil ditambahkan ke Firestore.");
       } else {
-        log("User dengan email $userEmail sudah ada di Firestore.");
+        log("User sudah ada di Firestore.");
       }
     } catch (e) {
       log("Error saat menyimpan user: ${e.toString()}");

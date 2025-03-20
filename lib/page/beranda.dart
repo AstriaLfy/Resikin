@@ -70,9 +70,9 @@ class _BerandaState extends State<Beranda> {
               ),
 
               Positioned(
-                top: 120, // Adjusted position for top
-                left: 25, // Adjusted position for left
-                right: 25, // Added right positioning
+                top: 120,
+                left: 25,
+                right: 25,
                 child: Container(
                   height: 96,
                   width: double.infinity,
@@ -90,16 +90,12 @@ class _BerandaState extends State<Beranda> {
                   ),
                   child: Stack(
                     children: [
-                      // Background SVG
                       Positioned.fill(
                         child: SvgPicture.asset(
                           "assets/images/RIc.svg",
-                          fit:
-                              BoxFit
-                                  .cover, // Mengatur agar SVG memenuhi container
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      // Text di atas background
                       Center(
                         child: Row(
                           children: [
@@ -164,7 +160,7 @@ class _BerandaState extends State<Beranda> {
                       ),
                     ),
                     Container(
-                      width: 270, // Adjust the width as needed
+                      width: 270, 
                       child: Divider(thickness: 1, color: Colors.black),
                     ),
 
@@ -197,7 +193,7 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
             Container(
-              width: 300, // Adjust the width as needed
+              width: 300,
               child: Divider(thickness: 1, color: Colors.black),
             ),
 
@@ -232,7 +228,6 @@ class _BerandaState extends State<Beranda> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //CONTAINER CLEAN UP
                 GestureDetector(
                   onTap: () {
                     Navigator.of(
@@ -252,14 +247,12 @@ class _BerandaState extends State<Beranda> {
                     ),
                     child: Stack(
                       children: [
-                        // Background container
                         Container(
                           width: 142,
                           height: 130,
                           decoration: BoxDecoration(),
                         ),
 
-                        // Positioned teal container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -272,18 +265,16 @@ class _BerandaState extends State<Beranda> {
                           ),
                         ),
 
-                        // Positioned image overlay
                         Positioned(
-                          top: -5, // Adjust this value to move the image up
-                          left: 0, // Center the image horizontally if needed
-                          right: 0, // Center the image horizontally if needed
+                          top: -5,
+                          left: 0,
+                          right: 0,
                           child: SvgPicture.asset(
                             'assets/images/clean.svg',
-                            fit: BoxFit.contain, // Adjust the fit as needed
+                            fit: BoxFit.contain,
                           ),
                         ),
 
-                        // Positioned bottom container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -322,7 +313,6 @@ class _BerandaState extends State<Beranda> {
 
                 SizedBox(width: 20),
 
-                //CONTAINER PICKUP
                 Container(
                   decoration: BoxDecoration(
                     boxShadow: [
@@ -336,14 +326,12 @@ class _BerandaState extends State<Beranda> {
                   ),
                   child: Stack(
                     children: [
-                      // Background container
                       Container(
                         width: 142,
                         height: 130,
                         decoration: BoxDecoration(),
                       ),
 
-                      // Positioned teal container
                       Positioned(
                         bottom: 0,
                         child: Container(
@@ -356,18 +344,16 @@ class _BerandaState extends State<Beranda> {
                         ),
                       ),
 
-                      // Positioned image overlay
                       Positioned(
-                        top: -4, // Adjust this value to move the image up
-                        left: 0, // Center the image horizontally if needed
-                        right: 0, // Center the image horizontally if needed
+                        top: -4,
+                        left: 0,
+                        right: 0,
                         child: SvgPicture.asset(
                           'assets/images/deliv.svg',
-                          fit: BoxFit.contain, // Adjust the fit as needed
+                          fit: BoxFit.contain,
                         ),
                       ),
 
-                      // Positioned bottom container
                       Positioned(
                         bottom: 0,
                         child: Container(
@@ -419,6 +405,7 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                  child: Center(child: Text("Week")),
                 ),
 
                 SizedBox(width: 10),
@@ -431,6 +418,7 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                  child: Center(child: Text("Month")),
                 ),
                 SizedBox(width: 10),
 
@@ -443,6 +431,7 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                  child: Center(child: Text("Year")),
                 ),
               ],
             ),
@@ -457,12 +446,19 @@ class _BerandaState extends State<Beranda> {
             ),
 
             SizedBox(height: 20),
-            Text(
-              "Artikel",
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+
+            Row(
+              children: [
+                SizedBox(width: 30),
+
+                Text(
+                  "Artikel",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
 
             SizedBox(height: 20),
@@ -490,7 +486,7 @@ class _BerandaState extends State<Beranda> {
                       child: Stack(
                         children: [
                           Positioned(
-                            bottom: 0, // Menempatkan Container di bawah
+                            bottom: 0,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.vertical(
