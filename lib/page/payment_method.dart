@@ -15,28 +15,23 @@ class PaymentMethod extends StatefulWidget {
 class _PaymentMethodState extends State<PaymentMethod> {
   final _dbService = DatabaseService();
   String?
-  _selectedPaymentMethod; // Variable to hold the selected payment method
-  bool _agreeToUseCoins = false; // Variable to hold agreement status
+  _selectedPaymentMethod; 
+  bool _agreeToUseCoins = false; 
 
   void _processPayment() {
-    // Create a payment data map to send to Firestore
     Map<String, dynamic> paymentData = {
       'payment_method': _selectedPaymentMethod,
       'use_coins': _agreeToUseCoins,
-      'total_price': "Rp. Xxx xxx xxx", // Replace with actual total price
-      'timestamp': FieldValue.serverTimestamp(), // Add a timestamp
+      'total_price': "Rp. Xxx xxx xxx", 
+      'timestamp': FieldValue.serverTimestamp(),  
     };
 
-    // Call the createPayment method from DatabaseService
     _dbService
         .createPayment(paymentData)
         .then((_) {
-          // Handle successful payment processing (e.g., show a success message)
           print("Payment processed successfully");
-          // Optionally navigate to another screen or show a confirmation dialog
         })
         .catchError((error) {
-          // Handle any errors that occur during the payment processing
           print("Error processing payment: $error");
         });
   }
@@ -45,7 +40,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -182,10 +177,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 20),
             Text("Total Harga"),
-            Text("Rp. Xxx xxx xxx"), // Replace with actual total price
+            Text("Rp. Xxx xxx xxx"), 
             GestureDetector(
               onTap: () {
-                // Navigasi ke halaman pembayaran
+                _processPayment();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => PaymentPage()),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'reusable.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HistoryPage extends StatelessWidget {
   @override
@@ -51,8 +52,49 @@ class HistoryPage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 135,
-                      width: 270,
+                      height: 150,
+                      width: 284,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              SvgPicture.asset("assets/images/PickIcon.svg"),
+                              SizedBox(width: 10),
+                              Text("Pick Up"),
+                            ],
+                          ),
+                          Container(
+                            width: 270,
+                            child: Divider(thickness: 1, color: Colors.black),
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.calendar_month),
+                              Text("Tanggal : 00 Maret 2025"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.location_on),
+                              Text("Alamat : Jl Karet No 8, Jatimulyo, Kec"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.monitor_weight),
+                              Text("00 Kg"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     SizedBox(height: 10),
@@ -62,8 +104,50 @@ class HistoryPage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 135,
-                      width: 270,
+                      height: 150,
+                      width: 284,
+
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              SvgPicture.asset("assets/images/PickIcon.svg"),
+                              SizedBox(width: 10),
+                              Text("Cleaning"),
+                            ],
+                          ),
+                          Container(
+                            width: 270,
+                            child: Divider(thickness: 1, color: Colors.black),
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.calendar_month),
+                              Text("Tanggal : 00 Maret 2025"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.location_on),
+                              Text("Alamat : Jl Karet No 8, Jatimulyo, Kec"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.monitor_weight),
+                              Text("2 Lantai"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     SizedBox(height: 10),
@@ -91,8 +175,49 @@ class HistoryPage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 135,
-                      width: 270,
+                      height: 150,
+                      width: 284,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              SvgPicture.asset("assets/images/PickIcon.svg"),
+                              SizedBox(width: 10),
+                              Text("Cleaning"),
+                            ],
+                          ),
+                          Container(
+                            width: 270,
+                            child: Divider(thickness: 1, color: Colors.black),
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.calendar_month),
+                              Text("Tanggal : 00 Maret 2025"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.location_on),
+                              Text("Alamat : Jl Karet No 8, Jatimulyo, Kec"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.monitor_weight),
+                              Text("2 Lantai"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     SizedBox(height: 10),
@@ -102,8 +227,49 @@ class HistoryPage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 135,
-                      width: 270,
+                      height: 150,
+                      width: 284,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              SvgPicture.asset("assets/images/PickIcon.svg"),
+                              SizedBox(width: 10),
+                              Text("Cleaning"),
+                            ],
+                          ),
+                          Container(
+                            width: 270,
+                            child: Divider(thickness: 1, color: Colors.black),
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.calendar_month),
+                              Text("Tanggal : 00 Maret 2025"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.location_on),
+                              Text("Alamat : Jl Karet No 8, Jatimulyo, Kec"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.monitor_weight),
+                              Text("2 Lantai"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     SizedBox(height: 10),
@@ -113,8 +279,49 @@ class HistoryPage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 135,
-                      width: 270,
+                      height: 150,
+                      width: 284,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              SvgPicture.asset("assets/images/PickIcon.svg"),
+                              SizedBox(width: 10),
+                              Text("Cleaning"),
+                            ],
+                          ),
+                          Container(
+                            width: 270,
+                            child: Divider(thickness: 1, color: Colors.black),
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.calendar_month),
+                              Text("Tanggal : 00 Maret 2025"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.location_on),
+                              Text("Alamat : Jl Karet No 8, Jatimulyo, Kec"),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(Icons.monitor_weight),
+                              Text("2 Lantai"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     SizedBox(height: 10),

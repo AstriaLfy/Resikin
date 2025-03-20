@@ -5,7 +5,7 @@ import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'reusable.dart';
-import 'beranda.dart';
+import 'package:resikin/bottomnavbar.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -46,9 +46,9 @@ class _RegisterFormState extends State<RegisterForm> {
           "created_at": FieldValue.serverTimestamp(),
         });
       }
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomNavigationPage()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),

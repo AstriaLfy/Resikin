@@ -2,7 +2,6 @@ import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:resikin/page/beranda.dart';
 import 'package:resikin/page/register_page.dart';
 import 'forgot_pw.dart';
 import 'reusable.dart';
@@ -31,6 +30,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _dbService = DatabaseService();
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,6 +44,20 @@ class _LoginPageState extends State<LoginPage> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
+    String? validationMessage = await _authServices
+        .validateWithEmailAndPassword(email, password);
+    if (validationMessage != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(validationMessage), backgroundColor: Colors.red),
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    print("🟡 Login dimulai... Email: $email");
+
     String? errorMessage = await _authServices.signInWithEmailAndPassword(
       email,
       password,
@@ -54,10 +68,32 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     if (errorMessage == null) {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => Beranda()));
+      print("✅ Login sukses! Menunggu Firebase memperbarui user...");
+
+      await Future.delayed(
+        Duration(seconds: 1),
+      ); 
+      User? user = await FirebaseAuth.instance.authStateChanges().first;
+
+      if (user != null) {
+        print("🎉 User ditemukan setelah login! UID: ${user.uid}");
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => BottomNavigationPage()),
+          (route) => false,
+        );
+      } else {
+        print("❌ Login sukses, tetapi user masih null!");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Autentikasi gagal, coba lagi"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     } else {
+      print("❌ Login gagal: $errorMessage");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
       );
@@ -83,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
+      await Future.delayed(Duration(seconds: 1));
       final User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         debugPrint("Firebase Sign-In berhasil.");
@@ -90,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
         if (mounted) {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => Beranda()),
+            MaterialPageRoute(builder: (context) => BottomNavigationPage()),
             (route) => false,
           );
         }
@@ -209,11 +246,7 @@ class _LoginPageState extends State<LoginPage> {
 
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => BottomNavigationPage(),
-                    ),
-                  );
+                  _login();
                 },
 
                 style: ElevatedButton.styleFrom(

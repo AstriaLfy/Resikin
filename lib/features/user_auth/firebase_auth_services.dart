@@ -110,6 +110,25 @@ class FirebaseAuthServices {
     }
   }
 
+    Future<String?> validateWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    if (email.isEmpty ||
+        password.isEmpty) {
+      return 'Harap isi semua kolom';
+    }
+
+    if (!validateEmailAddress(email)) {
+      return 'Format email tidak valid';
+    }
+
+    if (!validatePassword(password)) {
+      return 'Password harus minimal 8 karakter';
+    }
+    return null;
+  }
+
   String getFirebaseAuthErrorMessage(String errorCode) {
     switch (errorCode) {
       case 'invalid-email':

@@ -20,13 +20,28 @@ class _CleanupState extends State<Cleanup> {
 
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
-  final TextEditingController jumlahPegawaiController = TextEditingController();
+  int jumlahPegawai = 1;
   final TextEditingController catatanController = TextEditingController();
+
+  void _incrementPegawai() {
+    if (jumlahPegawai < 3) {
+      setState(() {
+        jumlahPegawai++;
+      });
+    }
+  }
+
+  void _decrementPegawai() {
+    if (jumlahPegawai > 1) {
+      setState(() {
+        jumlahPegawai--;
+      });
+    }
+  }
 
   void _setJadwal() {
     String luas = luasController.text;
     String alamat = alamatController.text;
-    String jumlahPegawai = jumlahPegawaiController.text;
     String catatan = catatanController.text;
 
     Map<String, dynamic> data = {
@@ -147,30 +162,24 @@ class _CleanupState extends State<Cleanup> {
                 ),
               ),
             ),
-            _buildInputField("Luas", luasController, 40),
+
+            SizedBox(height: 10),
+
+            _buildInputField("Luas", luasController, 50),
+            SizedBox(height: 10),
             _buildInputField("Alamat", alamatController, 60),
             SizedBox(height: 10),
+            _buildEmployeeCount(), // Employee count widget
+            SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Jumlah Pegawai"),
-                SizedBox(width: 80),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  height: 44,
-                  width: 120,
-                  child: TextField(
-                    controller: jumlahPegawaiController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Jumlah",
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    ),
+                SizedBox(width: 25),
+                Text(
+                  "Catatan",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
                   ),
                 ),
               ],
@@ -194,7 +203,7 @@ class _CleanupState extends State<Cleanup> {
                   maxLines: 4,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Catatan",
+                    hintText: "Catatan...",
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 10,
                       vertical: 10,
@@ -259,9 +268,18 @@ class _CleanupState extends State<Cleanup> {
   ) {
     return Column(
       children: [
-        Text(
-          label,
-          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(width: 25),
+            Text(
+              label,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
         ),
         Padding(
           padding: EdgeInsets.symmetric(
@@ -270,7 +288,7 @@ class _CleanupState extends State<Cleanup> {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.black, width: 1),
             ),
             height: height,
@@ -283,6 +301,46 @@ class _CleanupState extends State<Cleanup> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmployeeCount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Jumlah Pegawai",
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
+        SizedBox(width: 70),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.teal,
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.black, width: 1),
+          ),
+          child: Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.remove, color: Colors.white),
+                onPressed: _decrementPegawai,
+              ),
+              Text(
+                "$jumlahPegawai",
+                style: GoogleFonts.poppins(color: Colors.white),
+              ),
+              IconButton(
+                icon: Icon(Icons.add, color: Colors.white),
+                onPressed: _incrementPegawai,
+              ),
+            ],
           ),
         ),
       ],

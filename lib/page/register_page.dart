@@ -67,7 +67,7 @@ class RegisterPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 130, // Adjust the width as needed
+                    width: 130,
                     child: Divider(thickness: 1, color: Colors.black),
                   ),
 
@@ -77,7 +77,7 @@ class RegisterPage extends StatelessWidget {
                   ),
 
                   Container(
-                    width: 130, // Adjust the width as needed
+                    width: 130, 
                     child: Divider(thickness: 1, color: Colors.black),
                   ),
                 ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'reusable.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
 
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(

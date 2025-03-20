@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'page/history_page.dart';
 import 'page/station_page.dart';
@@ -20,7 +19,6 @@ class BottomNavigationPage extends StatefulWidget {
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int selectedIndex = 0;
 
-  // List of pages to navigate to
   final List<Widget> _pages = [
     Beranda(),
     StationPage(),
@@ -37,6 +35,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _pages[selectedIndex],
 
       bottomNavigationBar: Container(
@@ -62,12 +61,18 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             selectedIndex: selectedIndex,
             onDestinationSelected: onDestinationSelected,
             destinations: [
-              NavigationDestination(icon: Icon(Iconsax.home), label: 'Utama'),
+              NavigationDestination(
+                  icon: Icon(Iconsax.home),
+                  label: 'Utama'
+              ),
               NavigationDestination(
                 icon: Icon(Iconsax.location),
                 label: 'Station',
               ),
-              NavigationDestination(icon: Icon(Iconsax.timer), label: 'Riwayat'),
+              NavigationDestination(
+                icon: Icon(Iconsax.timer),
+                label: 'Riwayat',
+              ),
               NavigationDestination(
                 icon: Icon(Iconsax.personalcard),
                 label: 'Profil',

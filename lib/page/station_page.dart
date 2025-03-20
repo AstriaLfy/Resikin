@@ -9,7 +9,7 @@ class StationPage extends StatelessWidget {
       backgroundColor: Colors.white,
 
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0), 
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -69,7 +69,7 @@ class StationPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 270, // Adjust the width as needed
+                        width: 270, 
                         child: Divider(thickness: 1, color: Colors.black),
                       ),
 
@@ -117,7 +117,7 @@ class StationPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 270, // Adjust the width as needed
+                        width: 270, 
                         child: Divider(thickness: 1, color: Colors.black),
                       ),
 
@@ -165,7 +165,7 @@ class StationPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 270, // Adjust the width as needed
+                        width: 270, 
                         child: Divider(thickness: 1, color: Colors.black),
                       ),
 
@@ -213,7 +213,7 @@ class StationPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 270, // Adjust the width as needed
+                        width: 270,
                         child: Divider(thickness: 1, color: Colors.black),
                       ),
 
@@ -261,7 +261,7 @@ class StationPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 270, // Adjust the width as needed
+                        width: 270, 
                         child: Divider(thickness: 1, color: Colors.black),
                       ),
 

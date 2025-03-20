@@ -9,11 +9,12 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:resikin/page/history_page.dart';
 import 'package:resikin/page/profile_page.dart';
 import 'package:resikin/page/station_page.dart';
+import 'package:resikin/bottomnavbar.dart';
 
 import 'package:resikin/page/login_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: Beranda()));
+  runApp(MaterialApp(home: BottomNavigationPage()));
 }
 
 class Beranda extends StatefulWidget {
@@ -189,7 +190,7 @@ class _BerandaState extends State<Beranda> {
 
             SizedBox(height: 20),
             Text(
-              "Informasi sampah daur ulang Resik.in",
+              "Informasi sampah daur ulang Resikin",
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
@@ -446,16 +447,15 @@ class _BerandaState extends State<Beranda> {
               ],
             ),
 
-            SizedBox(height: 10),
-
-            Container(
-              height: 300,
-              width: 305,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                height: 280,
+                width: 305,
+                child: SvgPicture.asset("assets/images/diagramThn.svg"),
               ),
-              child: Text("Diagram"),
             ),
+
             SizedBox(height: 20),
             Text(
               "Artikel",
