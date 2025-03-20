@@ -97,20 +97,21 @@ class _CleanupState extends State<Cleanup> {
     }
   }
 
-void _showCalendarDialog() {
-  showDialog(
-    context: context,
-    builder: (context) => CalendarDialog(
-      focusedDay: focusedDay,
-      onDateSelected: (selectedDate) {
-        setState(() {
-          this.selectedDate = selectedDate;
-          selectedDay = DateFormat('yyyy-MM-dd').format(selectedDate);
-        });
-      },
-    ),
-  );
-}
+  void _showCalendarDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => CalendarDialog(
+            focusedDay: focusedDay,
+            onDateSelected: (selectedDate) {
+              setState(() {
+                this.selectedDate = selectedDate;
+                selectedDay = DateFormat('yyyy-MM-dd').format(selectedDate);
+              });
+            },
+          ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -236,12 +237,9 @@ void _showCalendarDialog() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildActionButton(
-                    "Batal",
-                    Colors.white,
-                    Colors.black,
-                    () {},
-                  ),
+                  _buildActionButton("Batal", Colors.white, Colors.black, () {
+                    Navigator.pop(context);
+                  }),
                   SizedBox(width: 20),
                   _buildActionButton(
                     "Set Jadwal",

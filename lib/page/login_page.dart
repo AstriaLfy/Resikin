@@ -109,29 +109,36 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       await Future.delayed(Duration(seconds: 1));
       final User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
         String email = user.email ?? "";
         String namaUser = email.split('@')[0];
+
+        bool isUserExists = await _dbService.checkUserExists(user.uid);
+
         debugPrint("Firebase Sign-In berhasil.");
+        
+        if (!isUserExists) {
         await _dbService.createUserLogin({
           "userId": user.uid,
           "email": email,
           "nama": namaUser,
           "created_At": FieldValue.serverTimestamp(),
         });
-        debugPrint("User Google berhasil didaftarkan ke Firestore.");
+        debugPrint("User baru berhasil ditambahkan ke Firestore.");
+      } else {
+        debugPrint("User sudah terdaftar, tidak perlu menyimpan lagi.");
+      }
 
         if (mounted) {
           Navigator.pushAndRemoveUntil(
@@ -141,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       }
-      debugPrint("Firebase Sign-In berhasil.");
     } catch (e) {
       debugPrint("Google Sign-In gagal: ${e.toString()}");
     }

@@ -3,7 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class CalendarDialog extends StatelessWidget {
+class CalendarDialog extends StatefulWidget {
   final Function(DateTime) onDateSelected;
   final DateTime focusedDay;
 
@@ -11,6 +11,13 @@ class CalendarDialog extends StatelessWidget {
     required this.onDateSelected,
     required this.focusedDay,
   });
+
+  @override
+  _CalendarDialogState createState() => _CalendarDialogState();
+}
+
+class _CalendarDialogState extends State<CalendarDialog> {
+  DateTime? selectedDate;
 
   @override
   Widget build(BuildContext context) {

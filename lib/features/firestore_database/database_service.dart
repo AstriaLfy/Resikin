@@ -70,6 +70,16 @@ class DatabaseService {
     }
   }
 
+  Future<bool> checkUserExists(String userId) async {
+  try {
+    DocumentSnapshot userDoc = await _fire.collection("user_login").doc(userId).get();
+    return userDoc.exists; 
+  } catch (e) {
+    print("Error saat mengecek user: ${e.toString()}");
+    return false;
+  }
+}
+
   Future<void> createPegawaiLogin(Map<String, dynamic> pegawaiData) async {
     try {
       await _fire.collection(collectionPegawaiLogin).add(pegawaiData);
