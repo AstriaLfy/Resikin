@@ -12,27 +12,73 @@ class Cleanup extends StatefulWidget {
 class _CleanupState extends State<Cleanup> {
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
-  int jumlahPegawai = 1; // Initialize the number of employees
+  int jumlahPegawai = 1;
   final TextEditingController catatanController = TextEditingController();
 
+
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          content: Container(
+            height: 400,
+            width: 700,
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Apakah Anda yakin ingin melanjutkan?",
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PaymentMethod()),
+                        );
+                      },
+                      child: Text("Bayar", style: TextStyle(color: Colors.teal)),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   void _setJadwal() {
-    // Handle the scheduling logic here
     String luas = luasController.text;
     String alamat = alamatController.text;
     String catatan = catatanController.text;
+    _showConfirmationDialog();
 
-    // You can add your logic to save or process the data
     print("Luas: $luas");
     print("Alamat: $alamat");
     print("Jumlah Pegawai: $jumlahPegawai");
     print("Catatan: $catatan");
-
-    // Navigate to the PaymentMethod page
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PaymentMethod()),
-    );
   }
+
+
+
 
   void _incrementPegawai() {
     if (jumlahPegawai < 3) {
@@ -173,7 +219,7 @@ class _CleanupState extends State<Cleanup> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildActionButton("Batal", Colors.white, Colors.black, () {
-                    // Handle cancel action
+                    Navigator.pop(context);
                   }),
                   SizedBox(width: 20),
                   _buildActionButton("Set Jadwal", Colors.teal, Colors.white, _setJadwal),

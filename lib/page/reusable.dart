@@ -37,8 +37,8 @@ class ReuseField extends StatelessWidget {
   const ReuseField({
     Key? key,
     this.child,
-    this.height = 56, // Default height
-    this.width = 320, // Default width
+    this.height = 56,
+    this.width = 320,
     this.color = const Color(0xffd9d9d9), // Default color
   }) : super(key: key);
 

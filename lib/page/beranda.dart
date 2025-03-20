@@ -398,6 +398,12 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                  child: 
+                  Center(
+                    child: 
+                    Text("Week"),
+                  )
+                  ,
                 ),
 
                 SizedBox(width: 10),
@@ -410,6 +416,11 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                    child:
+                    Center(
+                      child:
+                      Text("Month"),
+                    )
                 ),
                 SizedBox(width: 10),
 
@@ -422,6 +433,11 @@ class _BerandaState extends State<Beranda> {
                       top: Radius.circular(20),
                     ),
                   ),
+                    child:
+                    Center(
+                      child:
+                      Text("Year"),
+                    )
                 ),
               ],
             ),
@@ -438,13 +454,22 @@ class _BerandaState extends State<Beranda> {
 
 
             SizedBox(height: 20),
-            Text(
-              "Artikel",
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+
+            Row(
+              children: [
+                SizedBox(width: 30,),
+
+                Text(
+                  "Artikel",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+
+              ],
             ),
+
 
             SizedBox(height: 20),
 
@@ -470,7 +495,7 @@ class _BerandaState extends State<Beranda> {
                       child: Stack(
                         children: [
                           Positioned(
-                            bottom: 0, // Menempatkan Container di bawah
+                            bottom: 0,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),

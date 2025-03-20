@@ -7,30 +7,31 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-          children: [
-            ReusableContainer(child: Center(
-                child:
-                Column(
-                  children: [
-                    SizedBox(height: 137,),
-                    Text("MASUK", style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600,
-                    ),),
-                  ],
-                )
-
-            )
-            ),            Row(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        child: ReusableContainer(
+          child: Center(
+            child: Column(
               children: [
-                Text("Lupa Kata Sandi", style: TextStyle(
+                SizedBox(height: 112),
+                Text(
+                  "Cleaning",
+                  style: GoogleFonts.poppins(
                     fontSize: 28,
-                    fontWeight: FontWeight.w600
-                ),)
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
               ],
-            )
-          ],
-        )
+            ),
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
 
+        ],
+      ),
     );
   }
 }
