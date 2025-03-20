@@ -1,5 +1,6 @@
 import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resikin/page/reusable.dart';
@@ -17,6 +18,8 @@ class _CleanupState extends State<Cleanup> {
   String selectedDay = "Hari ini";
   DateTime? selectedDate;
   String? selectedDocId;
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime focusedDay = DateTime.now();
 
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
@@ -93,6 +96,55 @@ class _CleanupState extends State<Cleanup> {
     }
   }
 
+  void _showCalendarDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.teal,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                "Pilih Tanggal Cleaning",
+                style: GoogleFonts.poppins(fontSize: 14, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            content: SizedBox(
+              width: 350,
+              height: 400,
+              child: TableCalendar(
+                firstDay: DateTime.now(),
+                lastDay: DateTime.utc(2030, 12, 31),
+                focusedDay: focusedDay,
+                calendarFormat: _calendarFormat,
+                onFormatChanged: (format) {
+                  setState(() {
+                    _calendarFormat = format;
+                  });
+                },
+                selectedDayPredicate: (day) {
+                  return isSameDay(selectedDate, day);
+                },
+                onDaySelected: (newSelectedDay, focusedDay) {
+                  setState(() {
+                    selectedDate = newSelectedDay;
+                    this.focusedDay = focusedDay;
+                    selectedDay = DateFormat(
+                      'yyyy-MM-dd',
+                    ).format(newSelectedDay);
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,9 +190,7 @@ class _CleanupState extends State<Cleanup> {
                 SizedBox(width: 5),
                 _buildDateButton("Besok", () => _selectDate("Besok")),
                 SizedBox(width: 5),
-                _buildDateButton("Pilih Tanggal", () {
-                  // Implement date picker if needed
-                }),
+                _buildDateButton("Pilih Tanggal", () => _showCalendarDialog()),
               ],
             ),
             SizedBox(height: 10),

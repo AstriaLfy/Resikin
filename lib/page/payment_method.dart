@@ -14,16 +14,15 @@ class PaymentMethod extends StatefulWidget {
 
 class _PaymentMethodState extends State<PaymentMethod> {
   final _dbService = DatabaseService();
-  String?
-  _selectedPaymentMethod; 
-  bool _agreeToUseCoins = false; 
+  String? _selectedPaymentMethod;
+  bool _agreeToUseCoins = false;
 
   void _processPayment() {
     Map<String, dynamic> paymentData = {
       'payment_method': _selectedPaymentMethod,
       'use_coins': _agreeToUseCoins,
-      'total_price': "Rp. Xxx xxx xxx", 
-      'timestamp': FieldValue.serverTimestamp(),  
+      'total_price': "Rp. Xxx xxx xxx",
+      'timestamp': FieldValue.serverTimestamp(),
     };
 
     _dbService
@@ -177,7 +176,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 20),
             Text("Total Harga"),
-            Text("Rp. Xxx xxx xxx"), 
+            Text("Rp. Xxx xxx xxx"),
             GestureDetector(
               onTap: () {
                 _processPayment();
