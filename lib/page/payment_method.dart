@@ -80,7 +80,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
               ),
               child: Column(
                 children: [
-
                   Row(
                     children: [
                       Text(
@@ -89,8 +88,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       ),
                     ],
                   ),
-
-
                   Container(
                     width: 350,
                     decoration: BoxDecoration(),

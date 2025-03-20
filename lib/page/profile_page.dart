@@ -84,7 +84,6 @@ class ProfilePage extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        // Text di atas background
                         Center(
                           child: Row(
                             children: [
