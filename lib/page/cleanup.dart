@@ -15,7 +15,6 @@ class _CleanupState extends State<Cleanup> {
   int jumlahPegawai = 1;
   final TextEditingController catatanController = TextEditingController();
 
-
   void _showConfirmationDialog() {
     showDialog(
       context: context,
@@ -24,40 +23,156 @@ class _CleanupState extends State<Cleanup> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          content: Container(
-            height: 400,
-            width: 700,
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Apakah Anda yakin ingin melanjutkan?",
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PaymentMethod()),
-                        );
-                      },
-                      child: Text("Bayar", style: TextStyle(color: Colors.teal)),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                ),
-              ],
+          content: SingleChildScrollView(
+            child: Container(
+              height: 450,
+              width: 700,
+              padding: EdgeInsets.all(1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Cleaning",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 105),
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 10),
+                  Text(
+                    "Tanggal : Hari ini",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Luas : 80 m2",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+
+                  Row(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
+                    children: [
+                      Text(
+                        "Alamat : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
+                          children: [
+                            Text(
+                              "Ruang A1 No.19,\n"
+                              "Ketawanggede,\n"
+                              "Kec. Lowokwaru\n"
+                              "Kota Malang,\n"
+                              "Jawa Timur 65145",
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Jumlah Pegawai : x",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Row(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
+                    children: [
+                      Text(
+                        "Catatan : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
+                          children: [
+                            Text(
+                              "xxxxxxxxx,\n"
+                              "xxxxxxx,\n"
+                              "xxxxxxxxxxxxxx\n"
+                              "xxxxxxxxxxxxxx,\n"
+                              "xxxxxxxxxxxxxxx",
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: [
+                      Text(
+                        "Rp. 100.000",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 45),
+
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PaymentMethod(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.teal,
+                          ),
+                          width: 70,
+                          height: 30,
+                          child: Center(
+                            child: Text(
+                              "Bayar",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -76,9 +191,6 @@ class _CleanupState extends State<Cleanup> {
     print("Jumlah Pegawai: $jumlahPegawai");
     print("Catatan: $catatan");
   }
-
-
-
 
   void _incrementPegawai() {
     if (jumlahPegawai < 3) {
@@ -159,9 +271,7 @@ class _CleanupState extends State<Cleanup> {
                 height: 100,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: SvgPicture.asset(
-                    "assets/images/timeBg.svg",
-                  ),
+                  child: SvgPicture.asset("assets/images/timeBg.svg"),
                 ),
               ),
             ),
@@ -205,7 +315,10 @@ class _CleanupState extends State<Cleanup> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Catatan...",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
                   ),
                 ),
               ),
@@ -222,7 +335,12 @@ class _CleanupState extends State<Cleanup> {
                     Navigator.pop(context);
                   }),
                   SizedBox(width: 20),
-                  _buildActionButton("Set Jadwal", Colors.teal, Colors.white, _setJadwal),
+                  _buildActionButton(
+                    "Set Jadwal",
+                    Colors.teal,
+                    Colors.white,
+                    _setJadwal,
+                  ),
                 ],
               ),
             ),
@@ -242,13 +360,15 @@ class _CleanupState extends State<Cleanup> {
       ),
       width: 100,
       height: 56,
-      child: Center(
-        child: Text(title, style: TextStyle(color: Colors.white)),
-      ),
+      child: Center(child: Text(title, style: TextStyle(color: Colors.white))),
     );
   }
 
-  Widget _buildInputField(String label, TextEditingController controller, double height) {
+  Widget _buildInputField(
+    String label,
+    TextEditingController controller,
+    double height,
+  ) {
     return Column(
       children: [
         Row(
@@ -294,7 +414,14 @@ class _CleanupState extends State<Cleanup> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Jumlah Pegawai", style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16)),
+        Text(
+          "Jumlah Pegawai",
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
         SizedBox(width: 70),
         Container(
           decoration: BoxDecoration(
@@ -308,7 +435,10 @@ class _CleanupState extends State<Cleanup> {
                 icon: Icon(Icons.remove, color: Colors.white),
                 onPressed: _decrementPegawai,
               ),
-              Text("$jumlahPegawai", style: GoogleFonts.poppins(color: Colors.white)),
+              Text(
+                "$jumlahPegawai",
+                style: GoogleFonts.poppins(color: Colors.white),
+              ),
               IconButton(
                 icon: Icon(Icons.add, color: Colors.white),
                 onPressed: _incrementPegawai,
@@ -320,7 +450,12 @@ class _CleanupState extends State<Cleanup> {
     );
   }
 
-  Widget _buildActionButton(String title, Color bgColor, Color textColor, VoidCallback onPressed) {
+  Widget _buildActionButton(
+    String title,
+    Color bgColor,
+    Color textColor,
+    VoidCallback onPressed,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: bgColor,
