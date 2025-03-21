@@ -4,16 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:resikin/features/user_auth/firebase_auth_services.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'reusable.dart';
+import '../reusable.dart';
 import 'package:resikin/bottomnavbar.dart';
 import 'package:resikin/features/utility/utils.dart';
 
-class RegisterFormUser extends StatefulWidget {
+class RegisterFormEmp extends StatefulWidget {
   @override
-  _RegisterFormUserState createState() => _RegisterFormUserState();
+  _RegisterFormEmpState createState() => _RegisterFormEmpState();
 }
 
-class _RegisterFormUserState extends State<RegisterFormUser> {
+class _RegisterFormEmpState extends State<RegisterFormEmp> {
   final _dbService = DatabaseService();
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
   final TextEditingController _nameController = TextEditingController();
