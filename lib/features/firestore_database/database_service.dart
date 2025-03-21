@@ -100,7 +100,12 @@ class DatabaseService {
 
   Future<void> createUserLogin(Map<String, dynamic> userData) async {
     String userEmail = userData["email"].toLowerCase();
-    String userId = userData["userId"];
+    String? userId = userData["userId"];
+
+    if (userId == null || userId.isEmpty) {
+      log("Error: userId tidak boleh null atau kosong.");
+      return;
+    }
 
     try {
       DocumentSnapshot userDoc =

@@ -43,29 +43,35 @@ class _CleanupState extends State<Cleanup> {
     }
   }
 
-void _setJadwal() async {
-  String luas = luasController.text;
-  String alamat = alamatController.text;
-  String catatan = catatanController.text;
+  void _setJadwal() async {
+    String luas = luasController.text;
+    String alamat = alamatController.text;
+    String catatan = catatanController.text;
 
-  Map<String, dynamic> data = {
-    'luas': luas,
-    'alamat': alamat,
-    'jumlah_pegawai': jumlahPegawai,
-    'catatan': catatan,
-    'tanggal': selectedDay,
-  };
+    Map<String, dynamic> data = {
+      'luas': luas,
+      'alamat': alamat,
+      'jumlah_pegawai': jumlahPegawai,
+      'catatan': catatan,
+      'tanggal': selectedDay,
+    };
 
-  String? cleaningId = await _dbService.createClean(data);
-  if (cleaningId != null) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PaymentMethod(cleaningId: cleaningId)),
-    );
-  } else {
-    print("Gagal menyimpan cleaning request.");
+    _showConfirmationDialog(selectedDay, luas, alamat, jumlahPegawai, catatan);
+
+    String? cleaningId = await _dbService.createClean(data);
+
+    if (cleaningId != null) {
+      _showConfirmationDialog(
+        selectedDay,
+        luas,
+        alamat,
+        jumlahPegawai,
+        catatan,
+      );
+    } else {
+      print("Gagal menyimpan cleaning request.");
+    }
   }
-}
 
   void _selectDate(String day) {
     setState(() {
@@ -91,6 +97,195 @@ void _setJadwal() async {
         selectedDate = picked;
         selectedDay = DateFormat('yyyy-MM-dd').format(picked);
       });
+    }
+  }
+
+  void _showConfirmationDialog(
+    String tanggal,
+    String luas,
+    String alamat,
+    int jumlahPegawai,
+    String catatan,
+  ) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          content: SingleChildScrollView(
+            child: Container(
+              height: 450,
+              width: 700,
+              padding: EdgeInsets.all(1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Cleaning",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 105),
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 10),
+                  Text(
+                    "Tanggal : $tanggal",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Luas : $luas m2",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Alamat : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              alamat,
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Jumlah Pegawai : $jumlahPegawai",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Catatan : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              catatan,
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: [
+                      Text(
+                        "Rp. 100.000",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 45),
+
+                      TextButton(
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          String? cleaningId = await _saveCleaningData();
+                          if (cleaningId != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) =>
+                                        PaymentMethod(cleaningId: cleaningId),
+                              ),
+                            );
+                          }
+                        },
+
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.teal,
+                          ),
+                          width: 70,
+                          height: 30,
+                          child: Center(
+                            child: Text(
+                              "Bayar",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<String?> _saveCleaningData() async {
+    String luas = luasController.text;
+    String alamat = alamatController.text;
+    String catatan = catatanController.text;
+
+    // Data yang akan disimpan ke Firestore
+    Map<String, dynamic> data = {
+      'luas': luas,
+      'alamat': alamat,
+      'jumlah_pegawai': jumlahPegawai,
+      'catatan': catatan,
+      'tanggal': selectedDay,
+    };
+
+    try {
+      DocumentReference docRef = await FirebaseFirestore.instance
+          .collection('cleaning')
+          .add(data);
+
+      return docRef.id; // Kembalikan ID dokumen yang baru dibuat
+    } catch (e) {
+      print("Error menyimpan data: $e");
+      return null; // Jika gagal, return null
     }
   }
 

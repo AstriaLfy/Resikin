@@ -160,7 +160,7 @@ class _BerandaState extends State<Beranda> {
                       ),
                     ),
                     Container(
-                      width: 270, 
+                      width: 270,
                       child: Divider(thickness: 1, color: Colors.black),
                     ),
 
@@ -467,9 +467,6 @@ class _BerandaState extends State<Beranda> {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
                 height: 240,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
@@ -481,6 +478,14 @@ class _BerandaState extends State<Beranda> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.black, width: 1),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.6),
+                            offset: Offset(0, 4),
+                            blurRadius: 2,
+                            spreadRadius: 2,
+                          ),
+                        ],
                       ),
 
                       child: Stack(

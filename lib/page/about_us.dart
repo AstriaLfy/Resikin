@@ -35,7 +35,7 @@ class AboutUs extends StatelessWidget {
             SvgPicture.asset("assets/images/logoAboutus.svg"),
 
             Container(
-              height: 400,
+              height: 370,
               width: 330,
               child: SingleChildScrollView(
                 child: Text(
