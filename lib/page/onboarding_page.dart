@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'login_as.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'login_as.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -179,6 +179,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ],
           ),
+
           Container(
 
           )

@@ -49,6 +49,8 @@ class _CleanupState extends State<Cleanup> {
     String alamat = alamatController.text;
     String catatan = catatanController.text;
 
+    int price = _calculatePrice(luas);
+
     Map<String, dynamic> data = {
       'luas': luas,
       'alamat': alamat,
@@ -60,7 +62,8 @@ class _CleanupState extends State<Cleanup> {
     showConfirmationDialog(
       context: context,
       title: "Konfirmasi Cleaning",
-      content: "Tanggal: $selectedDay\nLuas: $luas m2\nAlamat: $alamat",
+      content:
+          "Tanggal: $selectedDay\nLuas: $luas m2\nAlamat: $alamat\nHarga: Rp. $price",
       onConfirm: () => _setJadwal(),
     );
 
@@ -98,6 +101,15 @@ class _CleanupState extends State<Cleanup> {
     }
   }
 
+  int _calculatePrice(String luas) {
+    int area = int.tryParse(luas) ?? 0;
+    if (area <= 0) {
+      return 0;
+    } else {
+      return ((area + 49) ~/ 50) * 50000;
+    }
+  }
+
   void _showConfirmationDialog(
     String tanggal,
     String luas,
@@ -105,6 +117,8 @@ class _CleanupState extends State<Cleanup> {
     int jumlahPegawai,
     String catatan,
   ) {
+    int price = _calculatePrice(luas);
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -209,7 +223,7 @@ class _CleanupState extends State<Cleanup> {
                   Row(
                     children: [
                       Text(
-                        "Rp. 100.000",
+                        "Rp. $price",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
