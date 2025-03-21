@@ -9,7 +9,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  String _selectedCategory = "Aktif"; // Menyimpan kategori yang dipilih
+  String _selectedCategory = "Aktif"; 
 
   @override
   Widget build(BuildContext context) {

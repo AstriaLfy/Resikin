@@ -110,6 +110,12 @@ class StatusPembayaran extends StatelessWidget {
                                     ),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
+                                  child: Text(
+                                    "Kategori pelayanan",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
 
                                 SizedBox(width: 15),
@@ -123,6 +129,12 @@ class StatusPembayaran extends StatelessWidget {
                                       width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    "Nama Pengirim\n xxxxx",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -142,6 +154,12 @@ class StatusPembayaran extends StatelessWidget {
                                     ),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
+                                  child: Text(
+                                    "Bank\n xxxxx",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
 
                                 SizedBox(width: 15),
@@ -155,6 +173,12 @@ class StatusPembayaran extends StatelessWidget {
                                       width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    "Waktu Pemnayaran\n xxxxx",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],

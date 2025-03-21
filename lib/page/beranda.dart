@@ -10,6 +10,7 @@ import 'package:resikin/page/history_page.dart';
 import 'package:resikin/page/profile_page.dart';
 import 'package:resikin/page/station_page.dart';
 import 'package:resikin/bottomnavbar.dart';
+import 'package:resikin/page/Pickup.dart';
 
 import 'package:resikin/page/login_page.dart';
 
@@ -25,8 +26,7 @@ class Beranda extends StatefulWidget {
 class _BerandaState extends State<Beranda> {
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
 
-    String _selectedOption = "Week";
-
+  String _selectedOption = "Week";
 
   String _getSvgPath() {
     switch (_selectedOption) {
@@ -53,18 +53,18 @@ class _BerandaState extends State<Beranda> {
         width: 60,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 1),
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           color: _selectedOption == option ? Colors.teal : Colors.white,
         ),
-        child: Center(child: Text(
-          option,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: _selectedOption == option ? Colors.white : Colors.black,
+        child: Center(
+          child: Text(
+            option,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: _selectedOption == option ? Colors.white : Colors.black,
+            ),
           ),
-        ),)
+        ),
       ),
     );
   }
@@ -357,79 +357,86 @@ class _BerandaState extends State<Beranda> {
 
                 SizedBox(width: 20),
 
-                Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
-                        spreadRadius: 0,
-                        blurRadius: 8,
-                        offset: Offset(0, 10),
-                      ),
-                    ],
-                  ),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 142,
-                        height: 130,
-                        decoration: BoxDecoration(),
-                      ),
-
-                      Positioned(
-                        bottom: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.teal,
-                          ),
-                          height: 122,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (context) => Pickup()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.4),
+                          spreadRadius: 0,
+                          blurRadius: 8,
+                          offset: Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Container(
                           width: 142,
+                          height: 130,
+                          decoration: BoxDecoration(),
                         ),
-                      ),
 
-                      Positioned(
-                        top: -4,
-                        left: 0,
-                        right: 0,
-                        child: SvgPicture.asset(
-                          'assets/images/deliv.svg',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-
-                      Positioned(
-                        bottom: 0,
-                        child: Container(
-                          height: 44,
-                          width: 142,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.black, width: 1),
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(25),
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.teal,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.6),
-                                spreadRadius: 2,
-                                blurRadius: 8,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Pick Up",
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            height: 122,
+                            width: 142,
                           ),
                         ),
-                      ),
-                    ],
+
+                        Positioned(
+                          top: -4,
+                          left: 0,
+                          right: 0,
+                          child: SvgPicture.asset(
+                            'assets/images/deliv.svg',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            height: 44,
+                            width: 142,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(25),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.6),
+                                  spreadRadius: 2,
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Pick Up",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -437,18 +444,16 @@ class _BerandaState extends State<Beranda> {
 
             SizedBox(height: 30),
 
-
-
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [
-                    SizedBox(width: 25,),
+                    SizedBox(width: 25),
                     _buildOptionButton("Week"),
-                    SizedBox(width: 5,),
+                    SizedBox(width: 5),
                     _buildOptionButton("Month"),
-                    SizedBox(width: 5,),
+                    SizedBox(width: 5),
                     _buildOptionButton("Year"),
                   ],
                 ),
@@ -458,15 +463,11 @@ class _BerandaState extends State<Beranda> {
                   child: Container(
                     height: 280,
                     width: 305,
-                    child: SvgPicture.asset(
-                      _getSvgPath(),
-                      fit: BoxFit.contain,
-                    ),
+                    child: SvgPicture.asset(_getSvgPath(), fit: BoxFit.contain),
                   ),
                 ),
               ],
             ),
-
 
             SizedBox(height: 20),
 

@@ -13,7 +13,7 @@ class _StationPageState extends State<StationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -37,8 +37,6 @@ class _StationPageState extends State<StationPage> {
           child: Column(
             children: [
               SizedBox(height: 40),
-
-              // Search Bar Container
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1),
@@ -51,10 +49,7 @@ class _StationPageState extends State<StationPage> {
                     border: InputBorder.none,
                     hintText: 'Search Station...',
                     prefixIcon: Icon(Icons.search),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 15.0,
-                      horizontal: 10.0,
-                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                   ),
                 ),
               ),
@@ -62,35 +57,15 @@ class _StationPageState extends State<StationPage> {
               SizedBox(height: 20),
 
               // Station Cards
-              _buildStationCard(
-                "Station Suhat",
-                "Jam: 00:00",
-                "Alamat: Fakultas Ilmu Komputer",
-              ),
+              _buildStationCard("Station Suhat", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
               SizedBox(height: 20),
-              _buildStationCard(
-                "Station FILKOM",
-                "Jam: 00:00",
-                "Alamat: Fakultas Ilmu Komputer",
-              ),
+              _buildStationCard("Station FILKOM", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
               SizedBox(height: 20),
-              _buildStationCard(
-                "Station blbabla",
-                "Jam: 00:00",
-                "Alamat: Fakultas Ilmu Komputer",
-              ),
+              _buildStationCard("Station blbabla", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
               SizedBox(height: 20),
-              _buildStationCard(
-                "Station blbabla",
-                "Jam: 00:00",
-                "Alamat: Fakultas Ilmu Komputer",
-              ),
+              _buildStationCard("Station blbabla", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
               SizedBox(height: 20),
-              _buildStationCard(
-                "Station blbabla",
-                "Jam: 00:00",
-                "Alamat: Fakultas Ilmu Komputer",
-              ),
+              _buildStationCard("Station blbabla", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
             ],
           ),
         ),

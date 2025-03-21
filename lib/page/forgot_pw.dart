@@ -50,7 +50,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               children: [
                 SizedBox(height: 112),
                 Text(
-                  "Cleaning",
+                  "Lupa Password",
                   style: GoogleFonts.poppins(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,

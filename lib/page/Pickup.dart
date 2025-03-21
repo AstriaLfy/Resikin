@@ -1,107 +1,25 @@
-import 'package:resikin/features/firestore_database/database_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:resikin/features/calendar/calendar_dialog.dart';
-import 'package:resikin/features/utility/utils.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:resikin/page/reusable.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'payment_method.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:resikin/page/reusable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'payment_method.dart'; // Import the PaymentMethod page
 
-class Cleanup extends StatefulWidget {
+class Pickup extends StatefulWidget {
   @override
-  _CleanupState createState() => _CleanupState();
+  _Pickup createState() => _Pickup();
 }
 
-class _CleanupState extends State<Cleanup> {
-  final _dbService = DatabaseService();
-  String selectedDay = "Hari ini";
-  DateTime? selectedDate;
-  String? selectedDocId;
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime focusedDay = DateTime.now();
-
+class _Pickup extends State<Pickup> {
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
   int jumlahPegawai = 1;
   final TextEditingController catatanController = TextEditingController();
-
   int _selectedHour = 7;
+  String temp = "";
 
-  void _incrementPegawai() {
-    if (jumlahPegawai < 3) {
-      setState(() {
-        jumlahPegawai++;
-      });
-    }
-  }
-
-  void _decrementPegawai() {
-    if (jumlahPegawai > 1) {
-      setState(() {
-        jumlahPegawai--;
-      });
-    }
-  }
-
-  void _setJadwal() async {
-    String luas = luasController.text;
-    String alamat = alamatController.text;
-    String catatan = catatanController.text;
-
-    int price = _calculatePrice(luas);
-
-    Map<String, dynamic> data = {
-      'luas': luas,
-      'alamat': alamat,
-      'jumlah_pegawai': jumlahPegawai,
-      'catatan': catatan,
-      'tanggal': selectedDay,
-    };
-  }
-
-  void _selectDate(String day) {
-    setState(() {
-      selectedDay = day;
-    });
-
-    if (day == "Pilih Tanggal") {
-      _pickDate();
-    }
-  }
-
-  Future<void> _pickDate() async {
-    String? date = await pickDate(context);
-    if (date != null) {
-      setState(() {
-        selectedDay = date;
-      });
-    }
-  }
-
-  int _calculatePrice(String luas) {
-    int area = int.tryParse(luas) ?? 0;
-    if (area <= 0) {
-      return 0;
-    } else {
-      return ((area + 49) ~/ 50) * 50000;
-    }
-  }
-
-  void _showConfirmationDialog(
-    String tanggal,
-    String luas,
-    String alamat,
-    int jumlahPegawai,
-    String catatan,
-  ) {
-    int price = _calculatePrice(luas);
-
+  void _showConfirmationDialog() {
     showDialog(
       context: context,
-      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
@@ -118,7 +36,7 @@ class _CleanupState extends State<Cleanup> {
                   Row(
                     children: [
                       Text(
-                        "Cleaning",
+                        "Pickup",
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -137,20 +55,22 @@ class _CleanupState extends State<Cleanup> {
 
                   SizedBox(height: 10),
                   Text(
-                    "Tanggal : $tanggal",
+                    "Tanggal : Hari ini",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
                   SizedBox(height: 5),
                   Text(
-                    "Luas : $luas m2",
+                    "Berat : 80 Kg",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
                   SizedBox(height: 5),
 
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
                     children: [
                       Text(
                         "Alamat : ",
@@ -158,10 +78,16 @@ class _CleanupState extends State<Cleanup> {
                       ),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
                           children: [
                             Text(
-                              alamat,
+                              "Ruang A1 No.19,\n"
+                              "Ketawanggede,\n"
+                              "Kec. Lowokwaru\n"
+                              "Kota Malang,\n"
+                              "Jawa Timur 65145",
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -171,14 +97,11 @@ class _CleanupState extends State<Cleanup> {
                   ),
 
                   SizedBox(height: 5),
-                  Text(
-                    "Jumlah Pegawai : $jumlahPegawai",
-                    style: GoogleFonts.poppins(fontSize: 16),
-                  ),
-
                   SizedBox(height: 5),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
                     children: [
                       Text(
                         "Catatan : ",
@@ -186,10 +109,16 @@ class _CleanupState extends State<Cleanup> {
                       ),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
                           children: [
                             Text(
-                              catatan,
+                              "xxxxxxxxx,\n"
+                              "xxxxxxx,\n"
+                              "xxxxxxxxxxxxxx\n"
+                              "xxxxxxxxxxxxxx,\n"
+                              "xxxxxxxxxxxxxxx",
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -203,7 +132,7 @@ class _CleanupState extends State<Cleanup> {
                   Row(
                     children: [
                       Text(
-                        "Rp. $price",
+                        "Rp. 100.000",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -213,34 +142,22 @@ class _CleanupState extends State<Cleanup> {
                       SizedBox(width: 45),
 
                       TextButton(
-                        onPressed: () async {
-                          String? cleaningId = await _dbService.createClean({
-                            'luas': luasController.text,
-                            'alamat': alamatController.text,
-                            'jumlah_pegawai': jumlahPegawai,
-                            'catatan': catatanController.text,
-                            'tanggal': selectedDay,
-                          });
-
-                          if (cleaningId != null) {
-                            Future.microtask(() {
-                              if (mounted) {
-                                navigateTo(
-                                  context,
-                                  PaymentMethod(
-                                    cleaningId: cleaningId,
-                                    luas: luas,
-                                    alamat: alamat,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => PaymentMethod(
+                                    cleaningId: temp,
+                                    luas: temp,
+                                    alamat: temp,
                                     jumlahPegawai: jumlahPegawai,
-                                    catatan: catatan,
-                                    tanggal: selectedDay,
+                                    catatan: temp,
+                                    tanggal: temp,
                                   ),
-                                );
-                              }
-                            });
-                          }
+                            ),
+                          );
                         },
-
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -268,20 +185,32 @@ class _CleanupState extends State<Cleanup> {
     );
   }
 
-  void _showCalendarDialog() {
-    showDialog(
-      context: context,
-      builder:
-          (context) => CalendarDialog(
-            focusedDay: focusedDay,
-            onDateSelected: (selectedDate) {
-              setState(() {
-                this.selectedDate = selectedDate;
-                selectedDay = DateFormat('yyyy-MM-dd').format(selectedDate);
-              });
-            },
-          ),
-    );
+  void _setJadwal() {
+    String luas = luasController.text;
+    String alamat = alamatController.text;
+    String catatan = catatanController.text;
+    _showConfirmationDialog();
+
+    print("Luas: $luas");
+    print("Alamat: $alamat");
+    print("Jumlah Pegawai: $jumlahPegawai");
+    print("Catatan: $catatan");
+  }
+
+  void _incrementPegawai() {
+    if (jumlahPegawai < 3) {
+      setState(() {
+        jumlahPegawai++;
+      });
+    }
+  }
+
+  void _decrementPegawai() {
+    if (jumlahPegawai > 1) {
+      setState(() {
+        jumlahPegawai--;
+      });
+    }
   }
 
   @override
@@ -289,7 +218,7 @@ class _CleanupState extends State<Cleanup> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0),
+        preferredSize: Size.fromHeight(300.0), // Height of AppBar
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -314,7 +243,7 @@ class _CleanupState extends State<Cleanup> {
             SizedBox(height: 30),
             Center(
               child: Text(
-                "Kapan mau cleaning?",
+                "Kapan mau Pickup?",
                 style: GoogleFonts.poppins(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
@@ -325,11 +254,11 @@ class _CleanupState extends State<Cleanup> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildDateButton("Hari Ini", () => _selectDate("Hari Ini")),
+                _buildDateButton("Hari Ini"),
                 SizedBox(width: 5),
-                _buildDateButton("Besok", () => _selectDate("Besok")),
+                _buildDateButton("Besok"),
                 SizedBox(width: 5),
-                _buildDateButton("Pilih Tanggal", () => _showCalendarDialog()),
+                _buildDateButton("Pilih Tanggal"),
               ],
             ),
             SizedBox(height: 10),
@@ -386,11 +315,10 @@ class _CleanupState extends State<Cleanup> {
 
             SizedBox(height: 10),
 
-            _buildInputField("Luas", luasController, 50),
+            _buildInputField("Berat", luasController, 50),
             SizedBox(height: 10),
             _buildInputField("Alamat", alamatController, 60),
             SizedBox(height: 10),
-            _buildEmployeeCount(), // Employee count widget
             SizedBox(height: 20),
             Row(
               children: [
@@ -405,7 +333,6 @@ class _CleanupState extends State<Cleanup> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.07,
@@ -460,21 +387,16 @@ class _CleanupState extends State<Cleanup> {
     );
   }
 
-  Widget _buildDateButton(String title, VoidCallback onPressed) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.teal,
-          border: Border.all(color: Colors.black, width: 1),
-        ),
-        width: 100,
-        height: 56,
-        child: Center(
-          child: Text(title, style: TextStyle(color: Colors.white)),
-        ),
+  Widget _buildDateButton(String title) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.teal,
+        border: Border.all(color: Colors.black, width: 1),
       ),
+      width: 100,
+      height: 56,
+      child: Center(child: Text(title, style: TextStyle(color: Colors.white))),
     );
   }
 
@@ -518,46 +440,6 @@ class _CleanupState extends State<Cleanup> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
             ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildEmployeeCount() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Jumlah Pegawai",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-        SizedBox(width: 70),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.teal,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: Colors.black, width: 1),
-          ),
-          child: Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.remove, color: Colors.white),
-                onPressed: _decrementPegawai,
-              ),
-              Text(
-                "$jumlahPegawai",
-                style: GoogleFonts.poppins(color: Colors.white),
-              ),
-              IconButton(
-                icon: Icon(Icons.add, color: Colors.white),
-                onPressed: _incrementPegawai,
-              ),
-            ],
           ),
         ),
       ],
