@@ -14,7 +14,7 @@ import 'package:resikin/page/Pickup.dart';
 import 'package:resikin/page/login_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: BottomNavigationPage()));
+  runApp(MaterialApp(home: Beranda()));
 }
 
 final List<String> svgImages = [
@@ -117,11 +117,10 @@ class _BerandaState extends State<Beranda> {
                   ],
                 ),
               ),
-
               Positioned(
-                top: 120,
-                left: 25,
-                right: 25,
+                top: 120, // Adjusted position for top
+                left: 25, // Adjusted position for left
+                right: 25, // Added right positioning
                 child: Container(
                   height: 96,
                   width: double.infinity,
@@ -145,6 +144,7 @@ class _BerandaState extends State<Beranda> {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      // Text di atas background
                       Center(
                         child: Row(
                           children: [
@@ -495,8 +495,9 @@ class _BerandaState extends State<Beranda> {
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
+                  child: SizedBox(
                     height: 240,
+
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: svgImages.length,
