@@ -25,6 +25,50 @@ class Beranda extends StatefulWidget {
 class _BerandaState extends State<Beranda> {
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
 
+    String _selectedOption = "Week";
+
+
+  String _getSvgPath() {
+    switch (_selectedOption) {
+      case "Week":
+        return "assets/images/diagramWeeks.svg";
+      case "Month":
+        return "assets/images/diagramMonth.svg";
+      case "Year":
+        return "assets/images/diagramYear.svg";
+      default:
+        return "assets/images/diagramYear.svg";
+    }
+  }
+
+  Widget _buildOptionButton(String option) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedOption = option;
+        });
+      },
+      child: Container(
+        height: 30,
+        width: 60,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 1),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+          color: _selectedOption == option ? Colors.teal : Colors.white,
+        ),
+        child: Center(child: Text(
+          option,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: _selectedOption == option ? Colors.white : Colors.black,
+          ),
+        ),)
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     User? user = _authServices.getCurrentUser();
@@ -393,57 +437,36 @@ class _BerandaState extends State<Beranda> {
 
             SizedBox(height: 30),
 
-            Row(
+
+
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 30),
-                Container(
-                  height: 30,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                  ),
-                  child: Center(child: Text("Week")),
+                Row(
+                  children: [
+                    SizedBox(width: 25,),
+                    _buildOptionButton("Week"),
+                    SizedBox(width: 5,),
+                    _buildOptionButton("Month"),
+                    SizedBox(width: 5,),
+                    _buildOptionButton("Year"),
+                  ],
                 ),
-
-                SizedBox(width: 10),
-                Container(
-                  height: 30,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: Container(
+                    height: 280,
+                    width: 305,
+                    child: SvgPicture.asset(
+                      _getSvgPath(),
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  child: Center(child: Text("Month")),
-                ),
-                SizedBox(width: 10),
-
-                Container(
-                  height: 30,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                  ),
-                  child: Center(child: Text("Year")),
                 ),
               ],
             ),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                height: 280,
-                width: 305,
-                child: SvgPicture.asset("assets/images/diagramThn.svg"),
-              ),
-            ),
 
             SizedBox(height: 20),
 

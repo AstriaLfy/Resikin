@@ -37,6 +37,145 @@ class _PaymentMethodState extends State<PaymentMethod> {
     };
   }
 
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          content: SingleChildScrollView(
+            child: Container(
+              height: 450,
+              width: 700,
+              padding: EdgeInsets.all(1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Cleaning",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 105),
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 10),
+                  Text(
+                    "Tanggal : Hari ini",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Luas : 80 m2",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+
+                  Row(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
+                    children: [
+                      Text(
+                        "Alamat : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
+                          children: [
+                            Text(
+                              "Ruang A1 No.19,\n"
+                              "Ketawanggede,\n"
+                              "Kec. Lowokwaru\n"
+                              "Kota Malang,\n"
+                              "Jawa Timur 65145",
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 5),
+                  Text(
+                    "Jumlah Pegawai : x",
+                    style: GoogleFonts.poppins(fontSize: 16),
+                  ),
+
+                  SizedBox(height: 5),
+                  Row(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start, // Menyelaraskan teks di bagian atas
+                    children: [
+                      Text(
+                        "Catatan : ",
+                        style: GoogleFonts.poppins(fontSize: 16),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .start, // Menyelaraskan teks alamat ke kiri
+                          children: [
+                            Text(
+                              "xxxxxxxxx,\n"
+                              "xxxxxxx,\n"
+                              "xxxxxxxxxxxxxx\n"
+                              "xxxxxxxxxxxxxx,\n"
+                              "xxxxxxxxxxxxxxx",
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: [
+                      Text(
+                        "Rp. 100.000",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      SizedBox(width: 45),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,6 +228,15 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         SizedBox(height: 5),
                         Text("Rp. 100.000"),
                       ],
+                    ),
+
+                    SizedBox(width: 130),
+
+                    GestureDetector(
+                      onTap: () {
+                        _showConfirmationDialog();
+                      },
+                      child: Icon(Icons.keyboard_arrow_down),
                     ),
                   ],
                 ),

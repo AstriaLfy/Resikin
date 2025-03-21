@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'login_page.dart';
+import 'login_as.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -152,7 +152,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => LoginAs()),
                         );
                       },
                       child: Container(
@@ -180,13 +180,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
             ],
           ),
           Container(
-            alignment: Alignment(0, 0.3),
-            child: SmoothPageIndicator(
-              controller: controller,
-              count: 3,
-              effect: WormEffect(),
-            ),
-          ),
+
+          )
+
         ],
       ),
     );

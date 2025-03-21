@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'reusable.dart';
 import 'beranda.dart';
+import 'package:resikin/bottomnavbar.dart';
 
 class StatusPembayaran extends StatelessWidget {
   @override
@@ -267,8 +268,8 @@ class StatusPembayaran extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Beranda(),
-                  ), // Ganti HomePage dengan nama halaman utama Anda
+                    builder: (context) => BottomNavigationPage(),
+                  ),
                 );
               },
               child: Container(
