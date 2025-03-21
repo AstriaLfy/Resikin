@@ -2,6 +2,7 @@ import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:resikin/features/calendar/calendar_dialog.dart';
+import 'package:resikin/features/utility/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resikin/page/reusable.dart';
@@ -56,7 +57,12 @@ class _CleanupState extends State<Cleanup> {
       'tanggal': selectedDay,
     };
 
-    _showConfirmationDialog(selectedDay, luas, alamat, jumlahPegawai, catatan);
+    showConfirmationDialog(
+      context: context,
+      title: "Konfirmasi Cleaning",
+      content: "Tanggal: $selectedDay\nLuas: $luas m2\nAlamat: $alamat",
+      onConfirm: () => _setJadwal(),
+    );
 
     String? cleaningId = await _dbService.createClean(data);
 
@@ -84,18 +90,10 @@ class _CleanupState extends State<Cleanup> {
   }
 
   Future<void> _pickDate() async {
-    DateTime now = DateTime.now();
-    DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: now,
-      firstDate: now,
-      lastDate: now.add(Duration(days: 365)),
-    );
-
-    if (picked != null) {
+    String? date = await pickDate(context);
+    if (date != null) {
       setState(() {
-        selectedDate = picked;
-        selectedDay = DateFormat('yyyy-MM-dd').format(picked);
+        selectedDay = date;
       });
     }
   }
@@ -222,17 +220,23 @@ class _CleanupState extends State<Cleanup> {
 
                       TextButton(
                         onPressed: () async {
-                          Navigator.of(context).pop();
-                          String? cleaningId = await _saveCleaningData();
+                          String? cleaningId = await _dbService.createClean({
+                            'luas': luasController.text,
+                            'alamat': alamatController.text,
+                            'jumlah_pegawai': jumlahPegawai,
+                            'catatan': catatanController.text,
+                            'tanggal': selectedDay,
+                          });
+
                           if (cleaningId != null) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) =>
-                                        PaymentMethod(cleaningId: cleaningId),
-                              ),
-                            );
+                            Future.microtask(() {
+                              if (mounted) {
+                                navigateTo(
+                                  context,
+                                  PaymentMethod(cleaningId: cleaningId),
+                                );
+                              }
+                            });
                           }
                         },
 
@@ -261,32 +265,6 @@ class _CleanupState extends State<Cleanup> {
         );
       },
     );
-  }
-
-  Future<String?> _saveCleaningData() async {
-    String luas = luasController.text;
-    String alamat = alamatController.text;
-    String catatan = catatanController.text;
-
-    // Data yang akan disimpan ke Firestore
-    Map<String, dynamic> data = {
-      'luas': luas,
-      'alamat': alamat,
-      'jumlah_pegawai': jumlahPegawai,
-      'catatan': catatan,
-      'tanggal': selectedDay,
-    };
-
-    try {
-      DocumentReference docRef = await FirebaseFirestore.instance
-          .collection('cleaning')
-          .add(data);
-
-      return docRef.id; // Kembalikan ID dokumen yang baru dibuat
-    } catch (e) {
-      print("Error menyimpan data: $e");
-      return null; // Jika gagal, return null
-    }
   }
 
   void _showCalendarDialog() {

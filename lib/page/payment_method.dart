@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:resikin/features/firestore_database/database_service.dart';
 import 'payment_page.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:resikin/features/utility/utils.dart';
 
 class PaymentMethod extends StatefulWidget {
   final String cleaningId;
@@ -13,7 +14,7 @@ class PaymentMethod extends StatefulWidget {
 
   @override
   _PaymentMethodState createState() => _PaymentMethodState();
-} 
+}
 
 class _PaymentMethodState extends State<PaymentMethod> {
   final _dbService = DatabaseService();
@@ -235,10 +236,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             GestureDetector(
               onTap: () {
                 _processPayment();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PaymentPage()),
-                );
+                navigateTo(context, PaymentPage());
               },
               child: Padding(
                 padding: EdgeInsets.symmetric(

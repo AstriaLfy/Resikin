@@ -6,6 +6,7 @@ import 'package:resikin/features/firestore_database/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'reusable.dart';
 import 'package:resikin/bottomnavbar.dart';
+import 'package:resikin/features/utility/utils.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -46,13 +47,9 @@ class _RegisterFormState extends State<RegisterForm> {
           "created_at": FieldValue.serverTimestamp(),
         });
       }
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => BottomNavigationPage()),
-      );
+      navigateTo(context, BottomNavigationPage());
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
-      );
+      showSnackbar(context, errorMessage);
     }
 
     setState(() {

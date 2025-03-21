@@ -4,6 +4,7 @@ import 'package:resikin/page/login_page.dart';
 import 'package:resikin/page/regist_form.dart';
 import 'reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:resikin/features/utility/utils.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -37,9 +38,7 @@ class RegisterPage extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => RegisterForm()),
-                  );
+                  navigateTo(context, RegisterForm());
                 },
                 child: Container(
                   height: 56,
@@ -77,7 +76,7 @@ class RegisterPage extends StatelessWidget {
                   ),
 
                   Container(
-                    width: 130, 
+                    width: 130,
                     child: Divider(thickness: 1, color: Colors.black),
                   ),
                 ],
@@ -87,9 +86,7 @@ class RegisterPage extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => RegisterForm()),
-                  );
+                  navigateTo(context, RegisterForm());
                 },
                 child: ReuseField(
                   color: Color(0xFF3D8D7A),
@@ -114,9 +111,7 @@ class RegisterPage extends StatelessWidget {
                   Text("Sudah punya akun?"),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
+                      navigateTo(context, LoginPage());
                     },
                     child: Container(
                       child: Text(

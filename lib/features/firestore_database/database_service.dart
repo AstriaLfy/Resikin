@@ -21,7 +21,6 @@ class DatabaseService {
       String cleaningId = _fire.collection(collectionNameCleaning).doc().id;
       cleaningData["id"] = cleaningId;
       cleaningData["user_id"] = userId;
-      cleaningData["status"] = "pending";
       cleaningData["timestamp"] = FieldValue.serverTimestamp();
 
       await _fire
