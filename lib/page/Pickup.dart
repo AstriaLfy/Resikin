@@ -4,12 +4,12 @@ import 'package:resikin/page/reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'payment_method.dart'; // Import the PaymentMethod page
 
-class Cleanup extends StatefulWidget {
+class Pickup extends StatefulWidget {
   @override
-  _CleanupState createState() => _CleanupState();
+  _Pickup createState() => _Pickup();
 }
 
-class _CleanupState extends State<Cleanup> {
+class _Pickup extends State<Pickup> {
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
   int jumlahPegawai = 1;
@@ -35,7 +35,7 @@ class _CleanupState extends State<Cleanup> {
                   Row(
                     children: [
                       Text(
-                        "Cleaning",
+                        "Pickup",
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -60,7 +60,7 @@ class _CleanupState extends State<Cleanup> {
 
                   SizedBox(height: 5),
                   Text(
-                    "Luas : 80 m2",
+                    "Berat : 80 Kg",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
@@ -68,8 +68,8 @@ class _CleanupState extends State<Cleanup> {
 
                   Row(
                     crossAxisAlignment:
-                        CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                    CrossAxisAlignment
+                        .start, // Menyelaraskan teks di bagian atas
                     children: [
                       Text(
                         "Alamat : ",
@@ -78,15 +78,15 @@ class _CleanupState extends State<Cleanup> {
                       Expanded(
                         child: Column(
                           crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                          CrossAxisAlignment
+                              .start, // Menyelaraskan teks alamat ke kiri
                           children: [
                             Text(
                               "Ruang A1 No.19,\n"
-                              "Ketawanggede,\n"
-                              "Kec. Lowokwaru\n"
-                              "Kota Malang,\n"
-                              "Jawa Timur 65145",
+                                  "Ketawanggede,\n"
+                                  "Kec. Lowokwaru\n"
+                                  "Kota Malang,\n"
+                                  "Jawa Timur 65145",
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -96,16 +96,11 @@ class _CleanupState extends State<Cleanup> {
                   ),
 
                   SizedBox(height: 5),
-                  Text(
-                    "Jumlah Pegawai : x",
-                    style: GoogleFonts.poppins(fontSize: 16),
-                  ),
-
                   SizedBox(height: 5),
                   Row(
                     crossAxisAlignment:
-                        CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                    CrossAxisAlignment
+                        .start, // Menyelaraskan teks di bagian atas
                     children: [
                       Text(
                         "Catatan : ",
@@ -114,15 +109,15 @@ class _CleanupState extends State<Cleanup> {
                       Expanded(
                         child: Column(
                           crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                          CrossAxisAlignment
+                              .start, // Menyelaraskan teks alamat ke kiri
                           children: [
                             Text(
                               "xxxxxxxxx,\n"
-                              "xxxxxxx,\n"
-                              "xxxxxxxxxxxxxx\n"
-                              "xxxxxxxxxxxxxx,\n"
-                              "xxxxxxxxxxxxxxx",
+                                  "xxxxxxx,\n"
+                                  "xxxxxxxxxxxxxx\n"
+                                  "xxxxxxxxxxxxxx,\n"
+                                  "xxxxxxxxxxxxxxx",
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -239,7 +234,7 @@ class _CleanupState extends State<Cleanup> {
             SizedBox(height: 30),
             Center(
               child: Text(
-                "Kapan mau cleaning?",
+                "Kapan mau Pickup?",
                 style: GoogleFonts.poppins(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
@@ -304,11 +299,10 @@ class _CleanupState extends State<Cleanup> {
 
             SizedBox(height: 10),
 
-            _buildInputField("Luas", luasController, 50),
+            _buildInputField("Berat", luasController, 50),
             SizedBox(height: 10),
             _buildInputField("Alamat", alamatController, 60),
             SizedBox(height: 10),
-            _buildEmployeeCount(), // Employee count widget
             SizedBox(height: 20),
             Row(
               children: [
@@ -391,10 +385,10 @@ class _CleanupState extends State<Cleanup> {
   }
 
   Widget _buildInputField(
-    String label,
-    TextEditingController controller,
-    double height,
-  ) {
+      String label,
+      TextEditingController controller,
+      double height,
+      ) {
     return Column(
       children: [
         Row(
@@ -436,52 +430,13 @@ class _CleanupState extends State<Cleanup> {
     );
   }
 
-  Widget _buildEmployeeCount() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Jumlah Pegawai",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-        SizedBox(width: 70),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.teal,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: Colors.black, width: 1),
-          ),
-          child: Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.remove, color: Colors.white),
-                onPressed: _decrementPegawai,
-              ),
-              Text(
-                "$jumlahPegawai",
-                style: GoogleFonts.poppins(color: Colors.white),
-              ),
-              IconButton(
-                icon: Icon(Icons.add, color: Colors.white),
-                onPressed: _incrementPegawai,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildActionButton(
-    String title,
-    Color bgColor,
-    Color textColor,
-    VoidCallback onPressed,
-  ) {
+      String title,
+      Color bgColor,
+      Color textColor,
+      VoidCallback onPressed,
+      ) {
     return Container(
       decoration: BoxDecoration(
         color: bgColor,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:resikin/page/Pickup.dart';
 import 'package:resikin/page/history_page.dart';
 import 'package:resikin/page/login_page.dart';
 import 'package:resikin/page/profile_page.dart';
@@ -350,6 +351,15 @@ class _BerandaState extends State<Beranda> {
                 SizedBox(width: 20),
 
                 //CONTAINER PICKUP
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (context) => Pickup()));
+                  },
+                child:
+
                 Container(
                   decoration: BoxDecoration(
                     boxShadow: [
@@ -428,7 +438,11 @@ class _BerandaState extends State<Beranda> {
                       ),
                     ],
                   ),
-                ),
+                )
+                  ,
+
+                )
+
               ],
             ),
 

@@ -29,6 +29,23 @@ class OrderPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(height: 20,),
+
+      Padding(
+      padding: EdgeInsets.symmetric(
+      horizontal: MediaQuery.of(context).size.width * 0.07,
+    ),child:
+      Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.black, width: 1)
+        ),
+        width: 300,
+        height: 50,
+      )
+
+      )
+
 
         ],
       ),

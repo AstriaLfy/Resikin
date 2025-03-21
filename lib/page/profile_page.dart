@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/about_us.dart';
 import 'reusable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'FAQ.dart';
+import 'login_as.dart';
+import 'acountSetting.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -131,6 +134,18 @@ class ProfilePage extends StatelessWidget {
               ),
               height: 50,
               width: 320,
+              child: InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Acountsetting()),);
+
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20,),
+                      Text("Pengaturan Akun", style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),)
+                    ],
+                  )
+              ),
             ),
             SizedBox(height: 10,),
 
@@ -139,8 +154,15 @@ class ProfilePage extends StatelessWidget {
                 border: Border.all(color: Colors.black, width: 1),
                 borderRadius: BorderRadius.circular(20),
               ),
-              height: 50,
               width: 320,
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Kode Referral',
+                  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                ),
+              ),
             ),
 
             SizedBox(height: 10,),
@@ -175,24 +197,45 @@ class ProfilePage extends StatelessWidget {
               ),
               height: 50,
               width: 320,
+              child: InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Faq()),);
+
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20,),
+                      Text("FAQ", style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),)
+                    ],
+                  )
+              ),
             ),
 
             SizedBox(height: 10,),
 
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.red
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginAs()), // Ganti dengan nama kelas Beranda Anda
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.red,
+                ),
+                height: 50,
+                width: 320,
+                child: Center(
+                  child: Text(
+                    "Keluar",
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                ),
               ),
-              height: 50,
-              width: 320,
-              child: Center(
-                child: 
-                Text("Keluar", style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600),)
-                ,
-              ),
-            ),
+            )
           ],
         ),
       ),

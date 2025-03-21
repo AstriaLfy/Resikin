@@ -13,7 +13,7 @@ class _StationPageState extends State<StationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -37,8 +37,6 @@ class _StationPageState extends State<StationPage> {
           child: Column(
             children: [
               SizedBox(height: 40),
-
-              // Search Bar Container
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1),
