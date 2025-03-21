@@ -9,8 +9,21 @@ import 'package:resikin/features/utility/utils.dart';
 
 class PaymentMethod extends StatefulWidget {
   final String cleaningId;
+  final String luas;
+  final String alamat;
+  final int jumlahPegawai;
+  final String catatan;
+  final String tanggal;
 
-  const PaymentMethod({Key? key, required this.cleaningId}) : super(key: key);
+  const PaymentMethod({
+    Key? key,
+    required this.cleaningId,
+    required this.luas,
+    required this.alamat,
+    required this.jumlahPegawai,
+    required this.catatan,
+    required this.tanggal,
+  }) : super(key: key);
 
   @override
   _PaymentMethodState createState() => _PaymentMethodState();
@@ -18,9 +31,25 @@ class PaymentMethod extends StatefulWidget {
 
 class _PaymentMethodState extends State<PaymentMethod> {
   final _dbService = DatabaseService();
-  double amount = 100000;
+  double amount = 0;
   String? _selectedPaymentMethod;
   bool _agreeToUseCoins = false;
+
+  @override
+  void initState() {
+    super.initState();
+    amount = _calculatePrice(widget.luas).toDouble();
+    ;
+  }
+
+  int _calculatePrice(String luas) {
+    int area = int.tryParse(luas) ?? 0;
+    if (area <= 0) {
+      return 0;
+    } else {
+      return ((area + 49) ~/ 50) * 50000;
+    }
+  }
 
   void _processPayment() async {
     await _dbService.createPayment(widget.cleaningId, amount);
@@ -32,7 +61,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
     Map<String, dynamic> paymentData = {
       'payment_method': _selectedPaymentMethod,
       'use_coins': _agreeToUseCoins,
-      'total_price': "Rp. Xxx xxx xxx",
+      'total_price': amount,
       'timestamp': FieldValue.serverTimestamp(),
     };
   }
@@ -75,22 +104,20 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
                   SizedBox(height: 10),
                   Text(
-                    "Tanggal : Hari ini",
+                    "Tanggal : ${widget.tanggal}",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
                   SizedBox(height: 5),
                   Text(
-                    "Luas : 80 m2",
+                    "Luas : ${widget.luas} m2",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
                   SizedBox(height: 5),
 
                   Row(
-                    crossAxisAlignment:
-                        CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Alamat : ",
@@ -98,16 +125,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       ),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Ruang A1 No.19,\n"
-                              "Ketawanggede,\n"
-                              "Kec. Lowokwaru\n"
-                              "Kota Malang,\n"
-                              "Jawa Timur 65145",
+                              widget.alamat,
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -118,15 +139,13 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
                   SizedBox(height: 5),
                   Text(
-                    "Jumlah Pegawai : x",
+                    "Jumlah Pegawai : ${widget.jumlahPegawai}",
                     style: GoogleFonts.poppins(fontSize: 16),
                   ),
 
                   SizedBox(height: 5),
                   Row(
-                    crossAxisAlignment:
-                        CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Catatan : ",
@@ -134,16 +153,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       ),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "xxxxxxxxx,\n"
-                              "xxxxxxx,\n"
-                              "xxxxxxxxxxxxxx\n"
-                              "xxxxxxxxxxxxxx,\n"
-                              "xxxxxxxxxxxxxxx",
+                              widget.catatan,
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
@@ -157,7 +170,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   Row(
                     children: [
                       Text(
-                        "Rp. 100.000",
+                        "Rp. ${amount.toString()}",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -226,7 +239,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         SizedBox(height: 10),
                         Text("Cleaning"),
                         SizedBox(height: 5),
-                        Text("Rp. 100.000"),
+                        Text("Rp. ${amount.toString()}"),
                       ],
                     ),
 
@@ -370,7 +383,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       style: GoogleFonts.poppins(fontSize: 14),
                     ),
                     Text(
-                      "Rp. Xxx xxx xxx",
+                      "Rp. ${amount.toString()}",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

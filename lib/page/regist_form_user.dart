@@ -8,12 +8,12 @@ import 'reusable.dart';
 import 'package:resikin/bottomnavbar.dart';
 import 'package:resikin/features/utility/utils.dart';
 
-class RegisterForm extends StatefulWidget {
+class RegisterFormUser extends StatefulWidget {
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  _RegisterFormUserState createState() => _RegisterFormUserState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _RegisterFormUserState extends State<RegisterFormUser> {
   final _dbService = DatabaseService();
   final FirebaseAuthServices _authServices = FirebaseAuthServices();
   final TextEditingController _nameController = TextEditingController();

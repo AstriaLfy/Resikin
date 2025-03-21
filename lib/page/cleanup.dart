@@ -58,28 +58,6 @@ class _CleanupState extends State<Cleanup> {
       'catatan': catatan,
       'tanggal': selectedDay,
     };
-
-    showConfirmationDialog(
-      context: context,
-      title: "Konfirmasi Cleaning",
-      content:
-          "Tanggal: $selectedDay\nLuas: $luas m2\nAlamat: $alamat\nHarga: Rp. $price",
-      onConfirm: () => _setJadwal(),
-    );
-
-    String? cleaningId = await _dbService.createClean(data);
-
-    if (cleaningId != null) {
-      _showConfirmationDialog(
-        selectedDay,
-        luas,
-        alamat,
-        jumlahPegawai,
-        catatan,
-      );
-    } else {
-      print("Gagal menyimpan cleaning request.");
-    }
   }
 
   void _selectDate(String day) {
@@ -247,7 +225,14 @@ class _CleanupState extends State<Cleanup> {
                               if (mounted) {
                                 navigateTo(
                                   context,
-                                  PaymentMethod(cleaningId: cleaningId),
+                                  PaymentMethod(
+                                    cleaningId: cleaningId,
+                                    luas: luas,
+                                    alamat: alamat,
+                                    jumlahPegawai: jumlahPegawai,
+                                    catatan: catatan,
+                                    tanggal: selectedDay,
+                                  ),
                                 );
                               }
                             });

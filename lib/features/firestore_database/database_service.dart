@@ -10,6 +10,7 @@ class DatabaseService {
   final String collectionNamePickUp = "pickup_requests";
   final String collectionNamePayment = "payment_requests";
 
+  
   Future<String?> createClean(Map<String, dynamic> cleaningData) async {
     try {
       String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
@@ -99,7 +100,7 @@ class DatabaseService {
 
   Future<void> createUserLogin(Map<String, dynamic> userData) async {
     String userEmail = userData["email"].toLowerCase();
-    String? userId = userData["userId"];
+    String? userId = userData["uid"];
 
     if (userId == null || userId.isEmpty) {
       log("Error: userId tidak boleh null atau kosong.");
@@ -138,12 +139,44 @@ class DatabaseService {
     }
   }
 
-  Future<void> createPegawaiLogin(Map<String, dynamic> pegawaiData) async {
+  Future<void> createEmpLogin(Map<String, dynamic> userData) async {
+    String userEmail = userData["email"].toLowerCase();
+    String? userId = userData["uid"];
+
+    if (userId == null || userId.isEmpty) {
+      log("Error: userId tidak boleh null atau kosong.");
+      return;
+    }
+
     try {
-      await _fire.collection(collectionPegawaiLogin).add(pegawaiData);
-      log("User berhasil ditambahkan");
+      DocumentSnapshot userDoc =
+          await _fire.collection(collectionUserLogin).doc(userId).get();
+
+      QuerySnapshot result =
+          await _fire
+              .collection(collectionUserLogin)
+              .where("email", isEqualTo: userEmail)
+              .get();
+
+      if (result.docs.isEmpty) {
+        await _fire.collection(collectionUserLogin).doc(userId).set(userData);
+        log("User berhasil ditambahkan ke Firestore.");
+      } else {
+        log("User sudah ada di Firestore.");
+      }
     } catch (e) {
-      log("Error saat menambahkan data: ${e.toString()}");
+      log("Error saat menyimpan user: ${e.toString()}");
+    }
+  }
+
+  Future<bool> checkEmpExists(String userId) async {
+    try {
+      DocumentSnapshot userDoc =
+          await _fire.collection("user_login").doc(userId).get();
+      return userDoc.exists;
+    } catch (e) {
+      print("Error saat mengecek user: ${e.toString()}");
+      return false;
     }
   }
 }

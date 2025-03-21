@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/login_page.dart';
-import 'package:resikin/page/regist_form.dart';
+import 'package:resikin/page/regist_form_user.dart';
 import 'reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'loginEmp.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/login_page.dart';
-import 'package:resikin/page/regist_form.dart';
+import 'package:resikin/page/regist_form_user.dart';
 import 'reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resikin/features/utility/utils.dart';
@@ -38,7 +38,7 @@ class RegisterPage extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  navigateTo(context, RegisterForm());
+                  navigateTo(context, RegisterFormUser());
                 },
                 child: Container(
                   height: 56,
@@ -86,7 +86,7 @@ class RegisterPage extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  navigateTo(context, RegisterForm());
+                  navigateTo(context, RegisterFormUser());
                 },
                 child: ReuseField(
                   color: Color(0xFF3D8D7A),
