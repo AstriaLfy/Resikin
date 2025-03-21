@@ -1,17 +1,14 @@
-import 'package:resikin/features/user_auth/firebase_auth_services.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'reusable.dart';
-import 'cleanup.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:resikin/page/Pickup.dart';
 import 'package:resikin/page/history_page.dart';
+import 'package:resikin/page/login_page.dart';
 import 'package:resikin/page/profile_page.dart';
 import 'package:resikin/page/station_page.dart';
-import 'package:resikin/bottomnavbar.dart';
-import 'package:resikin/page/Pickup.dart';
-import 'package:resikin/page/login_page.dart';
+import 'reusable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'cleanup.dart';
 
 void main() {
   runApp(MaterialApp(home: Beranda()));
@@ -29,8 +26,6 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-  final FirebaseAuthServices _authServices = FirebaseAuthServices();
-
   String _selectedOption = "Week";
 
   String _getSvgPath() {
@@ -76,17 +71,6 @@ class _BerandaState extends State<Beranda> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = _authServices.getCurrentUser();
-
-    if (user == null) {
-      Future.microtask(() {
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
-      });
-      return Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -209,7 +193,7 @@ class _BerandaState extends State<Beranda> {
                       ),
                     ),
                     Container(
-                      width: 270,
+                      width: 270, // Adjust the width as needed
                       child: Divider(thickness: 1, color: Colors.black),
                     ),
 
@@ -235,14 +219,14 @@ class _BerandaState extends State<Beranda> {
 
             SizedBox(height: 20),
             Text(
-              "Informasi sampah daur ulang Resikin",
+              "Informasi sampah daur ulang Resik.in",
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Container(
-              width: 300,
+              width: 300, // Adjust the width as needed
               child: Divider(thickness: 1, color: Colors.black),
             ),
 
@@ -277,6 +261,7 @@ class _BerandaState extends State<Beranda> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //CONTAINER CLEAN UP
                 GestureDetector(
                   onTap: () {
                     Navigator.of(
@@ -296,12 +281,14 @@ class _BerandaState extends State<Beranda> {
                     ),
                     child: Stack(
                       children: [
+                        // Background container
                         Container(
                           width: 142,
                           height: 130,
                           decoration: BoxDecoration(),
                         ),
 
+                        // Positioned teal container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -314,16 +301,18 @@ class _BerandaState extends State<Beranda> {
                           ),
                         ),
 
+                        // Positioned image overlay
                         Positioned(
-                          top: -5,
-                          left: 0,
-                          right: 0,
+                          top: -5, // Adjust this value to move the image up
+                          left: 0, // Center the image horizontally if needed
+                          right: 0, // Center the image horizontally if needed
                           child: SvgPicture.asset(
                             'assets/images/clean.svg',
-                            fit: BoxFit.contain,
+                            fit: BoxFit.contain, // Adjust the fit as needed
                           ),
                         ),
 
+                        // Positioned bottom container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -362,6 +351,7 @@ class _BerandaState extends State<Beranda> {
 
                 SizedBox(width: 20),
 
+                //CONTAINER PICKUP
                 GestureDetector(
                   onTap: () {
                     Navigator.of(
@@ -381,12 +371,14 @@ class _BerandaState extends State<Beranda> {
                     ),
                     child: Stack(
                       children: [
+                        // Background container
                         Container(
                           width: 142,
                           height: 130,
                           decoration: BoxDecoration(),
                         ),
 
+                        // Positioned teal container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -399,16 +391,18 @@ class _BerandaState extends State<Beranda> {
                           ),
                         ),
 
+                        // Positioned image overlay
                         Positioned(
-                          top: -4,
-                          left: 0,
-                          right: 0,
+                          top: -4, // Adjust this value to move the image up
+                          left: 0, // Center the image horizontally if needed
+                          right: 0, // Center the image horizontally if needed
                           child: SvgPicture.asset(
                             'assets/images/deliv.svg',
-                            fit: BoxFit.contain,
+                            fit: BoxFit.contain, // Adjust the fit as needed
                           ),
                         ),
 
+                        // Positioned bottom container
                         Positioned(
                           bottom: 0,
                           child: Container(
@@ -444,128 +438,129 @@ class _BerandaState extends State<Beranda> {
                     ),
                   ),
                 ),
-
-                SizedBox(height: 30),
-
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(width: 25),
-                        _buildOptionButton("Week"),
-                        SizedBox(width: 5),
-                        _buildOptionButton("Month"),
-                        SizedBox(width: 5),
-                        _buildOptionButton("Year"),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                      child: Container(
-                        height: 280,
-                        width: 305,
-                        child: SvgPicture.asset(
-                          _getSvgPath(),
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 20),
-
-                Row(
-                  children: [
-                    SizedBox(width: 30),
-
-                    Text(
-                      "Artikel",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 20),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: SizedBox(
-                    height: 240,
-
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: svgImages.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          width: 161,
-                          margin: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.black, width: 1),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.6),
-                                offset: Offset(0, 4),
-                                blurRadius: 2,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: SvgPicture.asset(
-                                  svgImages[index],
-                                  fit: BoxFit.cover,
-                                  width: 161,
-                                  height: 240,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.vertical(
-                                      bottom: Radius.circular(20),
-                                    ),
-                                    color: Colors.teal,
-                                  ),
-                                  height: 80,
-                                  width: 160,
-                                  child: Center(
-                                    child: Text(
-                                      index == 0
-                                          ? 'Before-After\nSungai Bunulrejo'
-                                          : index == 1
-                                          ? 'Pembersihan\nSungai Bunulrejo'
-                                          : 'OTT Sampah\nKota Malang',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                SizedBox(height: 50),
               ],
             ),
+
+            SizedBox(height: 30),
+
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 25),
+                    _buildOptionButton("Week"),
+                    SizedBox(width: 5),
+                    _buildOptionButton("Month"),
+                    SizedBox(width: 5),
+                    _buildOptionButton("Year"),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: Container(
+                    height: 280,
+                    width: 305,
+                    child: SvgPicture.asset(_getSvgPath(), fit: BoxFit.contain),
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 20),
+
+            Row(
+              children: [
+                SizedBox(width: 30),
+
+                Text(
+                  "Artikel",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 20),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Container(
+                height: 240,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: svgImages.length, // Menggunakan panjang daftar
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: 161,
+                      margin: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 1),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.6),
+                            offset: Offset(0, 4),
+                            blurRadius: 2,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SvgPicture.asset(
+                              svgImages[index],
+                              fit: BoxFit.cover,
+                              width: 161,
+                              height: 240,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Center(
+                                  child: Text('Error loading image'),
+                                );
+                              },
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.vertical(
+                                  bottom: Radius.circular(20),
+                                ),
+                                color: Colors.teal,
+                              ),
+                              height: 80,
+                              width: 160,
+                              child: Center(
+                                child: Text(
+                                  index == 0
+                                      ? 'Before-After\nSungai Bunulrejo'
+                                      : index == 1
+                                      ? 'Pembersihan\nSungai Bunulrejo'
+                                      : 'OTT Sampah\nKota Malang',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+
+            SizedBox(height: 50),
           ],
         ),
       ),
