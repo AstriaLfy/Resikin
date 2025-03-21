@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ReusableContainer extends StatelessWidget {
-  final Widget? child; 
+  final Widget? child;
   final double height;
   final Color color;
 
@@ -9,7 +9,7 @@ class ReusableContainer extends StatelessWidget {
     Key? key,
     this.child,
     this.height = 175,
-    this.color = const Color(0xFF3D8D7A), 
+    this.color = const Color(0xFF3D8D7A),
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class ReusableContainer extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(175, 45)),
       ),
-      child: child, 
+      child: child,
     );
   }
 }
@@ -35,9 +35,9 @@ class ReuseField extends StatelessWidget {
   const ReuseField({
     Key? key,
     this.child,
-    this.height = 56, 
+    this.height = 56,
     this.width = 320,
-    this.color = const Color(0xffd9d9d9), 
+    this.color = const Color(0xffd9d9d9),
   }) : super(key: key);
 
   @override

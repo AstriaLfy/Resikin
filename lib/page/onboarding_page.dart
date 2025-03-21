@@ -180,10 +180,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             ],
           ),
 
-          Container(
-
-          )
-
+          Container(),
         ],
       ),
     );

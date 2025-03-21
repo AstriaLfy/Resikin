@@ -11,12 +11,17 @@ import 'package:resikin/page/profile_page.dart';
 import 'package:resikin/page/station_page.dart';
 import 'package:resikin/bottomnavbar.dart';
 import 'package:resikin/page/Pickup.dart';
-
 import 'package:resikin/page/login_page.dart';
 
 void main() {
   runApp(MaterialApp(home: BottomNavigationPage()));
 }
+
+final List<String> svgImages = [
+  'assets/images/image1.svg',
+  'assets/images/image2.svg',
+  'assets/images/image3.svg',
+];
 
 class Beranda extends StatefulWidget {
   @override
@@ -244,12 +249,12 @@ class _BerandaState extends State<Beranda> {
             Row(
               children: [
                 SizedBox(width: 30),
-                Icon(Icons.soap),
+                SvgPicture.asset("assets/images/sodacan.svg"),
                 Text("Kaleng"),
 
                 SizedBox(width: 80),
 
-                Icon(Icons.water_drop_outlined),
+                SvgPicture.asset("assets/images/bubble-tea-01.svg"),
                 Text("Plastik"),
               ],
             ),
@@ -257,12 +262,12 @@ class _BerandaState extends State<Beranda> {
             Row(
               children: [
                 SizedBox(width: 30),
-                Icon(Icons.soap),
+                SvgPicture.asset("assets/images/milk-bottle.svg"),
                 Text("Botol Kaca"),
 
                 SizedBox(width: 55),
 
-                Icon(Icons.water_drop_outlined),
+                SvgPicture.asset("assets/images/package.svg"),
                 Text("Kertas/Kardus"),
               ],
             ),
@@ -439,102 +444,127 @@ class _BerandaState extends State<Beranda> {
                     ),
                   ),
                 ),
-              ],
-            ),
 
-            SizedBox(height: 30),
+                SizedBox(height: 30),
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 25),
-                    _buildOptionButton("Week"),
-                    SizedBox(width: 5),
-                    _buildOptionButton("Month"),
-                    SizedBox(width: 5),
-                    _buildOptionButton("Year"),
+                    Row(
+                      children: [
+                        SizedBox(width: 25),
+                        _buildOptionButton("Week"),
+                        SizedBox(width: 5),
+                        _buildOptionButton("Month"),
+                        SizedBox(width: 5),
+                        _buildOptionButton("Year"),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                      child: Container(
+                        height: 280,
+                        width: 305,
+                        child: SvgPicture.asset(
+                          _getSvgPath(),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
+
                 SizedBox(height: 20),
+
+                Row(
+                  children: [
+                    SizedBox(width: 30),
+
+                    Text(
+                      "Artikel",
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 20),
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
-                    height: 280,
-                    width: 305,
-                    child: SvgPicture.asset(_getSvgPath(), fit: BoxFit.contain),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 20),
-
-            Row(
-              children: [
-                SizedBox(width: 30),
-
-                Text(
-                  "Artikel",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 20),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                height: 240,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: 161,
-                      margin: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.black, width: 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.6),
-                            offset: Offset(0, 4),
-                            blurRadius: 2,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.vertical(
-                                  bottom: Radius.circular(20),
-                                ),
-                                color: Colors.teal,
+                    height: 240,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: svgImages.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 161,
+                          margin: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.6),
+                                offset: Offset(0, 4),
+                                blurRadius: 2,
+                                spreadRadius: 2,
                               ),
-                              height: 80,
-                              width: 160,
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
+
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: SvgPicture.asset(
+                                  svgImages[index],
+                                  fit: BoxFit.cover,
+                                  width: 161,
+                                  height: 240,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.vertical(
+                                      bottom: Radius.circular(20),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  height: 80,
+                                  width: 160,
+                                  child: Center(
+                                    child: Text(
+                                      index == 0
+                                          ? 'Before-After\nSungai Bunulrejo'
+                                          : index == 1
+                                          ? 'Pembersihan\nSungai Bunulrejo'
+                                          : 'OTT Sampah\nKota Malang',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(height: 50),
+              ],
             ),
-            SizedBox(height: 50),
           ],
         ),
       ),

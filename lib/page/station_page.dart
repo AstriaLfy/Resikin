@@ -55,8 +55,6 @@ class _StationPageState extends State<StationPage> {
               ),
 
               SizedBox(height: 20),
-
-              // Station Cards
               _buildStationCard("Station Suhat", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
               SizedBox(height: 20),
               _buildStationCard("Station FILKOM", "Jam: 00:00", "Alamat: Fakultas Ilmu Komputer"),
@@ -73,7 +71,6 @@ class _StationPageState extends State<StationPage> {
     );
   }
 
-  // Fungsi untuk membangun kartu stasiun
   Widget _buildStationCard(String stationName, String time, String address) {
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -97,7 +94,7 @@ class _StationPageState extends State<StationPage> {
               ),
             ),
             Container(
-              width: 270, // Adjust the width as needed
+              width: 270,
               child: Divider(thickness: 1, color: Colors.black),
             ),
             Row(

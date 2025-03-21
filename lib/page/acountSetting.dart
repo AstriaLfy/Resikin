@@ -18,7 +18,7 @@ class _Acountsetting extends State<Acountsetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -122,21 +122,25 @@ class _Acountsetting extends State<Acountsetting> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // Handle submit
-                        print('Form Submitted: $name, $email, $phone, $password');
+                        print(
+                          'Form Submitted: $name, $email, $phone, $password',
+                        );
                       }
                     },
                     child: Text('Submit'),
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle account deletion
                       print('Akun dihapus');
                     },
                     child: Text('Hapus Akun'),
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
                   ),
                 ],
               ),

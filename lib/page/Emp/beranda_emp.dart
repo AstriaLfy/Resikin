@@ -8,7 +8,7 @@ class BerandaEmp extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -27,58 +27,48 @@ class BerandaEmp extends StatelessWidget {
           ),
         ),
       ),
-      body:
-    Padding(
-    padding: EdgeInsets.symmetric(
-    horizontal: MediaQuery.of(context).size.width * 0.07,
-    ),child:
-    Column(
-      children: [
-        SizedBox(height: 20,),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          width: 375,
-          height: 500,
-          child:
-
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.07,
-            ),child:
-          SingleChildScrollView(
-            child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Cleaning", style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),),
-
-                Container(
-                  width: 270, // Adjust the width as needed
-                  child: Divider(thickness: 1, color: Colors.black),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.07,
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              width: 375,
+              height: 500,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.07,
                 ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Cleaning",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
 
-              ],
-            )
-            ,
-          ),
-
-          )
-
-
-        )
-
-
-      ],
-    ),
-
-
-    )
-
-
-
+                      Container(
+                        width: 270,
+                        child: Divider(thickness: 1, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

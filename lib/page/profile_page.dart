@@ -97,7 +97,6 @@ class ProfilePage extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        // Text di atas background
                         Center(
                           child: Row(
                             children: [
@@ -255,7 +254,7 @@ class ProfilePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => LoginAs(),
-                  ), // Ganti dengan nama kelas Beranda Anda
+                  ), 
                 );
               },
               child: Container(

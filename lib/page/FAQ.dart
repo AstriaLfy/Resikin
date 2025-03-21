@@ -8,7 +8,7 @@ class Faq extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0), 
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -27,17 +27,21 @@ class Faq extends StatelessWidget {
           ),
         ),
       ),
-      body:
-      Padding(
-      padding: EdgeInsets.symmetric(
-      horizontal: MediaQuery.of(context).size.width * 0.07,
-    ),child:
-      Column(
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.07,
+        ),
+        child: Column(
           children: [
-
-            SizedBox(height: 20,),
-            Text("Cari Masalah yang lagi kamu alami", style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),),
-            SizedBox(height: 30,),
+            SizedBox(height: 20),
+            Text(
+              "Cari Masalah yang lagi kamu alami",
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 30),
 
             Container(
               decoration: BoxDecoration(
@@ -50,13 +54,22 @@ class Faq extends StatelessWidget {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Ketik 2 Karakter atau lebih',
-                  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 10.0,
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            Text("Topik Yang sering di cari", style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),),
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
+            Text(
+              "Topik Yang sering di cari",
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 20),
 
             Container(
               decoration: BoxDecoration(
@@ -65,11 +78,13 @@ class Faq extends StatelessWidget {
               ),
               width: 320,
               height: 90,
-            child:             Text("Bagaimana cara melihat jadwal pengangkutan sampah di area saya?", style: GoogleFonts.poppins( fontSize: 16),),
-
+              child: Text(
+                "Bagaimana cara melihat jadwal pengangkutan sampah di area saya?",
+                style: GoogleFonts.poppins(fontSize: 16),
+              ),
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 1),
@@ -77,11 +92,12 @@ class Faq extends StatelessWidget {
               ),
               width: 320,
               height: 90,
-              child:             Text("Di mana saya bisa menemukan bank sampah ?", style: GoogleFonts.poppins( fontSize: 16),),
-
+              child: Text(
+                "Di mana saya bisa menemukan bank sampah ?",
+                style: GoogleFonts.poppins(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 20,),
-
+            SizedBox(height: 20),
 
             Container(
               decoration: BoxDecoration(
@@ -90,17 +106,14 @@ class Faq extends StatelessWidget {
               ),
               width: 320,
               height: 90,
-              child:             Text("Apa yang harus saya lakukan jika saya membutuhkan pengangkutan sampah di luar jadwal reguler?", style: GoogleFonts.poppins( fontSize: 16),),
-
+              child: Text(
+                "Apa yang harus saya lakukan jika saya membutuhkan pengangkutan sampah di luar jadwal reguler?",
+                style: GoogleFonts.poppins(fontSize: 16),
+              ),
             ),
-
-          ]
-      )
-
-      )
-
-
-
+          ],
+        ),
+      ),
     );
   }
 }

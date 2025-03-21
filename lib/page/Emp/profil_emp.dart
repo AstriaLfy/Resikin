@@ -15,7 +15,7 @@ class _ProfilEmpState extends State<ProfilEmp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -34,87 +34,79 @@ class _ProfilEmpState extends State<ProfilEmp> {
           ),
         ),
       ),
-      body:
-
-    Padding(
-    padding: EdgeInsets.symmetric(
-    horizontal: MediaQuery.of(context).size.width * 0.07,
-    ),child:
-    Column(
-      children: [
-        SizedBox(height: 20,),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          height: 90,
-          width: 300,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.07,
         ),
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              height: 90,
+              width: 300,
+            ),
 
-        Container(
-          height: 50,
-          width: 310,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Center(child: Text("Pengaturan Akun")),
+            Container(
+              height: 50,
+              width: 310,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Center(child: Text("Pengaturan Akun")),
+            ),
+
+            Container(
+              height: 50,
+              width: 310,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Center(child: Text("Tentang Kami")),
+            ),
+
+            Container(
+              height: 50,
+              width: 310,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Center(child: Text("Tanya Jawab")),
+            ),
+
+            Container(
+              height: 50,
+              width: 310,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Center(child: Text("Aktifkan Pesanan")),
+            ),
+
+            Container(
+              height: 50,
+              width: 310,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Center(child: Text("Keluar")),
+            ),
+          ],
         ),
-
-        Container(
-          height: 50,
-          width: 310,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Center(child: Text("Tentang Kami")),
-        ),
-
-        Container(
-          height: 50,
-          width: 310,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Center(child: Text("Tanya Jawab")),
-        ),
-
-        Container(
-          height: 50,
-          width: 310,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Center(child: Text("Aktifkan Pesanan")),
-        ),
-
-        Container(
-          height: 50,
-          width: 310,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: Center(child: Text("Keluar")),
-        ),
-
-
-      ],
-    ),
-    )
-
-
-
-
+      ),
     );
   }
 }

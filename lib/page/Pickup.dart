@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resikin/page/reusable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'payment_method.dart'; // Import the PaymentMethod page
+import 'payment_method.dart';  
 
 class Pickup extends StatefulWidget {
   @override
@@ -70,7 +70,7 @@ class _Pickup extends State<Pickup> {
                   Row(
                     crossAxisAlignment:
                         CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                            .start, 
                     children: [
                       Text(
                         "Alamat : ",
@@ -80,7 +80,7 @@ class _Pickup extends State<Pickup> {
                         child: Column(
                           crossAxisAlignment:
                               CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                                  .start, 
                           children: [
                             Text(
                               "Ruang A1 No.19,\n"
@@ -101,7 +101,7 @@ class _Pickup extends State<Pickup> {
                   Row(
                     crossAxisAlignment:
                         CrossAxisAlignment
-                            .start, // Menyelaraskan teks di bagian atas
+                            .start, 
                     children: [
                       Text(
                         "Catatan : ",
@@ -111,7 +111,7 @@ class _Pickup extends State<Pickup> {
                         child: Column(
                           crossAxisAlignment:
                               CrossAxisAlignment
-                                  .start, // Menyelaraskan teks alamat ke kiri
+                                  .start,  
                           children: [
                             Text(
                               "xxxxxxxxx,\n"
@@ -218,7 +218,7 @@ class _Pickup extends State<Pickup> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0), 
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -284,19 +284,19 @@ class _Pickup extends State<Pickup> {
                       ),
                       Center(
                         child: Container(
-                          height: 80, // Tinggi dari wheel
+                          height: 80, 
                           child: ListWheelScrollView(
-                            itemExtent: 50, // Tinggi setiap item
+                            itemExtent: 50, 
                             onSelectedItemChanged: (index) {
                               setState(() {
                                 _selectedHour =
-                                    index + 7; // Mengubah jam yang dipilih
+                                    index + 7; 
                               });
                             },
                             children: List.generate(10, (index) {
                               return Center(
                                 child: Text(
-                                  '${index + 7}:00', // Menampilkan jam dari 07:00 hingga 16:00
+                                  '${index + 7}:00',   
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -475,3 +475,4 @@ class _Pickup extends State<Pickup> {
     );
   }
 }
+

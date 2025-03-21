@@ -8,7 +8,7 @@ class OrderPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0),
         child: ReusableContainer(
           child: Center(
             child: Column(

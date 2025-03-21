@@ -1,69 +1,139 @@
-import 'package:resikin/features/user_auth/firebase_auth_services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:resikin/page/ForgetPw/ConfirmEmail.dart';
+import 'package:resikin/page/login_page.dart';
+import 'package:resikin/page/user_login/regist_form_user.dart';
 import 'reusable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'loginEmp.dart';
+import 'package:resikin/page/ForgetPw/ConfirmHp.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
-}
-
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  final FirebaseAuthServices _authServices = FirebaseAuthServices();
-  final TextEditingController _emailController = TextEditingController();
-  bool _isLoading = false;
-
-  Future<void> _resetPassword() async {
-    String email = _emailController.text.trim();
-
-    if (email.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Harap isi email Anda')));
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    await _authServices.sendPasswordResetEmail(email);
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Email reset password telah dikirim')),
-    );
-  }
-
+class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), 
-        child: ReusableContainer(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 112),
-                Text(
-                  "Lupa Password",
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+      backgroundColor: Color(0xFFFAFCF9),
+
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              ReusableContainer(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 112),
+                      Text(
+                        "Lupa Kata Sandi",
+                        style: GoogleFonts.poppins(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 40),
+              SvgPicture.asset("assets/images/lock.svg"),
+
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Confirmemail()),
+                  );
+                },
+                child: Container(
+                  height: 56,
+                  width: 320,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF3D8D7A),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20),
+                      Icon(Icons.mail, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        "Konfirmasi Dengan Email",
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 50),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Divider(thickness: 1, color: Colors.black),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('atau', style: GoogleFonts.poppins()),
+                  ),
+
+                  Container(
+                    width: 130,
+                    child: Divider(thickness: 1, color: Colors.black),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 50),
+
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => Confirmhp()));
+                },
+                child: ReuseField(
+                  color: Color(0xFF3D8D7A),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20),
+                      Icon(Icons.person_pin_outlined, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        "Konfirmasi dengan No.HandPhone",
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 100),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Sudah punya akun?"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                    child: Container(
+                      child: Text(
+                        " Masuk",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-      ),
-      body: Column(children: [
-        ],
       ),
     );
   }

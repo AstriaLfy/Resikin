@@ -10,7 +10,6 @@ class DatabaseService {
   final String collectionNamePickUp = "pickup_requests";
   final String collectionNamePayment = "payment_requests";
 
-  
   Future<String?> createClean(Map<String, dynamic> cleaningData) async {
     try {
       String userId = FirebaseAuth.instance.currentUser?.uid ?? "";

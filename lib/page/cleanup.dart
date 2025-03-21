@@ -26,9 +26,8 @@ class _CleanupState extends State<Cleanup> {
   final TextEditingController luasController = TextEditingController();
   final TextEditingController alamatController = TextEditingController();
   int jumlahPegawai = 1;
-  final TextEditingController catatanController = TextEditingController();
-
   int _selectedHour = 7;
+  final TextEditingController catatanController = TextEditingController();
 
   void _incrementPegawai() {
     if (jumlahPegawai < 3) {
@@ -52,6 +51,15 @@ class _CleanupState extends State<Cleanup> {
     String catatan = catatanController.text;
 
     int price = _calculatePrice(luas);
+
+    if (luas.isEmpty || alamat.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Harap isi semua kolom yang diperlukan.")),
+      );
+      return;
+    }
+
+    _showConfirmationDialog(selectedDay, luas, alamat, jumlahPegawai, catatan);
 
     Map<String, dynamic> data = {
       'luas': luas,
@@ -355,19 +363,18 @@ class _CleanupState extends State<Cleanup> {
                       ),
                       Center(
                         child: Container(
-                          height: 80, // Tinggi dari wheel
+                          height: 80,
                           child: ListWheelScrollView(
-                            itemExtent: 50, // Tinggi setiap item
+                            itemExtent: 50,
                             onSelectedItemChanged: (index) {
                               setState(() {
-                                _selectedHour =
-                                    index + 7; // Mengubah jam yang dipilih
+                                _selectedHour = index + 7;
                               });
                             },
                             children: List.generate(10, (index) {
                               return Center(
                                 child: Text(
-                                  '${index + 7}:00', // Menampilkan jam dari 07:00 hingga 16:00
+                                  '${index + 7}:00',
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -390,7 +397,7 @@ class _CleanupState extends State<Cleanup> {
             SizedBox(height: 10),
             _buildInputField("Alamat", alamatController, 60),
             SizedBox(height: 10),
-            _buildEmployeeCount(), // Employee count widget
+            _buildEmployeeCount(),
             SizedBox(height: 20),
             Row(
               children: [

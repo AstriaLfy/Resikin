@@ -9,13 +9,13 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  String _selectedCategory = "Aktif"; 
+  String _selectedCategory = "Aktif";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300.0), // Height of AppBar
+        preferredSize: Size.fromHeight(300.0), 
         child: ReusableContainer(
           child: Center(
             child: Column(
@@ -57,7 +57,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             ? Colors.teal
                             : Colors.grey[300],
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.black, width: 1)
+                    border: Border.all(color: Colors.black, width: 1),
                   ),
                   height: 45,
                   width: 150,
@@ -74,7 +74,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 ),
               ),
 
-              SizedBox(width: 10,),
+              SizedBox(width: 10),
 
               GestureDetector(
                 onTap: () {
@@ -192,7 +192,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),
                               ),
 
-                              SizedBox(height: 10,),
+                              SizedBox(height: 10),
 
                               Container(
                                 decoration: BoxDecoration(
@@ -251,7 +251,6 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ],
                                 ),
                               ),
-
                             ],
                           )
                           : Column(
@@ -319,7 +318,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),
                               ),
 
-                              SizedBox(height: 10,),
+                              SizedBox(height: 10),
 
                               Container(
                                 decoration: BoxDecoration(
@@ -378,67 +377,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ],
                                 ),
                               ),
-                            SizedBox(height: 10,),
-
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                height: 150,
-                                width: 284,
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        SizedBox(width: 10),
-                                        SvgPicture.asset(
-                                          "assets/images/PickIcon.svg",
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text("Pick Up"),
-                                      ],
-                                    ),
-                                    Container(
-                                      width: 270,
-                                      child: Divider(
-                                        thickness: 1,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-
-                                    Row(
-                                      children: [
-                                        SizedBox(width: 10),
-                                        Icon(Icons.calendar_month),
-                                        Text("Tanggal : 00 Maret 2025"),
-                                      ],
-                                    ),
-
-                                    Row(
-                                      children: [
-                                        SizedBox(width: 10),
-                                        Icon(Icons.location_on),
-                                        Text("Alamat : xxxxxxxxx"),
-                                      ],
-                                    ),
-
-                                    Row(
-                                      children: [
-                                        SizedBox(width: 10),
-                                        Icon(Icons.monitor_weight),
-                                        Text("00 Kg"),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              SizedBox(height: 10,),
+                              SizedBox(height: 10),
 
                               Container(
                                 decoration: BoxDecoration(
@@ -498,6 +437,65 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),
                               ),
 
+                              SizedBox(height: 10),
+
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                height: 150,
+                                width: 284,
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 10),
+                                        SvgPicture.asset(
+                                          "assets/images/PickIcon.svg",
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text("Pick Up"),
+                                      ],
+                                    ),
+                                    Container(
+                                      width: 270,
+                                      child: Divider(
+                                        thickness: 1,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 10),
+                                        Icon(Icons.calendar_month),
+                                        Text("Tanggal : 00 Maret 2025"),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 10),
+                                        Icon(Icons.location_on),
+                                        Text("Alamat : xxxxxxxxx"),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 10),
+                                        Icon(Icons.monitor_weight),
+                                        Text("00 Kg"),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                 ),

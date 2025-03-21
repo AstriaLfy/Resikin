@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'page/onboarding_page.dart';
 import 'package:resikin/bottomnavbar.dart';
+import 'package:resikin/page/IntroScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.manropeTextTheme(Theme.of(context).textTheme),
         primarySwatch: Colors.blue,
       ),
-      home: OnboardingPage(),
+      home: IntroScreen(),
     );
   }
 }
