@@ -233,12 +233,12 @@ class _BerandaState extends State<Beranda> {
             Row(
               children: [
                 SizedBox(width: 30),
-                Icon(Icons.soap),
+                SvgPicture.asset("assets/images/sodacan.svg"),
                 Text("Kaleng"),
 
                 SizedBox(width: 80),
 
-                Icon(Icons.water_drop_outlined),
+                SvgPicture.asset("assets/images/bubble-tea-01.svg"),
                 Text("Plastik"),
               ],
             ),
@@ -246,12 +246,12 @@ class _BerandaState extends State<Beranda> {
             Row(
               children: [
                 SizedBox(width: 30),
-                Icon(Icons.soap),
+                SvgPicture.asset("assets/images/milk-bottle.svg"),
                 Text("Botol Kaca"),
 
                 SizedBox(width: 55),
 
-                Icon(Icons.water_drop_outlined),
+SvgPicture.asset("assets/images/package.svg"),
                 Text("Kertas/Kardus"),
               ],
             ),
