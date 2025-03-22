@@ -1,0 +1,38 @@
+{
+  "hosting": {
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cross-Origin-Opener-Policy",
+            "value": "same-origin"
+          }
+        ]
+      }
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "resikin-e8b3c",
+          "appId": "1:423243917502:android:53b492e76a9fc5093016ef",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "resikin-e8b3c",
+          "configurations": {
+            "android": "1:423243917502:android:53b492e76a9fc5093016ef",
+            "ios": "1:423243917502:ios:2f1ac13436318cea3016ef",
+            "macos": "1:423243917502:ios:2f1ac13436318cea3016ef",
+            "web": "1:423243917502:web:fb1541e3f4f203153016ef",
+            "windows": "1:423243917502:web:4672fb97f12046f63016ef"
+          }
+        }
+      }
+    }
+  }
+}

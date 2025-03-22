@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "423243917502",
+    "project_id": "resikin-e8b3c",
+    "storage_bucket": "resikin-e8b3c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423243917502:android:53b492e76a9fc5093016ef",
+        "android_client_info": {
+          "package_name": "com.example.resikin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423243917502-0b0a4748e6up8m8a04ggr3jqfrc2ur10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.resikin",
+            "certificate_hash": "f0ff59014e24a9052c2acfe57bcba679b299fef9"
+          }
+        },
+        {
+          "client_id": "423243917502-kthdqveq2sh3abrpae880ld73bd4530e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYMFGd-7-oo8TqLsX2akl38wB_X1A9PZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423243917502-kthdqveq2sh3abrpae880ld73bd4530e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "423243917502-1j51clqvptg0lffnilelp7421kso9vms.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.resikin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
